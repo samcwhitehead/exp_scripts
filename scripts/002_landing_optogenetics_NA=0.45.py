@@ -14,8 +14,9 @@ from ledpanels.srv import *
 from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 
-git_SHA = os.popen('git rev-parse HEAD').read()
+git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
 script_path = os.path.dirname(os.path.realpath(sys.argv[0]))
+print script_path
 
 class LedControler(object):
     def __init__(self):
@@ -111,14 +112,14 @@ class LedControler(object):
         self.pub.publish(self.msg)
 
     def all_off(self):
-	self.msg.command = 'all_off';self.clear_args();self.pub.publish(self.msg)
+        self.msg.command = 'all_off';self.clear_args();self.pub.publish(self.msg)
     
     def set_ao(self,channel,value = 5000):
-	self.msg.command = 'set_ao'
-	self.clear_args()
-	self.msg.arg1 = channel
-	self.msg.arg2 = value
-	self.pub.publish(self.msg)
+        self.msg.command = 'set_ao'
+        self.clear_args()
+        self.msg.arg1 = channel
+        self.msg.arg2 = value
+        self.pub.publish(self.msg)
 
 if __name__ == '__main__':
     try:
@@ -132,59 +133,62 @@ if __name__ == '__main__':
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
                                     queue_size = 10)
-	meta_pub = rospy.Publisher('/exp_scripts/exp_metadata', 
+        exp_msg = MsgExpState()
+
+        meta_pub = rospy.Publisher('/exp_scripts/exp_metadata', 
                                     String,
                                     queue_size = 10)
-	
-	script_msg = MsgExpMetadata()        
-	meta_pub.publish(git_sha)
+        
         
         # init experiment
         time.sleep(5)
+        #for i in range(100):
+        meta_pub.publish(git_SHA)
         for rep in range(10):
             #for vlevel in np.random.permutation(range(1000,16001,5000)):
             for vlevel in np.random.permutation(range(600,1200,1800)):
                 ctrl.stop()
-		#################################################
-		# Closed Loop
-		#################################################
-		print 'enter closed loop stripe fixation'
+                #################################################
+                # Closed Loop
+                #################################################
+                print 'enter closed loop stripe fixation'
                 ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
                 ctrl.set_position(0,0)
                 ctrl.set_function_by_name('Y','default',freq=50)
                 ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
                 ctrl.set_mode('xrate=ch0','yrate=funcy')
-		### set the imaging level		
-		ctrl.set_ao(4,vlevel)
+                ### set the imaging level       
+                ctrl.set_ao(4,vlevel)
                 ctrl.start()
                 ### publish the state
                 exp_msg.state = 'closed_loop;gain=-5;epi_level=%s'%(vlevel)
-		exp_pub.publish(exp_msg)
+                exp_pub.publish(exp_msg)
                 time.sleep(5)
-		
-		#################################################
-		# Open Loop
-		#################################################
+        
+                #################################################
+                # Open Loop
+                #################################################
                 print 'all panels off'
-                
+                        
                 ctrl.stop()
-		ctrl.all_off()
-		exp_msg.state = 'all_off;epi_level=%s'%(vlevel)                
+                ctrl.all_off()
+                exp_msg.state = 'all_off;epi_level=%s'%(vlevel)                
                 exp_pub.publish(exp_msg)
-		time.sleep(5.0)
+                time.sleep(5.0)
                 ### publish the state
-		exp_msg.state = 'led_pulse;epi_level=%s'%(vlevel)               
+                exp_msg.state = 'led_pulse;epi_level=%s'%(vlevel)               
                 exp_pub.publish(exp_msg)
-		print '617nm pulse'
-		ctrl.set_ao(3,15000)
-		time.sleep(0.5)
-		ctrl.set_ao(3,0)
+                print '617nm pulse'
+                ctrl.set_ao(3,15000)
+                time.sleep(0.5)
+                ctrl.set_ao(3,0)
                 time.sleep(5.0)
                 print rep
 
-        ctrl.set_position(0,20)
-        ctrl.stop()
+                ctrl.set_position(0,20)
+                ctrl.stop()
+
     except rospy.ROSInterruptException:
         print 'exception'
         pass
-    meta_pub.publish(git_sha)
+    meta_pub.publish(git_SHA)
