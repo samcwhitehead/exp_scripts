@@ -6,10 +6,16 @@ import roslib
 roslib.load_manifest('ledpanels')
 import rospy
 import time
+import os
+import sys
+
 from ledpanels.msg import MsgPanelsCommand
 from ledpanels.srv import *
 from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
+
+git_SHA = os.popen('git rev-parse HEAD').read()
+script_path = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 class LedControler(object):
     def __init__(self):
@@ -126,7 +132,12 @@ if __name__ == '__main__':
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
                                     queue_size = 10)
-        exp_msg = MsgExpState()
+	meta_pub = rospy.Publisher('/exp_scripts/exp_metadata', 
+                                    String,
+                                    queue_size = 10)
+	
+	script_msg = MsgExpMetadata()        
+	meta_pub.publish(git_sha)
         
         # init experiment
         time.sleep(5)
@@ -175,4 +186,5 @@ if __name__ == '__main__':
         ctrl.stop()
     except rospy.ROSInterruptException:
         print 'exception'
-        pass            
+        pass
+    meta_pub.publish(git_sha)
