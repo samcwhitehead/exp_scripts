@@ -158,7 +158,8 @@ if __name__ == '__main__':
         				 script_code = script_code)
         for rep in range(10):
             #for vlevel in np.random.permutation(range(1000,16001,5000)):
-            for vlevel in np.random.permutation(range(200,1200,2200)):
+            for vlevel in np.random.permutation([200,1200,2200]):
+                print vlevel
                 ctrl.stop()
                 #################################################
                 # Closed Loop
