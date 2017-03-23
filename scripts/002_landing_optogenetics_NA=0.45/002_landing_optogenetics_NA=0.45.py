@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+exp_description = \
+	"""Testing the effect of the imaging light intensity on the chrimson response. 
+	   The line is S-28 X C-85.
+ 	   Chrimson is expressed using SS01580 in DN106."""
 
-#!/usr/bin/env python
-# license removed for brevity
 import roslib
 roslib.load_manifest('ledpanels')
 import rospy
@@ -15,17 +17,15 @@ from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
 
-git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
+repo_root = '/home/imager/catkin/src'
+repo_dirs = repo_dirs = [d for d in os.listdir(repo_root) if os.path.isdir(os.path.join(repo_root,d))]
+git_SHA = ''.join([p + ':'+ os.popen('git -C %s rev-parse HEAD'%(p)).read() for p in repo_dirs])
+#git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
 
 with open(script_path,'rt') as f:
 	script_code = f.read()
-exp_description = """testing the effect of the imaging light intensity on the chrimson response.
-the line is S-28 X C-85. Chrimson is expressed using SS01580  in DN106"""
-
-
-print script_path
 
 class LedControler(object):
     def __init__(self):
