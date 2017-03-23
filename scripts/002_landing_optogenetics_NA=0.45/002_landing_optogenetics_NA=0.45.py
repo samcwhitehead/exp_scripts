@@ -13,9 +13,18 @@ from ledpanels.msg import MsgPanelsCommand
 from ledpanels.srv import *
 from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
+from exp_scripts.msg import MsgExpMetadata
 
 git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
-script_path = os.path.dirname(os.path.realpath(sys.argv[0]))
+script_path = os.path.realpath(sys.argv[0])
+script_dir = os.path.dirname(script_path)
+
+with open(script_path,'rt') as f:
+	script_code = f.read()
+exp_description = """testing the effect of the imaging light intensity on the chrimson response.
+the line is S-28 X C-85. Chrimson is expressed using SS01580  in DN106"""
+
+
 print script_path
 
 class LedControler(object):
@@ -126,9 +135,9 @@ if __name__ == '__main__':
         import numpy as np
         print 'start'
         rospy.init_node('exp_script')
-        exp_dir = '/media/imager/FlyDataD/Projects/001_landing/'
+        exp_dir = script_dir
         ctrl = LedControler()
-        ctrl.load_SD_inf(exp_dir + 'SD.mat')
+        ctrl.load_SD_inf(exp_dir + '/SD.mat')
         
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
@@ -136,17 +145,20 @@ if __name__ == '__main__':
         exp_msg = MsgExpState()
 
         meta_pub = rospy.Publisher('/exp_scripts/exp_metadata', 
-                                    String,
+                                    MsgExpMetadata,
                                     queue_size = 10)
         
         
         # init experiment
         time.sleep(5)
         #for i in range(100):
-        meta_pub.publish(git_SHA)
+        meta_pub.publish(git_SHA = git_SHA,
+        				 script_path = script_path,
+        				 exp_description = exp_description,
+        				 script_code = script_code)
         for rep in range(10):
             #for vlevel in np.random.permutation(range(1000,16001,5000)):
-            for vlevel in np.random.permutation(range(600,1200,1800)):
+            for vlevel in np.random.permutation(range(200,1200,2200)):
                 ctrl.stop()
                 #################################################
                 # Closed Loop
@@ -191,4 +203,3 @@ if __name__ == '__main__':
     except rospy.ROSInterruptException:
         print 'exception'
         pass
-    meta_pub.publish(git_SHA)
