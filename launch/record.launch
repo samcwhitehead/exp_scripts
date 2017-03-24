@@ -12,7 +12,8 @@
     /phidgets_daq/all_data 
     /ledpanels/command 
     /exp_scripts/exp_state 
-    /exp_scripts/exp_metadata 
+    /exp_scripts/exp_metadata
+    /LogRefFrame
     /kinefly/command 
     /kinefly/flystate 
     /kinefly/flystate2phidgetsanalog/command" />
