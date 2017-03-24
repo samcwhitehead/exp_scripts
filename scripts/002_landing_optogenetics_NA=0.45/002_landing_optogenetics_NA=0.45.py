@@ -1,15 +1,12 @@
 #!/usr/bin/env python
-exp_description = \
-	"""Testing the effect of the imaging light intensity on the chrimson response. 
-	   The line is S-28 X C-85.
- 	   Chrimson is expressed using SS01580 in DN106."""
+
+import time
+import os
+import sys
 
 import roslib
 roslib.load_manifest('ledpanels')
 import rospy
-import time
-import os
-import sys
 
 from ledpanels.msg import MsgPanelsCommand
 from ledpanels.srv import *
@@ -17,17 +14,36 @@ from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
 
+from muscle_imager.srv import SrvRefFrame
+from muscle_imager.srv import SrvRefFrameRequest
+
+#####################################################################################
+########################### Initialize Experiment ###################################
+#####################################################################################
+exp_description = \
+    """Testing the effect of the imaging light intensity on the chrimson response. 
+       The line is S-28 X C-85.
+       Chrimson is expressed using SS01580 in DN106."""
+
+#list of all git tracked repositories
 repo_root = '/home/imager/catkin/src'
-repo_dirs = repo_dirs = [d for d in os.listdir(repo_root) if os.path.isdir(os.path.join(repo_root,d))]
+repo_dirs = [os.path.join(repo_root,d) for d in os.listdir(repo_root)]
+repo_dirs = [d for d in repo_dirs if os.path.isdir(d)]
+repo_dirs.append('/media/imager/FlyDataD/src/muscle_model')
 git_SHA = ''.join([p + ':'+ os.popen('git -C %s rev-parse HEAD'%(p)).read() for p in repo_dirs])
 #git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
-
 with open(script_path,'rt') as f:
-	script_code = f.read()
+    script_code = f.read()
+
+#####################################################################################
+#####################################################################################
 
 class LedControler(object):
+    """ convenience class for controlling the led's  lets move this to 
+    a module soon"""
+
     def __init__(self):
         
         self.pub = rospy.Publisher('/ledpanels/command', 
@@ -138,24 +154,26 @@ if __name__ == '__main__':
         exp_dir = script_dir
         ctrl = LedControler()
         ctrl.load_SD_inf(exp_dir + '/SD.mat')
-        
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
                                     queue_size = 10)
         exp_msg = MsgExpState()
-
         meta_pub = rospy.Publisher('/exp_scripts/exp_metadata', 
                                     MsgExpMetadata,
                                     queue_size = 10)
         
+        rospy.wait_for_service('RefFrameServer')
+        get_ref_frame = rospy.ServiceProxy('RefFrameServer', SrvRefFrame)
+
+        print get_ref_frame()
         
         # init experiment
         time.sleep(5)
-        #for i in range(100):
+        
         meta_pub.publish(git_SHA = git_SHA,
-        				 script_path = script_path,
-        				 exp_description = exp_description,
-        				 script_code = script_code)
+                         script_path = script_path,
+                         exp_description = exp_description,
+                         script_code = script_code)
         for rep in range(10):
             #for vlevel in np.random.permutation(range(1000,16001,5000)):
             for vlevel in np.random.permutation([400,800,1200,1600]):
@@ -197,7 +215,6 @@ if __name__ == '__main__':
                 ctrl.set_ao(3,0)
                 time.sleep(5.0)
                 print rep
-
                 ctrl.set_position(0,20)
                 ctrl.stop()
 
