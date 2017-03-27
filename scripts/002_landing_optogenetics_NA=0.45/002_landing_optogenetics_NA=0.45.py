@@ -217,6 +217,11 @@ if __name__ == '__main__':
                 print rep
                 ctrl.set_position(0,20)
                 ctrl.stop()
+    
+    	meta_pub.publish(git_SHA = git_SHA,
+                         script_path = script_path,
+                         exp_description = exp_description,
+                         script_code = script_code)
 
     except rospy.ROSInterruptException:
         print 'exception'
