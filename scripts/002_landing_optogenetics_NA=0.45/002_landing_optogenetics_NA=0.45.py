@@ -42,7 +42,7 @@ with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
 #git_SHA = ''.join([p + ':'+ os.popen('git -C %s rev-parse HEAD'%(p)).read() for p in repo_dirs])
 #git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
 assert git_tools.check_git_status(repo_dirs)
-git_SHA = git_tools.get_git_sha(repo_dirs)
+git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #####################################################################################
 #####################################################################################
