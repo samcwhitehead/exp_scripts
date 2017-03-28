@@ -12,7 +12,7 @@ from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
 
-from exp_scripts import git_tools
+from exp_scripts import git_tools,display_ctrl
 
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         print 'start'
         rospy.init_node('exp_script')
         exp_dir = script_dir
-        ctrl = LedControler()
+        ctrl = display_ctrl.LedControler()
         ctrl.load_SD_inf(exp_dir + '/SD.mat')
 
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
