@@ -14,6 +14,8 @@ from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
 
+from exp_scripts import git_tools
+
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 
@@ -26,16 +28,21 @@ exp_description = \
        Chrimson is expressed using SS01580 in DN106."""
 
 #list of all git tracked repositories
-repo_root = '/home/imager/catkin/src'
-repo_dirs = [os.path.join(repo_root,d) for d in os.listdir(repo_root)]
-repo_dirs = [d for d in repo_dirs if os.path.isdir(d)]
-repo_dirs.append('/media/imager/FlyDataD/src/muscle_model')
-git_SHA = ''.join([p + ':'+ os.popen('git -C %s rev-parse HEAD'%(p)).read() for p in repo_dirs])
-#git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
+#repo_root = '/home/imager/catkin/src'
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
 with open(script_path,'rt') as f:
     script_code = f.read()
+
+with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
+	repo_dirs = f.readlines() 
+#repo_dirs = [os.path.join(repo_root,d) for d in os.listdir(repo_root)]
+#repo_dirs = [d for d in repo_dirs if os.path.isdir(d)]
+#repo_dirs.append('/media/imager/FlyDataD/src/muscle_model')
+#git_SHA = ''.join([p + ':'+ os.popen('git -C %s rev-parse HEAD'%(p)).read() for p in repo_dirs])
+#git_SHA = os.popen('git -C /home/imager/catkin/src/exp_scripts/ rev-parse HEAD').read()
+assert git_tools.check_git_status(repo_dirs)
+git_SHA = git_tools.get_git_sha(repo_dirs)
 
 #####################################################################################
 #####################################################################################
