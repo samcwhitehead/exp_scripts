@@ -91,7 +91,7 @@ if __name__ == '__main__':
                 ctrl.set_mode('xrate=ch0','yrate=funcy')
                 ### set the imaging level       
                 ctrl.set_ao(4,vlevel)
-                ctrl.start()get_ref_frame()
+                ctrl.start()
                 ### publish the state
                 exp_msg.state = 'closed_loop;gain=-5;epi_level=%s'%(vlevel)
                 exp_pub.publish(exp_msg)
