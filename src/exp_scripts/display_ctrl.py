@@ -1,5 +1,7 @@
+import rospy
 from ledpanels.msg import MsgPanelsCommand
 from ledpanels.srv import *
+
 
 class LedControler(object):
     """ convenience class for controlling the led's  lets move this to 
