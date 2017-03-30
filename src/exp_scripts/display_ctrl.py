@@ -13,8 +13,8 @@ class LedControler(object):
                                     MsgPanelsCommand,
                                     queue_size = 10)
         self.msg = MsgPanelsCommand()
-        self.modes = [controller_mode,'pc_dumpin_mode','quite_mode','']
-        self.mode = controller_mode
+        #self.modes = [controller_mode,'pc_dumpin_mode','quite_mode','']
+        #self.mode = controller_mode
 
     def clear_args(self):
         self.msg.arg1 = 0;self.msg.arg2 = 0;self.msg.arg3 = 0
