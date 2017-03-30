@@ -18,13 +18,19 @@ from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 
 #####################################################################################
-########################### Initialize Experiment ###################################
+########################### Metadata Information ####################################
 #####################################################################################
+
 exp_description = \
     """Testing the effect of the imaging light intensity on the chrimson response. 
        The line is S-28 X C-85.
        Chrimson is expressed using SS01580 in DN106."""
+fly_dob = '3.27.2017'
+fly_genotype = 'S-28 X C-85'
 
+#####################################################################################
+########################### Initialize Experiment ###################################
+#####################################################################################
 #list of all git tracked repositories
 #repo_root = '/home/imager/catkin/src'
 script_path = os.path.realpath(sys.argv[0])
@@ -35,12 +41,11 @@ with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
 	repo_dirs = f.readlines() 
 assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
-fly_dob = '3.24.2017'
-fly_genotype = 'S-28 X C-85'
+
 
 #####################################################################################
+################################ Run experiment #####################################
 #####################################################################################
-
 if __name__ == '__main__':
     try:
         import numpy as np
