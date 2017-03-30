@@ -12,9 +12,28 @@
     /phidgets_daq/all_data 
     /ledpanels/command 
     /exp_scripts/exp_state 
-    /exp_scripts/exp_metadata
-    /LogRefFrame
+    /exp_scripts/exp_metadata 
     /kinefly/command 
     /kinefly/flystate 
-    /kinefly/flystate2phidgetsanalog/command" />
+    /kinefly/flystate2phidgetsanalog/command
+    /ModelViewFrame
+    /LogRefFrame
+    /Unmixer/b1
+    /Unmixer/b2
+    /Unmixer/b3
+    /Unmixer/bkg
+    /Unmixer/hg1
+    /Unmixer/hg2
+    /Unmixer/hg3
+    /Unmixer/hg4
+    /Unmixer/i1
+    /Unmixer/i2
+    /Unmixer/iii1
+    /Unmixer/iii24
+    /Unmixer/iii3
+    /Unmixer/iii4
+    /Unmixer/nm
+    /Unmixer/pr
+    /Unmixer/tpd
+" />
 </launch>
