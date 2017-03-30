@@ -35,7 +35,7 @@ with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
 	repo_dirs = f.readlines() 
 assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
-fly_dob = '3.25.2017'
+fly_dob = '3.24.2017'
 fly_genotype = 'S-28 X C-85'
 
 #####################################################################################
