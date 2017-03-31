@@ -3,17 +3,12 @@
 import time
 import os
 import sys
-
 import roslib
-#roslib.load_manifest('ledpanels')
 import rospy
-
 from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
-
 from exp_scripts import git_tools,display_ctrl
-
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 
@@ -80,6 +75,7 @@ if __name__ == '__main__':
                          fly_dob = fly_dob,
                          fly_genotype = fly_genotype)
 
+        #Run experiment
         for rep in range(10):
             #for vlevel in np.random.permutation(range(1000,16001,5000)):
             for vlevel in np.random.permutation([400,800,1200,1600]):
