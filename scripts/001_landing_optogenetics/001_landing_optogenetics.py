@@ -119,9 +119,9 @@ if __name__ == '__main__':
         import numpy as np
         print 'start'
         rospy.init_node('exp_script')
-        exp_dir = '/media/imager/FlyDataD/Projects/001_landing/'
+        exp_dir = '/home/imager/catkin/src/exp_scripts/scripts/001_landing_optogenetics'
         ctrl = LedControler()
-        ctrl.load_SD_inf(exp_dir + 'SD.mat')
+        ctrl.load_SD_inf(exp_dir + '/firmware' + '/SD.mat')
         
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,

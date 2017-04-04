@@ -1,0 +1,8 @@
+/home/imager/catkin/src/pointgrey_camera_driver
+/home/imager/catkin/src/phidgets_daq
+/home/imager/catkin/src/ledpanels
+/home/imager/catkin/src/exp_scripts
+/home/imager/catkin/src/Kinefly
+/home/imager/catkin/src/phidgets
+/home/imager/catkin/src/muscle_imager
+/media/imager/FlyDataD/src/muscle_model

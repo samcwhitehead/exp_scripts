@@ -17,9 +17,24 @@ from muscle_imager.srv import SrvRefFrameRequest
 ############################################################################
 
 exp_description = \
-"""epi-illumitation vs CsChrimson optization:
-Testing the effect of the imaging light intensity on the chrimson response. 
-The line is S-28 X C-85.
+"""Compare the motor program elicited by DN106 stimulation vs visual stimlus:
+I will combine an optogenetic stimlus and a visual stimlus in the same set of
+flies and ask do these stimuli recrut the same set of flight muscles? The 
+protocol will explore a range of chrimson activation powers and stimulus
+speeds. After considering the possibility I will NOT include a trial where 
+expansion and chrimson are presented together. The reasoning here is that 
+studying the interaction of the two systems will be more informative if we 
+first understand the input-output and recrutment sequence of the programs 
+independently. For the visual series, I will use the same sequence of stimuli
+that I used in 000_sys_test. For the led powers I will titrate over a range
+of 4 intensity levels but use a shorter (100ms) pulse. The resoning here is 
+that with the high camera gain I am required to use in order to allow imaging 
+while performing optogenetics there is considerable bleedthrough in the 
+imaging camera. The short duration will at least minimize the time over which 
+this artifact is an issue.
+
+The line is S-28 X C-85. All flies are rased on retinal.
+
 Chrimson is expressed using SS01580 in DN106."""
 fly_dob = '3.27.2017'
 fly_genotype = 'S-28 X C-85'
@@ -50,7 +65,7 @@ if __name__ == '__main__':
         rospy.init_node('exp_script')
         exp_dir = script_dir
         ctrl = display_ctrl.LedControler()
-        ctrl.load_SD_inf(exp_dir + '/SD.mat')
+        ctrl.load_SD_inf(exp_dir + '/firmware/SD.mat')
 
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
@@ -67,9 +82,9 @@ if __name__ == '__main__':
         time.sleep(5) # wait for all the publishers to come online
 
         ############################################################
-        #call get_ref_frame service, this will not only publish the
-        #user defined reference frame but also publish a refrence
-        #frame message
+        #call get_ref_frame service, this will not get the current
+        #user-defined reference frame but also publish the refrence
+        #frame as a message
         ############################################################
         print(get_ref_frame())
         meta_pub.publish(git_SHA = git_SHA,

@@ -7,11 +7,10 @@
     <arg name="prefix" default="" />
     
     <node name="rosbag"  pkg="rosbag"   type="record" args="-j --buffsize=4096 -o $(env HOME)/bagfiles/$(arg prefix) 
-    /ca_camera_right/image_raw 
+    /ca_camera_1/image_raw 
     /kine_camera_1/image_raw 
     /phidgets_daq/all_data 
-    /ledpanels/command
-    /ledpanels/debug
+    /ledpanels/command 
     /exp_scripts/exp_state 
     /exp_scripts/exp_metadata 
     /kinefly/command 
