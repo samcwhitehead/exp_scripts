@@ -33,6 +33,11 @@ while performing optogenetics there is considerable bleedthrough in the
 imaging camera. The short duration will at least minimize the time over which 
 this artifact is an issue.
 
+The voltages used to control the epi-led in the pilot experiments were:
+[ 0.122,  0.244,  0.366,  0.488]. Somewhere between 0.12 and 0.24 seemed 
+to be the best so I will go with 0.15. to power the blue light. I run the
+chrimson light at 0.5, 1 , 3,and 5V.
+
 The line is S-28 X C-85. All flies are rased on retinal.
 
 Chrimson is expressed using SS01580 in DN106."""
@@ -50,8 +55,8 @@ with open(script_path,'rt') as f:
     script_code = f.read() 
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
-	repo_dirs = f.readlines() 
-assert git_tools.check_git_status(repo_dirs)
+    repo_dirs = f.readlines() 
+#assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
@@ -66,7 +71,7 @@ if __name__ == '__main__':
         exp_dir = script_dir
         ctrl = display_ctrl.LedControler()
         ctrl.load_SD_inf(exp_dir + '/firmware/SD.mat')
-
+        
         exp_pub = rospy.Publisher('/exp_scripts/exp_state', 
                                     MsgExpState,
                                     queue_size = 10)
@@ -77,7 +82,6 @@ if __name__ == '__main__':
         
         rospy.wait_for_service('RefFrameServer')
         get_ref_frame = rospy.ServiceProxy('RefFrameServer', SrvRefFrame)
-        
         # init experiment
         time.sleep(5) # wait for all the publishers to come online
 
@@ -94,10 +98,17 @@ if __name__ == '__main__':
                          fly_dob = fly_dob,
                          fly_genotype = fly_genotype)
 
+        #Set up list of conditions
+        conditions = [('visual',param) for param in ctrl.funcstrings]
+        conditions.extend([('opto',param) for param in [ 0.1, 0.5, 2.0, 5.0]])
+        ## set the imaging light level
+        ctrl.set_ao(4,0.15)
+
         #Run experiment
         for rep in range(10):
-            for vlevel in np.random.permutation([400,800,1200,1600]):
-                print vlevel
+            print rep
+            for condition in np.random.permutation(conditions):
+                print condition
                 ctrl.stop()
                 #################################################
                 # Closed Loop
@@ -108,38 +119,49 @@ if __name__ == '__main__':
                 ctrl.set_function_by_name('Y','default',freq=50)
                 ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
                 ctrl.set_mode('xrate=ch0','yrate=funcy')
-                ### set the imaging level       
-                ctrl.set_ao(4,vlevel)
                 ctrl.start()
                 ### publish the state
-                exp_msg.state = 'closed_loop;gain=-5;epi_level=%s'%(vlevel)
+                exp_msg.state = 'closed_loop;gain=-5'
                 exp_pub.publish(exp_msg)
                 time.sleep(5)
         
                 #################################################
                 # Open Loop
                 #################################################
-                print 'all panels off'
-                ctrl.stop()
-                ctrl.all_off()
-                exp_msg.state = 'all_off;epi_level=%s'%(vlevel)                
-                exp_pub.publish(exp_msg)
-                time.sleep(5.0)
-                ### publish the state
-                exp_msg.state = 'led_pulse;epi_level=%s'%(vlevel)               
-                exp_pub.publish(exp_msg)
-                print '617nm pulse'
-                ctrl.set_ao(3,15000)
-                time.sleep(0.5)
-                ctrl.set_ao(3,0)
-                time.sleep(5.0)
-                print rep
-                ctrl.set_position(0,20)
-                ctrl.stop()
+                if condition[0] == 'opto':
+                    print 'all panels on'
+                    ctrl.stop()
+                    ctrl.all_on()
+                    exp_msg.state = 'open_loop;opto;power_level=0'               
+                    exp_pub.publish(exp_msg)
+                    time.sleep(2.0)
+                    ### publish the state
+                    exp_msg.state = 'open_loop;opto;power_level=%s'%str(condition[1])
+                    exp_pub.publish(exp_msg)
+                    ctrl.set_ao(3,float(condition[1]))
+                    time.sleep(0.1)
+                    exp_msg.state = 'open_loop;opto;power_level=0'
+                    exp_pub.publish(exp_msg)
+                    ctrl.set_ao(3,0)
+                    time.sleep(2.5)
+                    ctrl.set_position(0,20)
+                if condition[0] == 'visual':
+                    ctrl.stop()
+                    ctrl.set_pattern_by_name('Pattern_linear_expansion_48_Pan.mat')
+                    ctrl.set_position(0,20)
+                    ctrl.set_function_by_name('X',condition[1],freq=200)
+                    ctrl.set_function_by_name('Y','default',freq=200)
+                    ctrl.send_gain_bias(gain_x = 1,gain_y = 0)
+                    ctrl.set_mode('x=x0+funcx','yrate=funcy')
+                    ctrl.start()
+                    ### publish the state
+                    exp_msg.state = 'open_loop;visual;vfunc=%s'%str(condition[1])
+                    exp_pub.publish(exp_msg)
+                    time.sleep(4.5)
 
         #publish a refrence frame as a status message to mark the end of the experiment.
         get_ref_frame()
-    	meta_pub.publish(git_SHA = git_SHA,
+        meta_pub.publish(git_SHA = git_SHA,
                          script_path = script_path,
                          exp_description = exp_description,
                          script_code = script_code)

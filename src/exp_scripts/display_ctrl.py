@@ -104,9 +104,19 @@ class LedControler(object):
     def all_off(self):
         self.msg.command = 'all_off';self.clear_args();self.pub.publish(self.msg)
     
-    def set_ao(self,channel,value = 5000):
+    def set_ao(self,channel,value = 0):
+        """set the analog out as a voltage. Output range from  0 to 10, -10 to 0 volts.
+        This will get mapped to a panel_com command going from 0 to 32767,32768 to 65534"""
+        import numpy as np
+        sf = 32767/10.0
+        if ((value < 0) and (value >= -10)):
+            val_bin = int(np.ceil(65536 + value*sf))
+        elif (value <= 10):
+            val_bin = np.floor(value*sf)
+        else:
+            raise ValueError
         self.msg.command = 'set_ao'
         self.clear_args()
         self.msg.arg1 = channel
-        self.msg.arg2 = value
+        self.msg.arg2 = val_bin
         self.pub.publish(self.msg)
