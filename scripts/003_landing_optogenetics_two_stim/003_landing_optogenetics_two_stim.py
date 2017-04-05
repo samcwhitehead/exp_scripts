@@ -8,7 +8,8 @@ import rospy
 from std_msgs.msg import String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
-from exp_scripts import git_tools,display_ctrl
+from exp_scripts import git_tools
+from ledpanels import display_ctrl
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 
@@ -56,7 +57,7 @@ with open(script_path,'rt') as f:
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
-#assert git_tools.check_git_status(repo_dirs)
+assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
