@@ -41,6 +41,8 @@ chrimson light at 0.5, 1 , 3,and 5V.
 
 The line is S-28 X C-85. Flies are rased on retinal bottels made on 3.24.
 
+All legs cut off. Not head fixed.
+
 Chrimson is expressed using SS01580 in DN106."""
 
 fly_dob = '4.2.2017'
