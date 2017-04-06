@@ -117,11 +117,11 @@ if __name__ == '__main__':
             print rep
             for condition in np.random.permutation(conditions):
                 print condition
-                ctrl.stop()
                 #################################################
                 # Closed Loop
                 #################################################
                 print 'enter closed loop stripe fixation'
+                ctrl.stop()
                 ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
                 ctrl.set_position(0,0)
                 ctrl.set_function_by_name('Y','default',freq=50)
@@ -173,6 +173,22 @@ if __name__ == '__main__':
                          script_path = script_path,
                          exp_description = exp_description,
                          script_code = script_code)
+
+        #################################################
+        # Closed Loop
+        #################################################
+        print 'enter closed loop stripe fixation'
+        ctrl.stop()
+        ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
+        ctrl.set_position(0,0)
+        ctrl.set_function_by_name('Y','default',freq=50)
+        ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
+        ctrl.set_mode('xrate=ch0','yrate=funcy')
+        ctrl.start()
+        ### publish the state
+        exp_msg.state = 'closed_loop;gain=-5'
+        exp_pub.publish(exp_msg)
+        time.sleep(1)
 
     except rospy.ROSInterruptException:
         print 'exception'
