@@ -39,11 +39,11 @@ The voltages used to control the epi-led in the pilot experiments were:
 to be the best, so I will go with 0.15. to power the blue light. I run the
 chrimson light at 0.5, 1 , 3,and 5V.
 
-The line is S-28 X C-85. All flies are rased on retinal.
+The line is S-28 X C-85. Flies are rased on retinal bottels made on 3.24.
 
 Chrimson is expressed using SS01580 in DN106."""
 
-fly_dob = '3.27.2017'
+fly_dob = '4.2.2017'
 genotype_nickname = "S-28 X C-85 39E01-GcAMP,DN106-Chrimson"
 fly_genotype = """ w+; 
 P{y[+t7.7] w[+mC]=13XLexAop2-IVS-GCaMP6f-p10}su(Hw)attP5, P{y[+t7.7] w[+mC]=GMR38H06-lexA}attP40 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40;
