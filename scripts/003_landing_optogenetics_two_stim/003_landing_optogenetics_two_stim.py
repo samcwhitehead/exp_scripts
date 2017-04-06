@@ -22,28 +22,32 @@ exp_description = \
 I will combine an optogenetic stimlus and a visual stimlus in the same set of
 flies and ask do these stimuli recrut the same set of flight muscles? The 
 protocol will explore a range of chrimson activation powers and stimulus
-speeds. After considering the possibility I will NOT include a trial where 
+speeds. After considering the possibility, I will NOT include a trial where 
 expansion and chrimson are presented together. The reasoning here is that 
 studying the interaction of the two systems will be more informative if we 
 first understand the input-output and recrutment sequence of the programs 
 independently. For the visual series, I will use the same sequence of stimuli
 that I used in 000_sys_test. For the led powers I will titrate over a range
-of 4 intensity levels but use a shorter (100ms) pulse. The resoning here is 
-that with the high camera gain I am required to use in order to allow imaging 
-while performing optogenetics there is considerable bleedthrough in the 
-imaging camera. The short duration will at least minimize the time over which 
-this artifact is an issue.
+of 4 intensity levels but use a shorter (100ms) pulse. This is because when
+imaging using the high camera gain I am required to use in order to minimize  
+activating chrimson there is considerable bleedthrough of the 617nm light in 
+the imaging camera. The short duration will at least minimize the time over 
+which this artifact is an issue.
 
 The voltages used to control the epi-led in the pilot experiments were:
 [ 0.122,  0.244,  0.366,  0.488]. Somewhere between 0.12 and 0.24 seemed 
-to be the best so I will go with 0.15. to power the blue light. I run the
+to be the best, so I will go with 0.15. to power the blue light. I run the
 chrimson light at 0.5, 1 , 3,and 5V.
 
 The line is S-28 X C-85. All flies are rased on retinal.
 
 Chrimson is expressed using SS01580 in DN106."""
+
 fly_dob = '3.27.2017'
-fly_genotype = 'S-28 X C-85'
+genotype_nickname = "S-28 X C-85 39E01-GcAMP,DN106-Chrimson"
+fly_genotype = """ w+; 
+P{y[+t7.7] w[+mC]=13XLexAop2-IVS-GCaMP6f-p10}su(Hw)attP5, P{y[+t7.7] w[+mC]=GMR38H06-lexA}attP40 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40;
+P{20XUAS-IVS-CsChrimson.mVenus}attP2 / P{w[+mC]=GMR48E11-ZpGal4DBDUw}attP2"""
 
 ############################################################################
 ########################### Initialize Experiment ##########################
@@ -97,7 +101,8 @@ if __name__ == '__main__':
                          exp_description = exp_description,
                          script_code = script_code,
                          fly_dob = fly_dob,
-                         fly_genotype = fly_genotype)
+                         fly_genotype = fly_genotype,
+                         genotype_nickname = genotype_nickname)
 
         #Set up list of conditions
         conditions = [('visual',param) for param in ctrl.funcstrings]
