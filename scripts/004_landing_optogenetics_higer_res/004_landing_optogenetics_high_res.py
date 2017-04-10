@@ -109,9 +109,9 @@ if __name__ == '__main__':
 
         #Set up list of conditions
         conditions = [('visual',param) for param in ctrl.funcstrings]
-        conditions.extend([('opto',param) for param in [ 0.1, 0.5, 1.0, 2.0,3.0, 5.0]])
+        conditions.extend([('opto',param) for param in [ 0.1, 0.5, 1.0, 2.0, 3.0, 5.0]])
         ## set the imaging light level
-        ctrl.set_ao(4,0.15)
+        ctrl.set_ao(4,0.10)
 
         for c in conditions:
         	print c
