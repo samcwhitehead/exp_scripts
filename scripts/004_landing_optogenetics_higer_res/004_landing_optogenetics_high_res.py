@@ -18,7 +18,16 @@ from muscle_imager.srv import SrvRefFrameRequest
 ############################################################################
 
 exp_description = \
-"""Compare the motor program elicited by DN106 stimulation vs visual stimlus:
+"""Modification of previous experiment -- 
+Changes that were made:
+    * Reduced rep numbers from 10 to 5
+    * Reduce epi illumitation ctrl voltage from 0.15V to 0.125V 
+    * Added two conditions to led pulse and visual expansion
+    * Will collect a period of quiescence and fiber targeting (with IR light)
+    * Changed the encoding string in script to make the data easier to analyze.
+
+Summary from previous experiment script:
+Comparison the motor program elicited by DN106 stimulation vs visual stimlus:
 I will combine an optogenetic stimlus and a visual stimlus in the same set of
 flies and ask do these stimuli recrut the same set of flight muscles? The 
 protocol will explore a range of chrimson activation powers and stimulus
@@ -44,13 +53,19 @@ The line is S-28 X C-85. Flies are rased on retinal bottels made on 3.24.
 No legs cut off - testing Chrimson Response in same flies as
 previous experiments. Not head fixed.
 
-Chrimson is expressed using SS01580 in DN106."""
+Chrimson is expressed using SS01580 in DN106.
+
+pulse_voltages = [ 0.1, 0.5, 1.0, 2.0, 3.0, 5.0]
+epi_level = 0.125
+"""
 
 fly_dob = '4.2.2017'
 genotype_nickname = "S-28 X C-85 39E01-GcAMP,DN106-Chrimson"
 fly_genotype = """ w+; 
 P{y[+t7.7] w[+mC]=13XLexAop2-IVS-GCaMP6f-p10}su(Hw)attP5, P{y[+t7.7] w[+mC]=GMR38H06-lexA}attP40 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40;
 P{20XUAS-IVS-CsChrimson.mVenus}attP2 / P{w[+mC]=GMR48E11-ZpGal4DBDUw}attP2"""
+pulse_voltages = [ 0.1, 0.5, 1.0, 2.0, 3.0, 5.0]
+epi_level = 0.125
 
 ############################################################################
 ########################### Initialize Experiment ##########################
@@ -109,9 +124,9 @@ if __name__ == '__main__':
 
         #Set up list of conditions
         conditions = [('visual',param) for param in ctrl.funcstrings]
-        conditions.extend([('opto',param) for param in [ 0.1, 0.5, 1.0, 2.0, 3.0, 5.0]])
+        conditions.extend([('opto',param) for param in pulse_voltages])
         ## set the imaging light level
-        ctrl.set_ao(4,0.10)
+        ctrl.set_ao(4,epi_level)
 
         for c in conditions:
         	print c
