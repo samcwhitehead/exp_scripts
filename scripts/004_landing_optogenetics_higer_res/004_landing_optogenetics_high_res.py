@@ -143,18 +143,18 @@ if __name__ == '__main__':
                     print 'all panels on'
                     ctrl.stop()
                     ctrl.all_on()
-                    exp_msg.state = 'open_loop;opto;power_level=0'               
+                    exp_msg.state = 'open_loop;opto;power_level=%s;pulse_off'%str(condition[1])               
                     exp_pub.publish(exp_msg)
                     time.sleep(2.0)
                     ### publish the state
-                    exp_msg.state = 'open_loop;opto;power_level=%s'%str(condition[1])
+                    exp_msg.state = 'open_loop;opto;power_level=%s;pulse_on'%str(condition[1])
                     exp_pub.publish(exp_msg)
                     ctrl.set_ao(3,float(condition[1]))
                     time.sleep(0.1)
-                    exp_msg.state = 'open_loop;opto;power_level=0'
+                    exp_msg.state = 'open_loop;opto;power_level=%s;pulse_off'%str(condition[1])
                     exp_pub.publish(exp_msg)
                     ctrl.set_ao(3,0)
-                    time.sleep(2.5)
+                    time.sleep(3.0)
                     ctrl.set_position(0,20)
                 if condition[0] == 'visual':
                     ctrl.stop()
@@ -168,7 +168,7 @@ if __name__ == '__main__':
                     ### publish the state
                     exp_msg.state = 'open_loop;visual;vfunc=%s'%str(condition[1])
                     exp_pub.publish(exp_msg)
-                    time.sleep(4.5)
+                    time.sleep(5.0)
 
         #publish a refrence frame as a status message to mark the end of the experiment.
         get_ref_frame()
