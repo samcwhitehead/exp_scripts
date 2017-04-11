@@ -51,8 +51,7 @@ chrimson light at 0.5, 1 , 3,and 5V.
 The line is S-28 X C-85. Flies are rased on retinal bottels made on 4.7
 with 1:250 dilution (200uL) of 100mm ATR.
 
-No legs cut off - testing Chrimson Response in same flies as
-previous experiments. Not head fixed.
+Legs cut off. Not head fixed.
 
 Chrimson is expressed using SS01580 in DN106.
 
