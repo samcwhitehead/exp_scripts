@@ -65,7 +65,7 @@ with open(script_path,'rt') as f:
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
-#assert git_tools.check_git_status(repo_dirs)
+assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
