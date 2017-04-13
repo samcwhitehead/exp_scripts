@@ -20,6 +20,7 @@ from muscle_imager.srv import SrvRefFrameRequest
 exp_description = \
 """ Determination of effect of B1 silencing on flight motor codes ---
 
+Testing the approach and running a few flies to put together some analysis.
 The line is:
 
 Legs cut off. Not head fixed.
@@ -27,9 +28,11 @@ Legs cut off. Not head fixed.
 epi_level = 0.125
 
 """
-fly_dob = 'x.x.x'
-fly_genotype = """Formal Genotype"""
-genotype_nickname = "Lab Nickname"
+fly_dob = '4.10.2017'
+fly_genotype = """w+; 
+P{y[+t7.7] w[+mC]=13XLexAop2-IVS-GCaMP6f-p10}su(Hw)attP5, P{y[+t7.7] w[+mC]=GMR38H06-lexA}attP40 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40;
+P{20XUAS-IVS-CsChrimson.mVenus}attP2 / P{w[+mC]=GMR48E11-ZpGal4DBDUw}attP2"""
+genotype_nickname = "S-28 X C-85 39E01-GcAMP,DN106-Chrimson"
 
 ############################################################################
 ########################### Script Variables ###############################
@@ -109,7 +112,7 @@ if __name__ == '__main__':
         ## set the imaging light level
         ctrl.set_ao(4,EPI_LEVEL)
         #Run experiment
-        for rep in range(2):
+        for rep in range(6):
             print('puff')
             time.sleep(15)
             print('stop')
