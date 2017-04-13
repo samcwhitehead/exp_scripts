@@ -37,7 +37,7 @@ genotype_nickname = "Lab Nickname"
 
 EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
 #Stimulus periods
-MOTION_DURATION = 1.0
+MOTION_DURATION = 3.0
 PREMOTON_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
