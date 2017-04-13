@@ -92,7 +92,7 @@ if __name__ == '__main__':
                          fly_dob = fly_dob,
                          fly_genotype = fly_genotype,
                          genotype_nickname = genotype_nickname)
-                        print 'enter closed loop stripe fixation'
+        print 'enter closed loop stripe fixation'
 
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
