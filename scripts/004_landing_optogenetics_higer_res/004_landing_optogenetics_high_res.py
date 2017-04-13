@@ -59,7 +59,7 @@ pulse_voltages = [ 0.1, 0.5, 1.0, 2.0, 3.0, 5.0]
 epi_level = 0.125
 """
 
-fly_dob = '4.9.2017'
+fly_dob = '4.10.2017'
 genotype_nickname = "S-28 X C-85 39E01-GcAMP,DN106-Chrimson"
 fly_genotype = """ w+; 
 P{y[+t7.7] w[+mC]=13XLexAop2-IVS-GCaMP6f-p10}su(Hw)attP5, P{y[+t7.7] w[+mC]=GMR38H06-lexA}attP40 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40;
