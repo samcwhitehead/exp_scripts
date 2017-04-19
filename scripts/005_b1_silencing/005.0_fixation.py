@@ -53,7 +53,7 @@ with open(script_path,'rt') as f:
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
-assert git_tools.check_git_status(repo_dirs)
+#assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
@@ -101,11 +101,12 @@ if __name__ == '__main__':
         ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
         ctrl.set_position(0,0)
         ctrl.set_function_by_name('X','default',freq=60)
-        ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
+        #ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
+        ctrl.send_gain_bias(gain_x = -70,bias_x = 0.0)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
         ctrl.start()
         ### publish the state
-        exp_msg.state = 'closed_loop;gain=-5'
+        exp_msg.state = 'closed_loop;gain=-50'
         exp_pub.publish(exp_msg)
         time.sleep(5.0)
 
