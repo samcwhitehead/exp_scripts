@@ -53,7 +53,7 @@ with open(script_path,'rt') as f:
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
-#assert git_tools.check_git_status(repo_dirs)
+assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
@@ -94,7 +94,16 @@ if __name__ == '__main__':
                          script_code = script_code,
                          fly_dob = fly_dob,
                          fly_genotype = fly_genotype,
-                         genotype_nickname = genotype_nickname)
+                         gen[ERROR] [1492630718.566960]: bad callback: <bound method Unmixer.ca_image_callback of <__main__.Unmixer object at 0x7f0d1e278bd0>>
+Traceback (most recent call last):
+  File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py", line 720, in _invoke_callback
+    cb(msg)
+  File "/home/imager/catkin/src/muscle_imager/nodes/unmixer.py", line 134, in ca_image_callback
+    fits = np.dot(self.model_inv,im_vect.T)
+AttributeError: 'Unmixer' object has no attribute 'model_inv'
+
+^C[accumulate_publisher-13] killing on exit
+[strip_chart-12] killiotype_nickname = genotype_nickname)
         print 'enter closed loop stripe fixation'
 
         ctrl.stop()
