@@ -94,7 +94,8 @@ if __name__ == '__main__':
                          script_code = script_code,
                          fly_dob = fly_dob,
                          fly_genotype = fly_genotype,
-                         gen[ERROR] [1492630718.566960]: bad callback: <bound method Unmixer.ca_image_callback of <__main__.Unmixer object at 0x7f0d1e278bd0>>
+                         genotype_nickname = genotype_nickname)
+                         #gen[ERROR] [1492630718.566960]: bad callback: <bound method Unmixer.ca_image_callback of <__main__.Unmixer object at 0x7f0d1e278bd0>>
 Traceback (most recent call last):
   File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py", line 720, in _invoke_callback
     cb(msg)
