@@ -29,11 +29,11 @@ epi_level = 0.125
 
 """
 fly_dob = '4.17.2017'
-fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; MB258C/UAS-TNT"""
-genotype_nickname = "B-TNT"
+fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; MB258C/UAS-IMPTNT"""
+genotype_nickname = "C-IMPTNT"
 
 ############################################################################
-########################### Script Variables ###############################
+########################### Script Variables ##########################
 ############################################################################
 
 EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
