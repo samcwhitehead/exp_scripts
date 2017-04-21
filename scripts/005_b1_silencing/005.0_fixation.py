@@ -28,9 +28,9 @@ Legs cut off. Not head fixed.
 epi_level = 0.125
 
 """
-fly_dob = '4.17.2017'
-fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; MB258C/UAS-IMPTNT"""
-genotype_nickname = "C-IMPTNT"
+fly_dob = '4.18.2017'
+fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; MB258C/UAS-kir2.1::gfp"""
+genotype_nickname = "A-kir2.1"
 
 ############################################################################
 ########################### Script Variables ##########################
