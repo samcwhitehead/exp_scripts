@@ -126,7 +126,7 @@ if __name__ == '__main__':
                 ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
                 ctrl.set_position(0,0)
                 ctrl.set_function_by_name('X','default',freq=60)
-                ctrl.send_gain_bias(gain_x = -90,bias_x = 0.0)
+                ctrl.send_gain_bias(gain_x = -70,bias_x = 0.0)
                 ctrl.set_mode('xrate=ch0','yrate=funcy')
                 ctrl.start()
                 ### publish the state
