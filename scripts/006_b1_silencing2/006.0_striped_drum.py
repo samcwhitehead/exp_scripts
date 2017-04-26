@@ -43,6 +43,7 @@ POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 50 #Hz = 90deg/sec
+REP_NUMBER = 5 
 #construct the list of motion patterns we will test. Three different
 #patterns for each type of motion.
 
@@ -58,7 +59,7 @@ with open(script_path,'rt') as f:
 #list of all git tracked repositories
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
-#assert git_tools.check_git_status(repo_dirs)
+assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
@@ -107,7 +108,7 @@ if __name__ == '__main__':
         conditions = ['Left','Right']
 
         #Run experiment
-        for rep in range(2):
+        for rep in range(REP_NUMBER):
             print rep
             for condition in np.random.permutation(conditions):
 
