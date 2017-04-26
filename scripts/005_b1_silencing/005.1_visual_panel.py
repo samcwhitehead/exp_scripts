@@ -42,7 +42,7 @@ PREMOTON_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 #pattern playback rate 240 positions for 360deg
-PLAYBACK_LEVEL = 60 #Hz = 90deg/sec
+PLAYBACK_LEVEL = 60*2 #Hz = 90deg/sec
 #construct the list of motion patterns we will test. Three different
 #patterns for each type of motion.
 PATTERN_LIST = [['Pattern_ptch_%s_rep%s.mat'%(d,r) for d in ['down','up']]
