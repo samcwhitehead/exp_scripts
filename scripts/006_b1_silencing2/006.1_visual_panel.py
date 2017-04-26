@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 import time
@@ -42,10 +43,16 @@ PREMOTON_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 #pattern playback rate 240 positions for 360deg
-PLAYBACK_LEVEL = 50 #Hz = 90deg/sec
-REP_NUMBER = 5 
+PLAYBACK_LEVEL = 60*2 #Hz = 90deg/sec
 #construct the list of motion patterns we will test. Three different
 #patterns for each type of motion.
+PATTERN_LIST = [['Pattern_ptch_%s_rep%s.mat'%(d,r) for d in ['down','up']]
+                        for r in [0,1,2]]
+PATTERN_LIST.extend([['Pattern_roll_%s_rep%s.mat'%(d,r) for d in ['left','right']]
+                        for r in [0,1,2]])
+PATTERN_LIST.extend([['Pattern_yaw_%s_rep%s.mat'%(d,r) for d in ['left','right']]
+                        for r in [0,1,2]])
+PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 
 ############################################################################
 ########################### Initialize Experiment ##########################
@@ -105,14 +112,12 @@ if __name__ == '__main__':
         ## set the imaging light level
         ctrl.set_ao(4,EPI_LEVEL)
 
-        conditions = ['Left','Right']
+        conditions = PATTERN_LIST
 
         #Run experiment
-        for rep in range(REP_NUMBER):
+        for rep in range(2):
             print rep
             for condition in np.random.permutation(conditions):
-
-
                 print condition
                 #################################################
                 # Closed Loop
@@ -121,7 +126,7 @@ if __name__ == '__main__':
                 ctrl.stop()
                 ctrl.set_pattern_by_name('Pattern_fixation_4_wide_4X12_Pan.mat')
                 ctrl.set_position(0,0)
-                #ctrl.set_function_by_name('X','default',freq=60)
+                ctrl.set_function_by_name('X','default',freq=60)
                 ctrl.send_gain_bias(gain_x = -70,bias_x = 0.0)
                 ctrl.set_mode('xrate=ch0','yrate=funcy')
                 ctrl.start()
@@ -133,18 +138,14 @@ if __name__ == '__main__':
                 #################################################
                 # Open Loop
                 #################################################
-
                 ctrl.stop()
-                ctrl.set_pattern_by_name('Pattern_multi_width_optomotor_patterns_48_Pan.mat')
+                ctrl.set_pattern_by_name(condition)
                 ctrl.set_position(0,0)
                 exp_msg.state = 'open_loop;visual;pattern=%s;static'%(condition)
                 exp_pub.publish(exp_msg)
                 time.sleep(PREMOTON_DURATION)
-                #ctrl.set_function_by_name('X','default',freq=60)
-                if condition == 'Left':
-                    ctrl.send_gain_bias(bias_x = 0,gain_x = PLAYBACK_LEVEL*-1,gain_y = 0)
-                if condition == 'Right':
-                    ctrl.send_gain_bias(bias_x = 0,gain_x = PLAYBACK_LEVEL,gain_y = 0)
+                ctrl.set_function_by_name('X','default',freq=60)
+                ctrl.send_gain_bias(bias_x = 0,gain_x = PLAYBACK_LEVEL,gain_y = 0)
                 ctrl.set_mode('xrate=funcx','yrate=funcy')
                 ctrl.start()
                 exp_msg.state = 'open_loop;visual;pattern=%s;motion'%(condition)
