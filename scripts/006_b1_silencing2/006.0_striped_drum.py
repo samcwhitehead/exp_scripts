@@ -28,8 +28,8 @@ epi_level = 0.125
 
 """
 fly_dob = '4.29.2017'
-fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; MB258C/UAS-kir2.1::gfp""" #UAS-kir2.1::gfp
-genotype_nickname = "A-kir2.1"
+fly_genotype = """w/w ; GMR39E01-LexA/GCaMP6f-LexOp ; +/UAS-kir2.1::gfp""" #UAS-kir2.1::gfp
+genotype_nickname = "E-kir/+"
 
 ############################################################################
 ########################### Script Variables ###############################
