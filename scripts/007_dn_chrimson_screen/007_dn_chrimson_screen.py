@@ -305,6 +305,7 @@ if __name__ == '__main__':
         ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.set_function_by_name('Y','default',freq=50)
+        ctrl.set_function_by_name('X','default',freq=50)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
         blk_pub.publish('prestim_stripe_fix')
