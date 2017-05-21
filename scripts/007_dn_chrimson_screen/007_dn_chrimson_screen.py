@@ -299,6 +299,7 @@ if __name__ == '__main__':
 
         #Run experiment
         t0 = time.time()
+        time.sleep(10)
         for rep in range(5):
             print rep
             for key in np.random.permutation(conditions.keys()):
