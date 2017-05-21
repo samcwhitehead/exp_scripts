@@ -35,7 +35,7 @@ ol_static_post_s = 3.0
 ol_motion_s = 1.0
 
 cs_stim_pre_s = 3.0
-cs_stim_pulse = 0.1
+cs_stim_pulse_s = 0.1
 cs_stim_post_s = 3.9
 
 ############################################################################
@@ -256,7 +256,7 @@ if __name__ == '__main__':
             ctrl.start()
             ### publish the state
             exp_pub.publish(state = 'condition=intertrial_closed_loop;gain=%s;ao_level=%s'%(gain_x,0))
-            time.sleep(30)
+            time.sleep(5)
 
         ############################################################
         #call get_ref_frame service, this will not only get the current
