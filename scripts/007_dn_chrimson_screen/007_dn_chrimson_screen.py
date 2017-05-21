@@ -243,7 +243,7 @@ if __name__ == '__main__':
             time.sleep(cs_stim_pre_s)
             exp_pub.publish(state = 'open_loop;opto;ao_level=%s;pulse_on'%(power_level))
             ctrl.set_ao(3,float(power_level))
-            time.sleep(cs_stim_pulse)
+            time.sleep(cs_stim_pulse_s)
             exp_pub.publish(state = 'open_loop;opto;ao_level=%s;pulse_off'%(0))
             ctrl.set_ao(3,0)
             time.sleep(cs_stim_post_s)
