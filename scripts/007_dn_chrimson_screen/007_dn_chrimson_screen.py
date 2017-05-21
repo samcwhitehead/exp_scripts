@@ -307,6 +307,7 @@ if __name__ == '__main__':
         ctrl.set_function_by_name('Y','default',freq=50)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
+        blk_pub.publish('prestim_stripe_fix')
         ctrl.start()
         ### publish the state
         exp_pub.publish(state = 'condition=intertrial_closed_loop;gain=%s;ao_level=%s'%(gain_x,0))
@@ -316,7 +317,8 @@ if __name__ == '__main__':
             print rep
             for key in np.random.permutation(conditions.keys()):
                 condition = conditions[key]
-                condition[0](*condition[1])    
+                condition[0](*condition[1])
+        blk_pub.publish('trials_ended')  
         #publish a refrence frame as a status message to mark the end of the experiment.
         print(get_ref_frame_left())
         print(get_ref_frame_right())
