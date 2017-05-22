@@ -88,7 +88,7 @@ if __name__ == '__main__':
         def exc_cl(pattern_name,pattern_index,block_name):
             import random
             pattern_name = pattern_name%(random.choice(pattern_index))
-            gain_x = -90
+            gain_x = -60
             bias_y = 2*48/5.0 #180 deg / sec
             chrimson_level = 3.0
             blk_pub.publish(block_name)
@@ -119,7 +119,7 @@ if __name__ == '__main__':
             ctrl.stop()
             ctrl.set_pattern_by_name('Pattern_bar.mat')
             ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_function_by_name('Y','default',freq=50)
+            ctrl.set_function_by_name('Y','d96efault',freq=50)
             ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.start()
@@ -130,7 +130,7 @@ if __name__ == '__main__':
         def exc_ol_expand(pattern_name,x_pos,block_name):
             import random
             #pattern_name = pattern_name%(random.choice(pattern_index))
-            gain_x = -90 #azimuth
+            gain_x = -60 #azimuth
             bias_y = 2*24/5.0 #set's the expansion rate (25fps) *7.5 deg per frame = 180deg/sec
             chrimson_level = 3.0
             blk_pub.publish(block_name)
@@ -167,7 +167,7 @@ if __name__ == '__main__':
         def exc_ol_stripe(pattern_name,direction,x_pos,block_name):
             import random
             #pattern_name = pattern_name%(random.choice(pattern_index))
-            gain_x = -90
+            gain_x = -60
             blk_pub.publish(block_name)
             ############################
             print block_name
@@ -287,8 +287,8 @@ if __name__ == '__main__':
                       'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
                       'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
 
-                      'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_stripe_left')),
-                      'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_stripe_right')),
+                      'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
+                      'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
 
                       'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
                       'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[1],'cs_stim_power_2')),
@@ -300,7 +300,7 @@ if __name__ == '__main__':
         #Run experiment
         t0 = time.time()
         print 'enter closed loop stripe fixation'
-        gain_x = -90
+        gain_x = -60
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
