@@ -7,7 +7,7 @@ const int TEST_BNC_PIN = 22;
 const int WB_PER_FRAME = 3;
 const int WINGBEAT_TIMEOUT_MS = 10; //50Hz 
 const float TIME_ALPHA = 0.9;
-const float TRIG_PHASE = 0.7;
+const float TRIG_PHASE = 0.5;
 const int EPI_PULSE_US = 100;
 
 volatile int t = micros();
