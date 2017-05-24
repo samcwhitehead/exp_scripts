@@ -8,6 +8,12 @@ split_dict = {'S-28':{'I':'?',
 					  'III':'P{w[+mC]=GMR22D06-pBPZpGdbdUw}attP2',
 					  'old_name':'DN066',
 					  'new_name':'G25'},
+
+			  'S-61':{'I':'?',
+					  'II':'P{w[+mC]=BJD105D02-pBPp65ADZpUw}attP40',
+					  'III':'P{w[+mC]=GMR24C07-pBPZpGdbdUw}attP2',
+					  'old_name':'DN010',
+					  'new_name':'G24'},
 					  }
 
 
