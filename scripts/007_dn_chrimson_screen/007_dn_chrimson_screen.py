@@ -280,22 +280,36 @@ if __name__ == '__main__':
         #'cl_translation':  (exc_cl,('Pattern_contract_%s.mat',(1,2,3),'cl_translation')),
         #'cl_figure':       (exc_cl,('Pattern_fourier_bar_%s.mat',(1,2,3),'cl_figure')),
 
+        #conditions = {'ol_expand_center':(exc_ol_expand,('Pattern_expand.mat',21,'ol_expand_center')),
+        #              'ol_expand_left':  (exc_ol_expand,('Pattern_expand.mat',93,'ol_expand_left')),
+        #              'ol_expand_right': (exc_ol_expand,('Pattern_expand.mat',45,'ol_expand_right')),
+        #
+        #              'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
+        #              'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
+#
+#                      'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
+#                      'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
+#
+#                      'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
+#                      'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[1],'cs_stim_power_2')),
+#                      'cs_stim_power_3': (exc_cs_stim,(pulse_voltages[2],'cs_stim_power_3')),
+#                      'cs_stim_power_4': (exc_cs_stim,(pulse_voltages[3],'cs_stim_power_4')),
+#                      'cs_stim_power_5': (exc_cs_stim,(pulse_voltages[4],'cs_stim_power_5')),
+#                      'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
+
+
         conditions = {'ol_expand_center':(exc_ol_expand,('Pattern_expand.mat',21,'ol_expand_center')),
-                      'ol_expand_left':  (exc_ol_expand,('Pattern_expand.mat',93,'ol_expand_left')),
-                      'ol_expand_right': (exc_ol_expand,('Pattern_expand.mat',45,'ol_expand_right')),
+              'ol_expand_left':  (exc_ol_expand,('Pattern_expand.mat',93,'ol_expand_left')),
+              'ol_expand_right': (exc_ol_expand,('Pattern_expand.mat',45,'ol_expand_right')),
 
-                      'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
-                      'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
+              'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
+              'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
 
-                      'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
-                      'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
+              'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
+              'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
 
-                      'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
-                      'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[1],'cs_stim_power_2')),
-                      'cs_stim_power_3': (exc_cs_stim,(pulse_voltages[2],'cs_stim_power_3')),
-                      'cs_stim_power_4': (exc_cs_stim,(pulse_voltages[3],'cs_stim_power_4')),
-                      'cs_stim_power_5': (exc_cs_stim,(pulse_voltages[4],'cs_stim_power_5')),
-                      'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
+              'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
+              'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
 
         #Run experiment
         t0 = time.time()
