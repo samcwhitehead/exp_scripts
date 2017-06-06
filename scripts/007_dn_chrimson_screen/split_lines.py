@@ -8,7 +8,6 @@ split_dict = {'S-28':{'I':'?',
 					  'III':'P{w[+mC]=GMR22D06-pBPZpGdbdUw}attP2',
 					  'old_name':'DN066',
 					  'new_name':'G25'},
-
 			  'S-61':{'I':'?',
 					  'II':'P{w[+mC]=BJD105D02-pBPp65ADZpUw}attP40',
 					  'III':'P{w[+mC]=GMR24C07-pBPZpGdbdUw}attP2',
@@ -29,7 +28,11 @@ split_dict = {'S-28':{'I':'?',
 					  'III':'P{w[+mC]=BJD103C12-pBPZpGdbdUw}attP2',
 					  'old_name':'DN165',
 					  'new_name':'G17'},
-					  }
+			  'S-114':{'I':'?',
+					  'II':'P{w[+mC]=GMR13D04-pBPp65ADZpUw}attP40',
+					  'III':'P{w[+mC]=GMR65D05-pBPZpGdbdUw}attP2',
+					  'old_name':'DN114',
+					  'new_name':'G27'}}
 
 
 cs_fly =              {'I':'w[+]',

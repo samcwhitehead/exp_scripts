@@ -22,6 +22,7 @@ exp_description = \
 """
 CsCrimson screen of the collection of DN split lines from Gwenith and Wyatt.
 """
+num_reps = 10
 fly_dob = raw_input('fly DOB:')
 s_number = raw_input('S-number:')
 genotype_nickname = s_number + ' X C-85'
@@ -286,30 +287,37 @@ if __name__ == '__main__':
         #
         #              'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
         #              'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
-#
-#                      'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
-#                      'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
-#
-#                      'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
-#                      'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[1],'cs_stim_power_2')),
-#                      'cs_stim_power_3': (exc_cs_stim,(pulse_voltages[2],'cs_stim_power_3')),
-#                      'cs_stim_power_4': (exc_cs_stim,(pulse_voltages[3],'cs_stim_power_4')),
-#                      'cs_stim_power_5': (exc_cs_stim,(pulse_voltages[4],'cs_stim_power_5')),
-#                      'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
+        #
+        #              'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
+        #              'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
+        #
+        #              'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
+        #              'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[1],'cs_stim_power_2')),
+        #              'cs_stim_power_3': (exc_cs_stim,(pulse_voltages[2],'cs_stim_power_3')),
+        #              'cs_stim_power_4': (exc_cs_stim,(pulse_voltages[3],'cs_stim_power_4')),
+        #              'cs_stim_power_5': (exc_cs_stim,(pulse_voltages[4],'cs_stim_power_5')),
+        #              'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
 
 
-        conditions = {'ol_expand_center':(exc_ol_expand,('Pattern_expand.mat',21,'ol_expand_center')),
-              'ol_expand_left':  (exc_ol_expand,('Pattern_expand.mat',93,'ol_expand_left')),
-              'ol_expand_right': (exc_ol_expand,('Pattern_expand.mat',45,'ol_expand_right')),
+        # conditions = {'ol_expand_center':(exc_ol_expand,('Pattern_expand.mat',21,'ol_expand_center')),
+        #       'ol_expand_left':  (exc_ol_expand,('Pattern_expand.mat',93,'ol_expand_left')),
+        #       'ol_expand_right': (exc_ol_expand,('Pattern_expand.mat',45,'ol_expand_right')),
 
-              'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
-              'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
+        #       'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90,'ol_stripe_left')),
+        #       'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42,'ol_stripe_right')),
 
-              'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
-              'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
+        #       'ol_full_left':    (exc_ol_full,('Pattern_full_%s.mat',-1,90,'ol_full_left')),
+        #       'ol_full_right':   (exc_ol_full,('Pattern_full_%s.mat',1,42,'ol_full_right')),
 
-              'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
-              'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
+        #       'cs_stim_power_0': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
+        #       'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
+
+        conditions = {
+                'ol_stripe_left':  (exc_ol_stripe,('Pattern_bar.mat',-1,90, 'ol_stripe_left')),
+                'ol_stripe_right': (exc_ol_stripe,('Pattern_bar.mat',1,42, 'ol_stripe_right')),
+
+                'cs_stim_power_1': (exc_cs_stim,(pulse_voltages[0],'cs_stim_power_1')),
+                'cs_stim_power_6': (exc_cs_stim,(pulse_voltages[5],'cs_stim_power_6'))}
 
         #Run experiment
         t0 = time.time()
@@ -328,7 +336,7 @@ if __name__ == '__main__':
         exp_pub.publish(state = 'condition=intertrial_closed_loop;gain=%s;ao_level=%s'%(gain_x,0))
         time.sleep(10)
 
-        for rep in range(5):
+        for rep in range(num_reps):
             print rep
             for key in np.random.permutation(conditions.keys()):
                 condition = conditions[key]
