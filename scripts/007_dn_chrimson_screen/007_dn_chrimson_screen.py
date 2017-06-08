@@ -13,7 +13,7 @@ from ledpanels import display_ctrl
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 import readline
-import split_lines as sl
+from thllib import split_lines as sl
 ############################################################################
 ########################### Metadata Information ###########################
 ############################################################################
