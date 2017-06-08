@@ -6,3 +6,4 @@
 /home/imager/catkin/src/phidgets
 /home/imager/catkin/src/muscle_imager
 /media/imager/FlyDataD/src/muscle_model
+/media/imager/FlyDataD/src/thllib
