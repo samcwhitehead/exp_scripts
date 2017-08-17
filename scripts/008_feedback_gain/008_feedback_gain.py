@@ -152,17 +152,17 @@ if __name__ == '__main__':
         conditions = {
                 'cl_full_bias=0': (exc_cl_full,  ('cl_full_bias=0',  -10,  0)),
                 
-                'cl_full_bias=-5': (exc_cl_full,('cl_full_bias=-5', -10,  -5)),
-                'cl_full_bias=5': (exc_cl_full, ('cl_full_bias=5',   10,   5)),
+                'cl_full_bias=-5': (exc_cl_full,('cl_full_bias=-2', -2,  -5)),
+                'cl_full_bias=5': (exc_cl_full, ('cl_full_bias=2',   2,   5)),
 
-                'cl_full_bias=-10': (exc_cl_full,('cl_full_bias=-10', -10, -10)),
-                'cl_full_bias=10': (exc_cl_full, ('cl_full_bias=10',   10,  10)),
+                'cl_full_bias=-10': (exc_cl_full,('cl_full_bias=-4', -4, -10)),
+                'cl_full_bias=10': (exc_cl_full, ('cl_full_bias=4',   4,  10)),
 
-                'cl_full_bias=-15': (exc_cl_full,('cl_full_bias=-15', -10, -15)),
-                'cl_full_bias=15': (exc_cl_full, ('cl_full_bias=15',   10,  15)),
+                'cl_full_bias=-15': (exc_cl_full,('cl_full_bias=-6', -6, -15)),
+                'cl_full_bias=15': (exc_cl_full, ('cl_full_bias=6',   6,  15)),
 
-                'cl_full_bias=-20': (exc_cl_full,('cl_full_bias=-20', -10, -20)),
-                'cl_full_bias=20': (exc_cl_full, ('cl_full_bias=20',  -10,  20))}
+                'cl_full_bias=-20': (exc_cl_full,('cl_full_bias=-8', -8, -20)),
+                'cl_full_bias=20': (exc_cl_full, ('cl_full_bias=8',  -8,  20))}
 
         #Run experiment
         t0 = time.time()
