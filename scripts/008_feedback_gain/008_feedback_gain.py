@@ -158,7 +158,7 @@ if __name__ == '__main__':
                 'cl_full_bias=-10': (exc_cl_full,('cl_full_bias=-4', -10, -4)),
                 'cl_full_bias=10': (exc_cl_full, ('cl_full_bias=4',  -10,  4)),
 
-                'cl_full_bias=-15': (exc_cl_full,('cl_full_bias=-6', -10 -6)),
+                'cl_full_bias=-15': (exc_cl_full,('cl_full_bias=-6', -10, -6)),
                 'cl_full_bias=15': (exc_cl_full, ('cl_full_bias=6',  -10,  6)),
 
                 'cl_full_bias=-20': (exc_cl_full,('cl_full_bias=-8', -10, -8)),
