@@ -84,6 +84,7 @@ if __name__ == '__main__':
             print block_name
 
             ctrl.stop()
+            ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
@@ -92,7 +93,6 @@ if __name__ == '__main__':
             time.sleep(10)
 
             ctrl.stop()
-            #ctrl.set_pattern_by_name(pattern_name)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = bias_x,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=test;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,bias_x,pattern_name))
@@ -108,6 +108,7 @@ if __name__ == '__main__':
             print block_name
             
             ctrl.stop()
+            ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
@@ -116,7 +117,6 @@ if __name__ == '__main__':
             time.sleep(10)
 
             ctrl.stop()
-            #ctrl.set_pattern_by_name(pattern_name)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = bias_x,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=test;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,bias_x,pattern_name))
