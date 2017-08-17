@@ -201,7 +201,7 @@ if __name__ == '__main__':
         print(get_ref_frame_left())
         print(get_ref_frame_right())
 
-		meta_pub.publish(cPickle.dumps(metadata))
+        meta_pub.publish(cPickle.dumps(metadata))
 
         print time.time()-t0
     except rospy.ROSInterruptException:
