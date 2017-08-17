@@ -13,6 +13,7 @@ from ledpanels import display_ctrl
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 import readline
+import cPickle
 ############################################################################
 ########################### Metadata Information ###########################
 ############################################################################
@@ -25,6 +26,7 @@ Test positional component of muscle activation functions.
 num_reps = 5
 fly_dob = raw_input('fly DOB:')
 genotype_nickname = '22H05-GCaMP6f'
+head_fixed = True
 print genotype_nickname
 
 
@@ -136,15 +138,10 @@ if __name__ == '__main__':
                       'script_code':script_code,
                       'fly_dob':fly_dob,
                       'fly_genotype':fly_genotype,
-                      'genotype_nickname':genotype_nickname}
+                      'genotype_nickname':genotype_nickname,
+                      'head_fixed':head_fixed}
 
-        meta_pub.publish("""git_SHA = %(git_SHA)s;
-                         script_path = %(script_path)s;
-                         exp_description = %(exp_description)s;
-                         script_code = %(script_code)s;
-                         fly_dob = %(fly_dob)s;
-                         fly_genotype = %(fly_genotype)s;
-                         genotype_nickname = %(genotype_nickname)s"""%metadata)
+        meta_pub.publish(cPickle.dumps(metadata))
         
         #Run experiment
         t0 = time.time()
@@ -204,13 +201,7 @@ if __name__ == '__main__':
         print(get_ref_frame_left())
         print(get_ref_frame_right())
 
-        meta_pub.publish("""git_SHA = %(git_SHA)s;
-                         script_path = %(script_path)s;
-                         exp_description = %(exp_description)s;
-                         script_code = %(script_code)s;
-                         fly_dob = %(fly_dob)s;
-                         fly_genotype = %(fly_genotype)s;
-                         genotype_nickname = %(genotype_nickname)s"""%metadata)
+		meta_pub.publish(cPickle.dumps(metadata))
 
         print time.time()-t0
     except rospy.ROSInterruptException:
