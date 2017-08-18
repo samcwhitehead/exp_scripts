@@ -97,7 +97,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = bias_x,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=test;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,bias_x,pattern_name))
             ctrl.start()
-            time.sleep(20)
+            time.sleep(10)
             
 
         def exc_cl_full(block_name,gain_x,bias_x):
@@ -121,7 +121,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = bias_x,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=test;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,bias_x,pattern_name))
             ctrl.start()
-            time.sleep(20)
+            time.sleep(10)
 
 
         ############################################################
