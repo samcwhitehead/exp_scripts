@@ -182,21 +182,21 @@ if __name__ == '__main__':
         
 
         conditions = {
-                'cl_full_LC_bias=0':   (exc_cl_full_LC,  ('cl_full_LC_bias=0',   -30,   0)),
+                'cl_full_LC_bias=0':   (exc_cl_full_LC,  ('cl_full_LC_bias=0',   -10,   0)),
                 
-                'cl_full_LC_bias=-4':  (exc_cl_full_LC,  ('cl_full_LC_bias=-4',  -30,  -4)),
-                'cl_full_LC_bias=4':   (exc_cl_full_LC,  ('cl_full_LC_bias=4',   -30,   4)),
+                'cl_full_LC_bias=-4':  (exc_cl_full_LC,  ('cl_full_LC_bias=-4',  -10,  -4)),
+                'cl_full_LC_bias=4':   (exc_cl_full_LC,  ('cl_full_LC_bias=4',   -10,   4)),
 
-                'cl_full_LC_bias=-16': (exc_cl_full_LC,  ('cl_full_LC_bias=-16', -30,  -16)),
-                'cl_full_LC_bias=16':  (exc_cl_full_LC,  ('cl_full_LC_bias=16',  -30,   16)),
+                'cl_full_LC_bias=-16': (exc_cl_full_LC,  ('cl_full_LC_bias=-16', -10,  -16)),
+                'cl_full_LC_bias=16':  (exc_cl_full_LC,  ('cl_full_LC_bias=16',  -10,   16)),
 
-                'cl_full_HC_bias=0':   (exc_cl_full_HC,  ('cl_full_HC_bias=0',   -30,   0)),
+                'cl_full_HC_bias=0':   (exc_cl_full_HC,  ('cl_full_HC_bias=0',   -10,   0)),
                 
-                'cl_full_HC_bias=-4':  (exc_cl_full_HC,  ('cl_full_HC_bias=-4',  -30,  -4)),
-                'cl_full_HC_bias=4':   (exc_cl_full_HC,  ('cl_full_HC_bias=4',   -30,   4)),
+                'cl_full_HC_bias=-4':  (exc_cl_full_HC,  ('cl_full_HC_bias=-4',  -10,  -4)),
+                'cl_full_HC_bias=4':   (exc_cl_full_HC,  ('cl_full_HC_bias=4',   -10,   4)),
 
-                'cl_full_HC_bias=-16': (exc_cl_full_HC,  ('cl_full_HC_bias=-16',  -30, -16)),
-                'cl_full_HC_bias=16':  (exc_cl_full_HC,  ('cl_full_HC_bias=16',   -30,  16))}
+                'cl_full_HC_bias=-16': (exc_cl_full_HC,  ('cl_full_HC_bias=-16',  -10, -16)),
+                'cl_full_HC_bias=16':  (exc_cl_full_HC,  ('cl_full_HC_bias=16',   -10,  16))}
 
 
         #Run experiment
