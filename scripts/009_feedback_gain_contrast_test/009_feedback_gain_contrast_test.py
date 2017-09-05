@@ -123,8 +123,6 @@ if __name__ == '__main__':
             time.sleep(10)
 
             ctrl.stop()
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),0)
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=recovery;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
             ctrl.start()
@@ -153,8 +151,6 @@ if __name__ == '__main__':
             time.sleep(10)
 
             ctrl.stop()
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),0)
             ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
             exp_pub.publish('condition=recovery;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
             ctrl.start()
