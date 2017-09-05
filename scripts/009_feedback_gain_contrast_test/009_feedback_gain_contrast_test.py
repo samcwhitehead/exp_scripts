@@ -182,27 +182,27 @@ if __name__ == '__main__':
         
 
         conditions = {
-                'cl_full_LC_bias=0':   (exc_cl_full_LC,  ('cl_full_LC_bias=0',   -10,   0)),
+                'cl_full_LC_bias=0':   (exc_cl_full_LC,  ('cl_full_LC_bias=0',   -1,   0)),
                 
-                'cl_full_LC_bias=-4':  (exc_cl_full_LC,  ('cl_full_LC_bias=-4',  -10,  -4)),
-                'cl_full_LC_bias=4':   (exc_cl_full_LC,  ('cl_full_LC_bias=4',   -10,   4)),
+                'cl_full_LC_bias=-4':  (exc_cl_full_LC,  ('cl_full_LC_bias=-4',  -1,  -4)),
+                'cl_full_LC_bias=4':   (exc_cl_full_LC,  ('cl_full_LC_bias=4',   -1,   4)),
 
-                'cl_full_LC_bias=-16': (exc_cl_full_LC,  ('cl_full_LC_bias=-16', -10,  -16)),
-                'cl_full_LC_bias=16':  (exc_cl_full_LC,  ('cl_full_LC_bias=16',  -10,   16)),
+                'cl_full_LC_bias=-16': (exc_cl_full_LC,  ('cl_full_LC_bias=-16', -1,  -16)),
+                'cl_full_LC_bias=16':  (exc_cl_full_LC,  ('cl_full_LC_bias=16',  -1,   16)),
 
-                'cl_full_HC_bias=0':   (exc_cl_full_HC,  ('cl_full_HC_bias=0',   -10,   0)),
+                'cl_full_HC_bias=0':   (exc_cl_full_HC,  ('cl_full_HC_bias=0',   -1,   0)),
                 
-                'cl_full_HC_bias=-4':  (exc_cl_full_HC,  ('cl_full_HC_bias=-4',  -10,  -4)),
-                'cl_full_HC_bias=4':   (exc_cl_full_HC,  ('cl_full_HC_bias=4',   -10,   4)),
+                'cl_full_HC_bias=-4':  (exc_cl_full_HC,  ('cl_full_HC_bias=-4',  -1,  -4)),
+                'cl_full_HC_bias=4':   (exc_cl_full_HC,  ('cl_full_HC_bias=4',   -1,   4)),
 
-                'cl_full_HC_bias=-16': (exc_cl_full_HC,  ('cl_full_HC_bias=-16',  -10, -16)),
-                'cl_full_HC_bias=16':  (exc_cl_full_HC,  ('cl_full_HC_bias=16',   -10,  16))}
+                'cl_full_HC_bias=-16': (exc_cl_full_HC,  ('cl_full_HC_bias=-16',  -1, -16)),
+                'cl_full_HC_bias=16':  (exc_cl_full_HC,  ('cl_full_HC_bias=16',   -1,  16))}
 
 
         #Run experiment
         t0 = time.time()
         print 'enter closed loop stripe fixation'
-        gain_x = -10
+        gain_x = -1
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
