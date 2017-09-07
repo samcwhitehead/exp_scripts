@@ -137,16 +137,14 @@ if __name__ == '__main__':
 
         conditions = {
                 1:  (exc_cl_full_blocks,  ('cl_full_blocks_gain= 0.0',   0.0,   0)),
-                2:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-1.0',  -1.0,   0)),
-                3:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-2.0',  -2.0,   0)),
+                2:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-0.75',  -0.75,   0)),
+                3:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-2.25',  -2.25,   0)),
                 4:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-3.0',  -3.0,   0)),
-                5:  (exc_cl_full_blocks,  ('cl_full_blocks_gain=-4.0',  -4.0,   0)),
 
                 6:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit= 0.0',  0.0,   0)),
-                7:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-1.0', -1.0,   0)),
-                8:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-2.0', -2.0,   0)),
-                9:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-3.0', -3.0,   0)),
-                10: (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-4.0', -4.0,   0)),
+                7:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-0.75', -0.75,   0)),
+                8:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-2.25', -2.25,   0)),
+                9:  (exc_cl_full_one_bit,  ('exc_cl_full_one_bit=-3.0', -3.0,   0))
         }
 
 
