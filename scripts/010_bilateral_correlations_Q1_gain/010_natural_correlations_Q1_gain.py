@@ -81,38 +81,38 @@ if __name__ == '__main__':
         time.sleep(5) # wait for all the publishers to come online
             
 
-	    def exc_cl_full_blocks(block_name,gain_x,bias_x):
-	        pattern_name = 'Pattern_full_drift.mat'
-	        bias_y = 0
-	        gain_y = 0
-	        blk_pub.publish(block_name)
-	        print block_name
-	        
-	        ctrl.stop()
-	        ctrl.set_pattern_by_name(pattern_name)
-	        ctrl.set_position(np.random.randint(0,96),0)
-	        ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
-	        ctrl.set_mode('xrate=ch0','yrate=funcy')
-	        exp_pub.publish('condition=baseline;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
-	        ctrl.start()
-	        time.sleep(10)
+        def exc_cl_full_blocks(block_name,gain_x,bias_x):
+            pattern_name = 'Pattern_full_drift.mat'
+            bias_y = 0
+            gain_y = 0
+            blk_pub.publish(block_name)
+            print block_name
+            
+            ctrl.stop()
+            ctrl.set_pattern_by_name(pattern_name)
+            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            exp_pub.publish('condition=baseline;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
+            ctrl.start()
+            time.sleep(10)
 
 
-		def exc_cl_full_one_bit(block_name,gain_x,bias_x):
-	        pattern_name = 'Pattern_full_1_Fast.mat'
-	        bias_y = 0
-	        gain_y = 0
-	        blk_pub.publish(block_name)
-	        print block_name
-	        
-	        ctrl.stop()
-	        ctrl.set_pattern_by_name(pattern_name)
-	        ctrl.set_position(np.random.randint(0,96),0)
-	        ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
-	        ctrl.set_mode('xrate=ch0','yrate=funcy')
-	        exp_pub.publish('condition=baseline;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
-	        ctrl.start()
-	        time.sleep(10)
+        def exc_cl_full_one_bit(block_name,gain_x,bias_x):
+            pattern_name = 'Pattern_full_1_Fast.mat'
+            bias_y = 0
+            gain_y = 0
+            blk_pub.publish(block_name)
+            print block_name
+            
+            ctrl.stop()
+            ctrl.set_pattern_by_name(pattern_name)
+            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.send_gain_bias(gain_x = gain_x, bias_x = 0.0,gain_y = 0,bias_y = 0)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            exp_pub.publish('condition=baseline;loop=closed;gain_x=%s;bias_x=%s;pattern=%s'%(gain_x,0,pattern_name))
+            ctrl.start()
+            time.sleep(10)
 
 
         ############################################################
