@@ -70,9 +70,11 @@ for repnum = 1:3
     RandPats = zeros(5, 96, pattern.x_num, pattern.y_num);
     RandPats(:,:,1,1) = RandPat;
     
+    for j = 2:96
+      RandPats(:,:,j,1) = ShiftMatrix(RandPats(:,:,j-1,1), 1, 'r', 'y'); 
+    end
     
     Pats = RandPats;
-
     pattern.Pats = Pats;
 
     A =                 [1   5   9   2   6   10  3   7   11  4   8   12;
