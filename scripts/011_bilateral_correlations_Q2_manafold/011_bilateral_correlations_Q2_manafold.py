@@ -199,7 +199,7 @@ if __name__ == '__main__':
         ctrl.start()
         ### publish the state
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
-        #time.sleep(10)
+        time.sleep(10)
 
         for rep in range(NUM_REPS):
             print rep
