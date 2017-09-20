@@ -185,7 +185,6 @@ if __name__ == '__main__':
         conditions[14] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s b_x=0, b_y=0'%( 70, 0), ( 70,  0, 0, 0))
         conditions[15] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s b_x=0, b_y=0'%(-70, 0), (-70,  0, 0, 0))
 
-        print conditions
         #Run experiment
         t0 = time.time()
         print 'enter closed loop stripe fixation'
