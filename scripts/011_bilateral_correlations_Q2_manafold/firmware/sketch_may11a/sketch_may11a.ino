@@ -1,5 +1,11 @@
 // Pin 13 has the LED on Teensy 3.0
 
+// cable color codes for point grey cam tigger cable
+// White = Power ground
+// Brown = Power +12V
+// Gray = Trig ground
+// Pink = Trig +
+
 const int CAM1_TRIG_PIN = 0;
 const int WB_PIN = 23;
 const int BOARD_LED_PIN = 13;

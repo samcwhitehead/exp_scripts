@@ -4,6 +4,8 @@
     <arg name="ca_cameraL_serial" default="16398533" />
 
     <arg name="kin_camera1_serial" default="16456195" />
+    <arg name="arena_camera1_serial" default="14432681" />
+
     <arg name="calibrated" default="0" />
 
     <!-- ========================================================== -->
@@ -74,6 +76,32 @@
       </node>
 
       <node pkg="nodelet" 
+          type="nodelet" 
+          name="image_proc_debayer"
+          args="load image_proc/debayer camera_nodelet_manager" />
+    </group>
+
+    <group ns="arena_camera">
+      <node pkg="nodelet" 
+            type="nodelet" 
+            name="camera_nodelet_manager"    
+            args="manager" />
+      <node pkg="nodelet" 
+            type="nodelet" 
+            name="camera_nodelet"
+            args="load pointgrey_camera_driver/PointGreyCameraNodelet camera_nodelet_manager" >
+            <param name="frame_id" value="camera" />
+            <param name="serial" value="$(arg arena_camera1_serial)" />
+            <param name="frame_rate" value="30" />
+            <param name="auto_exposure" value="true" />
+            <param name="auto_shutter" value="true" />
+            <param name="auto_gain" value="true" />
+
+            <param name="camera_info_url" if="$(arg calibrated)"
+              value="file://$(env HOME)/.ros/camera_info/$(arg arena_camera1_serial).yaml" />
+      </node>
+
+      <node pkg="nodelet"
           type="nodelet" 
           name="image_proc_debayer"
           args="load image_proc/debayer camera_nodelet_manager" />
