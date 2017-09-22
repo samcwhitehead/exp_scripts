@@ -10,6 +10,7 @@
     /ca_camera_right/image_raw
     /ca_camera_left/image_raw 
     /kine_camera_1/image_raw/compressed
+    /arena_camera/image_color/compressed
     /phidgets_daq/all_data 
     /ledpanels/command
     /ledpanels/debug

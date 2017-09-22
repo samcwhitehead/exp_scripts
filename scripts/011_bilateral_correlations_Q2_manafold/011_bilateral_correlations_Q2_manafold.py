@@ -172,7 +172,7 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         #set up experimental conditions
-        ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-4,4),(0,-1,1),([0]))]
+        ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-4,4),(0,-4,4),([0]))]
         conditions = dict()
         s='cl_blocks, g_x=%s, g_y=%s b_x=%s, b_y=%s'
         [conditions.update({i:(exc_cl_blocks,s%ct,ct)}) for i,ct in enumerate(ctups)]
