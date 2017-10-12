@@ -101,7 +101,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = 0, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
-            time.sleep(2)
+            time.sleep(3)
 
             ctrl.stop()
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
@@ -116,15 +116,16 @@ if __name__ == '__main__':
             
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
+            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
             ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0,bias_y = 0)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
-            time.sleep(2)
+            time.sleep(3)
 
             ctrl.stop()
+            ctrl.set_mode('xrate=funcx','yrate=funcy')
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
@@ -135,18 +136,22 @@ if __name__ == '__main__':
 
             blk_pub.publish(block_name)
             print block_name
-            
+
+            ctrl.stop()
+            ctrl.set_position_function_by_name('X','default')
+            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            exp_pub.publish('condition=baseline')
+            ctrl.start()
+            time.sleep(3)
+
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(2)
-
-            ctrl.stop()
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
