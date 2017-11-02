@@ -208,7 +208,7 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         #set up experimental conditions
-        ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-0.5,0.5,-1,1,-2,2),([0]),([0]))]
+        ctups = [c for c in itertools.product(([CL_GAIN_X]),([0]),(0,-0.5,0.5,-1,1,-2,2),([0]))]
         conditions = dict()
 
         s='cl_starfield_roll_blocks, g_x=%s, g_y=%s b_x=%s, b_y=%s'
@@ -217,7 +217,8 @@ if __name__ == '__main__':
         s='cl_starfield_yaw_blocks, g_x=%s, g_y=%s b_x=%s, b_y=%s'
         [conditions.update({i+j+1:(exc_cl_starfield_yaw,s%ct,ct)}) for j,ct in enumerate(ctups)]
 
-        print conditions.values()
+        for x in conditions.values():
+        	print x
         print len(conditions.keys())
         #######################################
         #Run experiment
