@@ -25,7 +25,7 @@ Testing roll vs yaw
 """
 
 NUM_REPS = 6
-CL_GAIN_X = -1
+CL_GAIN_X = -0.5
 
 fly_dob = raw_input('fly DOB:')
 genotype_nickname = '22H05-GCaMP6f'
