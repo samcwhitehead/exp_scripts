@@ -24,8 +24,8 @@ exp_description = \
 Testing roll vs yaw
 """
 
-NUM_REPS = 6
-CL_GAIN_X = -2
+NUM_REPS = 5
+CL_GAIN_X = -1
 
 fly_dob = raw_input('fly DOB:')
 genotype_nickname = '22H05-GCaMP6f'
@@ -97,7 +97,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(6)
+            time.sleep(9)
 
         def exc_cl_starfield_yaw(block_name,gain_x,gain_y,bias_x,bias_y):
             pattern_name = 'Pattern_yaw_right.mat' #l-r is positive * negative gain = leftward motion
@@ -117,7 +117,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(6)
+            time.sleep(9)
 
         # def exc_cl_blocks(block_name,gain_x,gain_y,bias_x,bias_y):
         #     pattern_name = 'Pattern_4x4_blocks_60.mat'
@@ -208,7 +208,7 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         #set up experimental conditions
-        ctups = [c for c in itertools.product(([CL_GAIN_X]),([0]),(0,-1,1,-2,2,-3,3),([0]))]
+        ctups = [c for c in itertools.product(([CL_GAIN_X]),([0]),(0,-2,2,-3,3,-4,4),([0]))]
         conditions = dict()
 
         s='cl_starfield_roll_blocks, g_x=%s, g_y=%s b_x=%s, b_y=%s'
