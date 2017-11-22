@@ -35,7 +35,7 @@ NUM_REPS = 6
 CL_GAIN_X = -1
 
 fly_dob = raw_input('fly DOB:')
-genotype_nickname = '22H05-GCaMP6f'
+genotype_nickname = 'S28-csCh/mu-OptGCaMP6f'
 head_fixed = True
 
 print genotype_nickname
@@ -47,7 +47,7 @@ print genotype_nickname
 
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
-fly_genotype = """w[1118]/+[HCS];P{y[+t7.7] w[+mC]=GMR22H05-GAL4}attP2/P{20XUAS-IVS-GCaMP6f}attP40;+/+"""
+fly_genotype = """w[1118]/+[HCS]; P{y[+t7.7] w[+mC]=GMR39E01-lexA}attP40,P{20XUAS-IVS-Syn21-OpGCamp6F-p10}su(Hw)attp5 / P{w[+mC]=BJD115F05-p65ADzpUw}attP40; P{20XUAS-IVS-CsChrimson.mVenus}attP2 / P{w[+mC]=GMR48E11-ZpGal4DBDUw}attP2"""
 #load the script to publish as message
 with open(script_path,'rt') as f:
     script_code = f.read() 
@@ -79,6 +79,8 @@ if __name__ == '__main__':
         blk_pub = rospy.Publisher('/exp_scripts/exp_block',
                                     String,
                                     queue_size = 10)
+        
+
 
         rospy.wait_for_service('/unmixer_left/RefFrameServer')
         get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
@@ -95,6 +97,7 @@ if __name__ == '__main__':
 
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
+            ctrl.set_position_function_by_name('Y','default')
             ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
@@ -182,14 +185,14 @@ if __name__ == '__main__':
         conditions = dict()
         s='cl_blocks, g_x=%s, g_y=%s b_x=%s, b_y=%s'
         [conditions.update({i:(exc_cl_blocks,s%ct,ct)}) for i,ct in enumerate(ctups)]
-        conditions[9] =  (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s b_x=0, b_y=0'%( 12, 0), ( 12,  0, 0, 0))
-        conditions[10] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s b_x=0, b_y=0'%(-12, 0), (-12,  0, 0, 0))
-        conditions[11] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s b_x=0, b_y=0'%( 0, 4),  ( 0,   4, 0, 0))
-        conditions[12] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s b_x=0, b_y=0'%( 0,-4),  ( 0,  -4, 0, 0))
-        conditions[13] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s b_x=0, b_y=0'%( 0, 0),  ( 0,   0, 0, 0))
+        conditions[9] =  (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0'%( 12, 0), ( 12,  0, 0, 0))
+        conditions[10] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0'%(-12, 0), (-12,  0, 0, 0))
+        conditions[11] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0'%( 0, 4),  ( 0,   4, 0, 0))
+        conditions[12] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0'%( 0,-4),  ( 0,  -4, 0, 0))
+        conditions[13] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0'%( 0, 0),  ( 0,   0, 0, 0))
 
-        conditions[14] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s b_x=0, b_y=0'%( 70, 0), ( 70,  0, 0, 0))
-        conditions[15] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s b_x=0, b_y=0'%(-70, 0), (-70,  0, 0, 0))
+        conditions[14] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0'%( 70, 0), ( 70,  0, 0, 0))
+        conditions[15] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0'%(-70, 0), (-70,  0, 0, 0))
 
         #Run experiment
         t0 = time.time()
@@ -197,6 +200,8 @@ if __name__ == '__main__':
         gain_x = -1
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
+        ctrl.set_position_function_by_name('X','default')
+        ctrl.set_position_function_by_name('Y','default')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
