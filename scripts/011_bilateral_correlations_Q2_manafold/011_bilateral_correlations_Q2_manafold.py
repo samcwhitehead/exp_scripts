@@ -35,7 +35,7 @@ NUM_REPS = 6
 CL_GAIN_X = -1
 
 fly_dob = raw_input('fly DOB:')
-genotype_nickname = '22H05-GCaMP6f'
+genotype_nickname = '22H05-OptGCaMP6f'
 head_fixed = True
 
 print genotype_nickname
@@ -47,7 +47,7 @@ print genotype_nickname
 
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
-fly_genotype = """w[1118]/+[HCS];P{y[+t7.7] w[+mC]=GMR22H05-GAL4}attP2/P{20XUAS-IVS-GCaMP6f}attP40;+/+"""
+fly_genotype = """w[1118]/+[HCS];P{y[+t7.7] w[+mC]=GMR22H05-GAL4}attP2/P{20XUAS-IVS-Syn21-OpGCamp6F-p10}su(Hw)attp5;+/+"""
 #load the script to publish as message
 with open(script_path,'rt') as f:
     script_code = f.read() 
