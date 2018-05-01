@@ -6,10 +6,13 @@
 // Gray = Trig ground
 // Pink = Trig +
 
-const int CAM1_TRIG_PIN = 0;
-const int WB_PIN = 23;
+const int CAM_L_TRIG_PIN = 5;
+const int CAM_R_TRIG_PIN = 7;
+const int WB_PIN = 2;
 const int BOARD_LED_PIN = 13;
-const int TEST_BNC_PIN = 22;
+const int THOR_LED_PIN = 3;
+const int TEST_BNC_PIN = 4;
+
 const int WB_PER_FRAME = 3;
 const int WINGBEAT_TIMEOUT_MS = 10; //50Hz 
 const float TIME_ALPHA = 0.9;
@@ -27,7 +30,7 @@ int wb_count = 0;
 int trigger_time = 0;
 int looptime = 0;
 
-IntervalTimer camTimer;
+//IntervalTimer camTimer;
 
 void wb_isr() {
   //calculate delta_t frequency for phase.
@@ -52,8 +55,10 @@ void timeout_wb() {
 void setup() {
   //Serial.begin(9600);                
   // initialize the digital pin as an output.
-  pinMode(CAM1_TRIG_PIN, OUTPUT);
+  pinMode(CAM_L_TRIG_PIN, OUTPUT);
+  pinMode(CAM_R_TRIG_PIN, OUTPUT);
   pinMode(BOARD_LED_PIN, OUTPUT);
+  pinMode(THOR_LED_PIN, OUTPUT);
   pinMode(TEST_BNC_PIN, OUTPUT);
   pinMode(WB_PIN,INPUT_PULLUP);
   attachInterrupt(WB_PIN,wb_isr,FALLING);
@@ -76,7 +81,8 @@ void loop() {
     // Log the time of the wingstroke so that a strobe can
     // be fired at the correct phase. 
     if(wb_detected_copy){
-      digitalWrite(CAM1_TRIG_PIN,HIGH);
+      digitalWrite(CAM_L_TRIG_PIN,HIGH);
+      digitalWrite(CAM_R_TRIG_PIN,HIGH);
       trigger_armed = false;
       noInterrupts(); wb_detected = false; interrupts();
     }
@@ -94,9 +100,13 @@ void loop() {
         //and re-arm the epi trigger
         if(looptime > int(est_period_copy*TRIG_PHASE)){
           digitalWrite(BOARD_LED_PIN,HIGH);
+          digitalWrite(THOR_LED_PIN,HIGH);
           digitalWrite(TEST_BNC_PIN,HIGH);
+          
           delayMicroseconds(EPI_PULSE_US);
+          
           digitalWrite(BOARD_LED_PIN,LOW);
+          digitalWrite(THOR_LED_PIN,LOW);
           digitalWrite(TEST_BNC_PIN,LOW);
           epi_armed = false;
           wb_count += 1;
@@ -113,7 +123,8 @@ void loop() {
       }
     } else{
       // wb count has been exceeded end the exposure
-      digitalWrite(CAM1_TRIG_PIN,LOW);
+      digitalWrite(CAM_L_TRIG_PIN,LOW);
+      digitalWrite(CAM_R_TRIG_PIN,LOW);
       trigger_armed = true;
       wb_count = 0;
     }
