@@ -5,5 +5,5 @@
 /home/imager/catkin/src/Kinefly
 /home/imager/catkin/src/phidgets
 /home/imager/catkin/src/muscle_imager
-/media/imager/FlyDataD/src/muscle_model
-/media/imager/FlyDataD/src/thllib
+/home/imager/src.git/muscle_model
+/home/imager/src.git/flylib
