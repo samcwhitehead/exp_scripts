@@ -21,21 +21,17 @@ import itertools
 
 exp_description = \
 """
-The main question is: The last set of experiments in wich I just looked
-at correlatons of muscle activity in closed loop indicated that a few flies
-seemed to be much better than the others at gaze stablization. I will now perform
-experiments to explore the motor space. I think I will need a richer baseline
-stimulus set to use. For this I will use a set of 7 open-loop patterns.
-I will then probe the closed-loop manafolds with 9 bias patterns +/- translation.
-
-The response to loom will be examined in a separate cohort of flies if at all.
+Examine correlations between wing muscles on left-vs-right wing under 
+open and closed loop optomotor stablization conditions (left-right bias)
++/- vertical translation.
+Practice experiments for Alysha.
 """
 
 NUM_REPS = 6
 CL_GAIN_X = -1
 
 fly_dob = raw_input('fly DOB:')
-genotype_nickname = 'M-G6f X S-322 Kir'
+genotype_nickname = '22H05-Gal4:UAS-GcAMP6f'
 head_fixed = True
 
 print genotype_nickname
@@ -47,7 +43,7 @@ print genotype_nickname
 
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
-fly_genotype = """w+ DL/+[HCS]; P{20XUAS-IVS-Syn21-OpGCamp6F-p10}su(Hw)attp5, P{y[+t7.7] w[+mC]=GMR39E01-lexA}attP40 /P{w[+mC]=BJD127F10-pBPp65ADZpUw)attP40; pJFRC49-10XUAS-IVS-eGFPKir2.1 in attP2 (DL) / P{w[+mC]=GMR75F02-pBPZpGDBDUw}attP2"""
+fly_genotype = """w[1118]/+[HCS];P{20XUAS-IVS-GCaMP6f}attP40/+;P{y[+t7.7] w[+mC]=GMR22H05‐GAL4}attP2/+"""
 #load the script to publish as message
 with open(script_path,'rt') as f:
     script_code = f.read() 
