@@ -6,12 +6,14 @@
 // Gray = Trig ground
 // Pink = Trig +
 
-const int CAM_L_TRIG_PIN = 2;
-const int CAM_R_TRIG_PIN = 4;
-const int WB_PIN = 5; //sync from wb analyzer
+const int CAM_L_TRIG_PIN = 5;
+const int CAM_R_TRIG_PIN = 7;
+
 const int BOARD_LED_PIN = 13;
-const int THOR_LED_PIN = 6;
-const int TEST_BNC_PIN = 7;
+//BNC breakouts
+const int WB_PIN = 2; //sync from wb analyzer
+const int THOR_LED_PIN = 3;
+const int TEST_BNC_PIN = 4;
 
 const int WB_PER_FRAME = 3;
 const int WINGBEAT_TIMEOUT_MS = 10; //50Hz 
@@ -61,7 +63,7 @@ void setup() {
   pinMode(THOR_LED_PIN, OUTPUT);
   pinMode(TEST_BNC_PIN, OUTPUT);
   pinMode(WB_PIN,INPUT_PULLUP);
-  attachInterrupt(WB_PIN,wb_isr,FALLING);
+  attachInterrupt(digitalPinToInterrupt(WB_PIN),wb_isr,FALLING);
 }
 
 // the loop routine runs over and over again forever:
