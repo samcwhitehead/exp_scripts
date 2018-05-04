@@ -43,7 +43,7 @@ print genotype_nickname
 
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
-fly_genotype = """w[1118]/+[HCS];P{20XUAS-IVS-GCaMP6f}attP40/+;P{y[+t7.7] w[+mC]=GMR22H05‐GAL4}attP2/+"""
+fly_genotype = """w[1118]/+[HCS];P{20XUAS-IVS-GCaMP6f}attP40/+;P{y[+t7.7]w[+mC]=GMR22H05-GAL4}attP2/+"""
 #load the script to publish as message
 with open(script_path,'rt') as f:
     script_code = f.read() 
