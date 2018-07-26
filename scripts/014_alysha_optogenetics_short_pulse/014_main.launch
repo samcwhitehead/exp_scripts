@@ -23,6 +23,7 @@
             args="load pointgrey_camera_driver/PointGreyCameraNodelet camera_nodelet_manager" >
             <param name="frame_id" value="camera" />
             <param name="serial" value="$(arg ca_cameraR_serial)" />
+            <!-- <param name="video_mode" value="format7_mode5" /> -->
             <param name="video_mode" value="format7_mode5" />
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
@@ -57,6 +58,7 @@
             args="load pointgrey_camera_driver/PointGreyCameraNodelet camera_nodelet_manager" >
             <param name="frame_id" value="camera" />
             <param name="serial" value="$(arg ca_cameraL_serial)" />
+            <!-- <param name="video_mode" value="format7_mode5" /> -->
             <param name="video_mode" value="format7_mode5" />
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
@@ -81,6 +83,7 @@
           args="load image_proc/debayer camera_nodelet_manager" />
     </group>
 
+    <!--
     <group ns="arena_camera">
       <node pkg="nodelet" 
             type="nodelet" 
@@ -106,6 +109,7 @@
           name="image_proc_debayer"
           args="load image_proc/debayer camera_nodelet_manager" />
     </group>
+    -->
 
 
     <group ns="kine_camera_1">
