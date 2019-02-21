@@ -22,7 +22,7 @@ arenaAzimuthCoordinates_rad = arenaAzimuthCoordinates_deg/DEGPERRAD;
 arenaInclinationCoordinates_rad = pi/2 - atan(([1:NUMVERTPIX] - ARENAINCLINATIONCENTER_PIX)/arenaRadius_pix);
 
 EXPANSIONDURATION_SEC = 2.0;
-EXPANSIONOFFSET_RAD = 0;
+EXPANSIONOFFSET_RAD = pi/4;
 
 t_sec = [0:1/FRAMERATE_FRAMESPERSEC:EXPANSIONDURATION_SEC];
 numFrames = length(t_sec);
@@ -69,12 +69,12 @@ pattern.gs_val = 1;
 pattern.Pats = allPats;
 pattern.Panel_map = [12 8 4 11 7 3 10 6 2  9 5 1; 24 20 16 23 19 15 22 18 14 21 17 13; 36 32 28 35 31 27 34 30 26 33 29 25; 48 44 40 47 43 39 46 42 38 45 41 37];
 
-thisFullFileName =  mfilename('fullpath');
-[directory_name,thisFileName,thisFileExtension] = fileparts(thisFullFileName);
-
+%thisFullFileName =  mfilename('fullpath');
+%[directory_name,thisFileName,thisFileExtension] = fileparts(thisFullFileName);
+directory_name = 'C:\Users\scientist\Documents\adesouza';
 %%
 pattern.BitMapIndex = process_panel_map(pattern);
 pattern.data = Make_pattern_vector(pattern);
 
-str = [directory_name '\Pattern_expansion_48'];
+str = [directory_name '\Pattern_expansion_1_ADS'];
 save(str, 'pattern');
