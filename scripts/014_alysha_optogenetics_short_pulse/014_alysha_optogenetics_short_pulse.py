@@ -98,7 +98,7 @@ if __name__ == '__main__':
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.set_position(np.random.randint(0,96),0)   # subpattern zero 
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = 0, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
@@ -121,7 +121,7 @@ if __name__ == '__main__':
             
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')   #check .setpatternid
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)

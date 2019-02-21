@@ -1,0 +1,60 @@
+<launch>
+	<!-- ========================================================== -->
+	<!-- Record a .bag file with 1 camera image stream  and         --> 
+	<!-- stimulus voltage recording.                                -->
+	<!-- ========================================================== -->
+
+    <arg name="prefix" default="" />
+    
+    <node name="rosbag"  pkg="rosbag"   type="record" args="-j --buffsize=4096 -o $(env HOME)/bagfiles/$(arg prefix) 
+    /ca_camera_right/image_raw
+    /ca_camera_left/image_raw 
+    /kine_camera_1/image_raw/compressed
+    /arena_camera/image_color/compressed
+    /phidgets_daq/all_data 
+    /ledpanels/command
+    /ledpanels/debug
+    /exp_scripts/exp_state 
+    /exp_scripts/exp_metadata
+    /exp_scripts/exp_block
+    /kinefly/command 
+    /kinefly/flystate 
+    /kinefly/flystate2phidgetsanalog/command
+    /ModelViewFrame
+    /LogRefFrame
+    /unmixer_left/b1
+    /unmixer_left/b2
+    /unmixer_left/b3
+    /unmixer_left/bkg
+    /unmixer_left/hg1
+    /unmixer_left/hg2
+    /unmixer_left/hg3
+    /unmixer_left/hg4
+    /unmixer_left/i1
+    /unmixer_left/i2
+    /unmixer_left/iii1
+    /unmixer_left/iii24
+    /unmixer_left/iii3
+    /unmixer_left/image_output
+    /unmixer_left/nm
+    /unmixer_left/pr
+    /unmixer_left/tpd
+    /unmixer_right/b1
+    /unmixer_right/b2
+    /unmixer_right/b3
+    /unmixer_right/bkg
+    /unmixer_right/hg1
+    /unmixer_right/hg2
+    /unmixer_right/hg3
+    /unmixer_right/hg4
+    /unmixer_right/i1
+    /unmixer_right/i2
+    /unmixer_right/iii1
+    /unmixer_right/iii24
+    /unmixer_right/iii3
+    /unmixer_right/image_output
+    /unmixer_right/nm
+    /unmixer_right/pr
+    /unmixer_right/tpd
+" />
+</launch>
