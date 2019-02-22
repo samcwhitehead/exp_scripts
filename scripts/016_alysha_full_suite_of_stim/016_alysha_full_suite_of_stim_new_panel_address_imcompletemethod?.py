@@ -150,7 +150,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -178,7 +178,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_expansion_1_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -210,7 +210,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_expansion_2_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -233,13 +233,13 @@ if __name__ == '__main__':
 
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_yaw_1_ADS.mat'
+            pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -271,7 +271,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_yaw_2_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -300,7 +300,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_pitch_1_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -332,7 +332,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_pitch_2_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -361,7 +361,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_roll_1_ADS.mat.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -390,7 +390,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_roll_2_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -420,102 +420,105 @@ if __name__ == '__main__':
 
 
 
-        ############################################################
-        #call get_ref_frame service, this will not only get the current
-        #user-defined reference frame but also publish the refrence
-        #frame as a message to be logged in rosbag.
-        ############################################################
-        print(get_ref_frame_left())
-        print(get_ref_frame_right())
+            ########################################################
+            #call get_ref_frame service, this will not only get the current
+            #user-defined reference frame but also publish the refrence
+            #frame as a message to be logged in rosbag.
+            ############################################################
+            print(get_ref_frame_left())
+            print(get_ref_frame_right())
 
-        metadata =   {'git_SHA':git_SHA,
-                      'script_path':script_path,
-                      'exp_description':exp_description,
-                      'script_code':script_code,
-                      'fly_dob':fly_dob,
-                      'fly_genotype':fly_genotype,
-                      'genotype_nickname':genotype_nickname,
-                      'head_fixed':head_fixed}
+            metadata =   {'git_SHA':git_SHA,
+                          'script_path':script_path,
+                          'exp_description':exp_description,
+                          'script_code':script_code,
+                          'fly_dob':fly_dob,
+                          'fly_genotype':fly_genotype,
+                          'genotype_nickname':genotype_nickname,
+                          'head_fixed':head_fixed}
 
-        meta_pub.publish(cPickle.dumps(metadata))
-        ch_pub.publish('set_a30 0')
-        ###################################################################################
-        ###################################################################################
-        #set up experimental conditions
+            meta_pub.publish(cPickle.dumps(metadata))
+            ch_pub.publish('set_a30 0')
+            ###################################################################################
+            ###################################################################################
+            #set up experimental conditions
                                                 ##gainx       gainy   bias x  biasy  chon
-        ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-4,4),(0,-8,8),([0]),([0,1]))]
-        conditions = dict()
-        s='yaw_variations, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'
+            ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-4,4),(0,-8,8),([0]),([0,1]))]
+            conditions = dict()
+            s='yaw_variations, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'
 
-        ### create a dictiionary that is keyed by an int but contains, the function to be used as well as the
-        ### parameters to send to the function. 
-        ### first item is the function, the second is a descriptive name of the block that will be used for
-        ### bookkeeping, the last item is a tuple with the parameters to send to the function.
+            ### create a dictiionary that is keyed by an int but contains, the function to be used as well as the
+            ### parameters to send to the function. 
+            ### first item is the function, the second is a descriptive name of the block that will be used for
+            ### bookkeeping, the last item is a tuple with the parameters to send to the function.
 
-        [conditions.update({i:(exc_yaw_left,s%ct,ct)}) for i,ct in enumerate(ctups)]
-        last_idx = len(conditions.keys())
+            [conditions.update({i:(exc_yaw_left,s%ct,ct)}) for i,ct in enumerate(ctups)]
+            last_idx = len(conditions.keys())
 
-        conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
-        conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
+            conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+            conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
 
-        conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
-        conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0,-4),  ( 0,  -4, 0, 0, 0))
+            conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
+            conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0,-4),  ( 0,  -4, 0, 0, 0))
         
-        #conditions[last_idx +4] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 0, 0),  ( 0,   0, 0, 0, 1))
-        #conditions[last_idx +5] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 70, 0), ( 70,  0, 0, 0, 1))
-        #conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%(-70, 0), (-70,  0, 0, 0, 1))
+            #conditions[last_idx +4] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 0, 0),  ( 0,   0, 0, 0, 1))
+            #conditions[last_idx +5] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 70, 0), ( 70,  0, 0, 0, 1))
+            #conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%(-70, 0), (-70,  0, 0, 0, 1))
 
-        #conditions[last_idx +7] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
-        #conditions[last_idx +8] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
-        #conditions[last_idx +9] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
-        conditions[last_idx +4] = (exc_ol_expansion_left,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0),  ( 12,  0, 0, 0, 0))
-        conditions[last_idx +5] = (exc_ol_expansion_right,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12, 0),  ( -12,   0, 0, 0, 0))
+            #conditions[last_idx +7] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+            #conditions[last_idx +8] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
+            #conditions[last_idx +9] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
+            conditions[last_idx +4] = (exc_ol_expansion_left,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0),  ( 12,  0, 0, 0, 0))
+            conditions[last_idx +5] = (exc_ol_expansion_right,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12, 0),  ( -12,   0, 0, 0, 0))
 
 
-        conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
-        conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
-        ###################################################################################
-        ###################################################################################
+            conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
+            conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
+            ###################################################################################
+            ###################################################################################
 
-        #Run experiment
-        t0 = time.time()
-        print 'enter closed loop stripe fixation'
-        gain_x = -1
-        ctrl.stop()
-        ctrl.set_pattern_by_name('Pattern_yaw_1_ADS.mat')
-        ctrl.set_position(np.random.randint(0,96),0)
-        ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
-        ctrl.set_mode('xrate=ch0','yrate=funcy')
-        blk_pub.publish('pretrial_stripe_fix')
-        ctrl.start()
-        ### publish the state
-        exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
-        time.sleep(10)
+            #Run experiment
+            t0 = time.time()
+            print 'enter closed loop stripe fixation'
+            gain_x = -1
+            ctrl.stop()
+            #ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
 
-        #for rep in range(NUM_REPS):
-        #    print rep
-        #    for key in np.random.permutation(conditions.keys()):
-        #        condition = conditions[key]
-        #        condition[0](condition[1],*condition[2])
+            ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
+            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            blk_pub.publish('pretrial_stripe_fix')
+            ctrl.start()
+            ### publish the state
+            exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
+            time.sleep(10)
 
-        ctrl.stop()
-        #ctrl.set_pattern_by_name('Pattern_bar.mat')
-        ctrl.set_position(np.random.randint(0,96),0)
-        ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
-        ctrl.set_mode('xrate=ch0','yrate=funcy')
-        blk_pub.publish('pretrial_stripe_fix')
-        ctrl.start()
-        ### publish the state
-        exp_pub.publish('condition=posttrial_closed_loop;gain=%s'%(gain_x))
-        time.sleep(10)
+            #for rep in range(NUM_REPS):
+            #    print rep
+            #    for key in np.random.permutation(conditions.keys()):
+            #        condition = conditions[key]
+            #        condition[0](condition[1],*condition[2])
 
-        blk_pub.publish('trials_ended')  
-        #publish a refrence frame as a status message to mark the end of the experiment.
-        print(get_ref_frame_left())
-        print(get_ref_frame_right())
+            ctrl.stop()
+            
+            #ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
+            ctrl.set_position(np.random.randint(0,96),0)
+            ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            blk_pub.publish('pretrial_stripe_fix')
+            ctrl.start()
+            ### publish the state
+            exp_pub.publish('condition=posttrial_closed_loop;gain=%s'%(gain_x))
+            time.sleep(10)    
 
-        meta_pub.publish(cPickle.dumps(metadata))
+            blk_pub.publish('trials_ended')  
+            #publish a refrence frame as a status message to mark the end of the experiment.
+            print(get_ref_frame_left())
+            print(get_ref_frame_right())
 
-        print time.time()-t0
+            meta_pub.publish(cPickle.dumps(metadata))
+
+            print time.time()-t0
     except rospy.ROSInterruptException:
-        print 'exception'
+            print 'exception'
