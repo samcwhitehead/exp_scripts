@@ -233,13 +233,13 @@ if __name__ == '__main__':
 
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_yaw_1_ADS.mat'
+            pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_yaw_1_ADS.mat')
+            ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -482,7 +482,9 @@ if __name__ == '__main__':
         print 'enter closed loop stripe fixation'
         gain_x = -1
         ctrl.stop()
-        ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
+        #ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
+
+        ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
@@ -492,14 +494,14 @@ if __name__ == '__main__':
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
-        for rep in range(NUM_REPS):
-            print rep
-            for key in np.random.permutation(conditions.keys()):
-                condition = conditions[key]
-                condition[0](condition[1],*condition[2])
+        #for rep in range(NUM_REPS):
+        #    print rep
+        #    for key in np.random.permutation(conditions.keys()):
+        #        condition = conditions[key]
+        #        condition[0](condition[1],*condition[2])
 
         ctrl.stop()
-        ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
+        #ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
@@ -517,5 +519,5 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
 
         print time.time()-t0
-    except rospy.ROSInterruptException:
+      except rospy.ROSInterruptException:
         print 'exception'
