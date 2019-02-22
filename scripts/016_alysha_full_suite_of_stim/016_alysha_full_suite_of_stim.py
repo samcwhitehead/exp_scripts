@@ -492,11 +492,11 @@ if __name__ == '__main__':
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
-        for rep in range(NUM_REPS):
-            print rep
-            for key in np.random.permutation(conditions.keys()):
-                condition = conditions[key]
-                condition[0](condition[1],*condition[2])
+        #for rep in range(NUM_REPS):
+        #    print rep
+        #    for key in np.random.permutation(conditions.keys()):
+        #        condition = conditions[key]
+        #        condition[0](condition[1],*condition[2])
 
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
