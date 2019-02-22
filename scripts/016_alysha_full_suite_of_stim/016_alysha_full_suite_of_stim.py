@@ -519,5 +519,5 @@ if __name__ == '__main__':
             meta_pub.publish(cPickle.dumps(metadata))
 
             print time.time()-t0
-        except rospy.ROSInterruptException:
+    except rospy.ROSInterruptException:
             print 'exception'
