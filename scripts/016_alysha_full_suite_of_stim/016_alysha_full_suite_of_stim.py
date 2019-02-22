@@ -501,6 +501,7 @@ if __name__ == '__main__':
             #        condition[0](condition[1],*condition[2])
 
             ctrl.stop()
+            print ('first stim done')
             #ctrl.set_pattern_by_name('Pattern_stripe_ADS.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
