@@ -425,8 +425,8 @@ if __name__ == '__main__':
         #user-defined reference frame but also publish the refrence
         #frame as a message to be logged in rosbag.
         ############################################################
-        print(get_ref_frame_left())
-        print(get_ref_frame_right())
+        #print(get_ref_frame_left())
+        #print(get_ref_frame_right())
 
         metadata =   {'git_SHA':git_SHA,
                       'script_path':script_path,
