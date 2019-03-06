@@ -144,13 +144,13 @@ if __name__ == '__main__':
 
 
         def exc_ol_stripe(block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_stripe_ADS.mat'
+            pattern_name = 'Pattern_bar.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_bar.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -172,13 +172,13 @@ if __name__ == '__main__':
             time.sleep(2)
 
         def exc_ol_expansion_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_expansion_1_ADS.mat'
+            pattern_name = 'Pattern_expansion_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_expansion_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -204,13 +204,13 @@ if __name__ == '__main__':
 
 
         def exc_ol_expansion_left (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_expansion_2_ADS.mat'
+            pattern_name = 'Pattern_expansion_2_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_expansion_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -233,13 +233,13 @@ if __name__ == '__main__':
 
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_yaw_1_ADS.mat'
+            pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -265,13 +265,13 @@ if __name__ == '__main__':
 
 
         def exc_yaw_left (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_yaw_2_ADS.mat'
+            pattern_name = 'Pattern_yaw_2_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_yaw_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -294,13 +294,13 @@ if __name__ == '__main__':
 
 
         def exc_pitch_up (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_pitch_1_ADS.mat'
+            pattern_name = 'Pattern_pitch_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_pitch_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -326,13 +326,13 @@ if __name__ == '__main__':
 
 
         def exc_pitch_down (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_pitch_2_ADS.mat'
+            pattern_name = 'Pattern_pitch_2_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -355,13 +355,13 @@ if __name__ == '__main__':
 
 
         def exc_roll_counterclockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_roll_1_ADS.mat'
+            pattern_name = 'Pattern_roll_1_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_roll_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -384,13 +384,13 @@ if __name__ == '__main__':
 
 
         def exc_roll_clockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_roll_2_ADS.mat'
+            pattern_name = 'Pattern_roll_2_ADS_mpm.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
+            ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -468,8 +468,8 @@ if __name__ == '__main__':
         #conditions[last_idx +7] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
         #conditions[last_idx +8] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
         #conditions[last_idx +9] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
-        conditions[last_idx +4] = (exc_ol_expansion_left,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0),  ( 12,  0, 0, 0, 0))
-        conditions[last_idx +5] = (exc_ol_expansion_right,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12, 0),  ( -12,   0, 0, 0, 0))
+        conditions[last_idx +4] = (exc_ol_expansion_left,'expansion_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0),  ( 12,  0, 0, 0, 0))
+        conditions[last_idx +5] = (exc_ol_expansion_right,'expansion_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12, 0),  ( -12,   0, 0, 0, 0))
 
 
         conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
@@ -482,7 +482,7 @@ if __name__ == '__main__':
         print 'enter closed loop stripe fixation'
         gain_x = -70  #-1
         ctrl.stop()
-        ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
+        ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)  #
         ctrl.set_mode('xrate=ch0','yrate=funcy')
