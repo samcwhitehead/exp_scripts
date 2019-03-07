@@ -506,8 +506,6 @@ if __name__ == '__main__':
         blk_pub.publish('pretrial_stripe_fix')
         ctrl.start()
         ### publish the state
-
-
         exp_pub.publish('condition=posttrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
@@ -521,21 +519,3 @@ if __name__ == '__main__':
         print time.time()-t0
     except rospy.ROSInterruptException:
         print 'exception'
-
-
-
-      '''
-        exp_pub.publish('condition=posttrial_closed_loop;gain=%s'%(gain_x))
-        time.sleep(10)
-
-        blk_pub.publish('trials_ended')  
-        #publish a refrence frame as a status message to mark the end of the experiment.
-        print(get_ref_frame_left())
-        print(get_ref_frame_right())
-
-        meta_pub.publish(cPickle.dumps(metadata))
-
-        print time.time()-t0
-    except rospy.ROSInterruptException:
-        print 'exception'
-      '''
