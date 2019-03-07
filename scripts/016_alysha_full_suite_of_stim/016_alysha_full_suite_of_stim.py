@@ -492,14 +492,14 @@ if __name__ == '__main__':
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
-        #for rep in range(NUM_REPS):
-        #    print rep
-        #    for key in np.random.permutation(conditions.keys()):
-        #        condition = conditions[key]
-        #        condition[0](condition[1],*condition[2])
+        for rep in range(NUM_REPS):
+            print rep
+            for key in np.random.permutation(conditions.keys()):
+                condition = conditions[key]
+                condition[0](condition[1],*condition[2])
 
         ctrl.stop()
-        #ctrl.set_pattern_by_name('Pattern_bar.mat')
+        ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
