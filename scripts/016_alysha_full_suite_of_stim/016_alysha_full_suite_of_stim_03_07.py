@@ -347,7 +347,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(3)
+            time.sleep(3) 
             ch_pub.publish('set_a30 %s'%(ch))
             time.sleep(2)
             ch_pub.publish('set_a30 0')
