@@ -456,14 +456,14 @@ if __name__ == '__main__':
         last_idx = len(conditions.keys())
 
         conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
-        conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-12, 0), (-12,  0, 0, 0, 0))
+        conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0)) # neg pi coded in pattern .mat
 
         #conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
         #conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0,-4),  ( 0,  -4, 0, 0, 0))
 
 
         conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0),  ( 12,  0, 0, 0, 0))
-        conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12,0),  ( -12,  0, 0, 0, 0))
+        conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12,0),  ( 12,  0, 0, 0, 0))  #neg pi coded in pattern
         
         #conditions[last_idx +4] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 0, 0),  ( 0,   0, 0, 0, 1))
         #conditions[last_idx +5] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 70, 0), ( 70,  0, 0, 0, 1))
