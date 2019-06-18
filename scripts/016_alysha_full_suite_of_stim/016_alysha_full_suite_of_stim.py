@@ -462,8 +462,8 @@ if __name__ == '__main__':
         #conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0,-4),  ( 0,  -4, 0, 0, 0))
 
 
-        conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 4, 0),  ( 4,  0, 0, 0, 0))
-        conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -4,0),  ( -4,  0, 0, 0, 0))
+        conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 6, 0),  ( 6,  0, 0, 0, 0))
+        conditions[last_idx +3] = (exc_pitch_down, 'pitch_down, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -6,0),  ( -6,  0, 0, 0, 0))
         
         #conditions[last_idx +4] = (exc_ol_blocks,'ol_blocks, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 0, 0),  ( 0,   0, 0, 0, 1))
         #conditions[last_idx +5] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%( 70, 0), ( 70,  0, 0, 0, 1))
