@@ -332,7 +332,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
+            ctrl.set_pattern_by_name('Pattern_realpitch_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -361,7 +361,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_roll_1_ADS_mpm.mat')
+            ctrl.set_pattern_by_name('Pattern_realroll_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
@@ -390,7 +390,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
+            ctrl.set_pattern_by_name('Pattern_realroll_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
