@@ -303,7 +303,8 @@ if __name__ == '__main__':
             ctrl.set_pattern_by_name('Pattern_pitch_1_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
             time.sleep(3)
@@ -335,7 +336,8 @@ if __name__ == '__main__':
             ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
             time.sleep(3)
@@ -445,15 +447,19 @@ if __name__ == '__main__':
                                                 ##gainx       gainy   bias x  biasy  chon
         ctups = [c for c in itertools.product(([CL_GAIN_X]),(0,-4,4),(0,-8,8),([0]),([0,1]))]
         conditions = dict()
-        s='yaw_variations, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'
+        #s='yaw_variations, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'
 
         ### create a dictiionary that is keyed by an int but contains, the function to be used as well as the
         ### parameters to send to the function. 
         ### first item is the function, the second is a descriptive name of the block that will be used for
         ### bookkeeping, the last item is a tuple with the parameters to send to the function.
 
-        [conditions.update({i:(exc_yaw_left,s%ct,ct)}) for i,ct in enumerate(ctups)]
+
+        ##Commenting these out for now 06.18.19
+        #[conditions.update({i:(exc_yaw_left,s%ct,ct)}) for i,ct in enumerate(ctups)]
         last_idx = len(conditions.keys())
+        
+
 
         conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise_actually_pitch, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
         conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise_actually_pitch, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0)) # neg pi coded in pattern .mat
@@ -478,6 +484,10 @@ if __name__ == '__main__':
 
         conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
         conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
+
+        conditions[last_idx +8] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+        conditions[last_idx +9] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
+
         ###################################################################################
         ###################################################################################
 
