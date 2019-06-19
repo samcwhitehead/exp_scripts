@@ -494,7 +494,7 @@ if __name__ == '__main__':
         #Run experiment
         t0 = time.time()
         print 'enter closed loop stripe fixation'
-        gain_x = -12  #-1  #70
+        gain_x = -12  #-1 #70
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
         ctrl.set_position(np.random.randint(0,96),0)
