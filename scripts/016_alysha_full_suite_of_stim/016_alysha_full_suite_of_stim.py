@@ -472,7 +472,7 @@ if __name__ == '__main__':
         
 
 
-        conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise_actually_pitch, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 4, 0), ( 4,  0, 0, 0, 0))  #12
+        conditions[last_idx +0] = (exc_roll_clockwise,'roll_clockwise_actually_pitch, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))  #12
         conditions[last_idx +1] = (exc_roll_counterclockwise,'roll_counterclockwise_actually_pitch, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0)) # neg pi coded in pattern .mat
 
         #conditions[last_idx +2] = (exc_pitch_up,'pitch_up, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 0, 4),  ( 0,   4, 0, 0, 0))
@@ -496,8 +496,8 @@ if __name__ == '__main__':
         conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
         conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
 
-        conditions[last_idx +8] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 4, 0), ( 4,  0, 0, 0, 0))
-        conditions[last_idx +9] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(4, 0), (4,  0, 0, 0, 0))
+        conditions[last_idx +8] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+        conditions[last_idx +9] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
 
         ###################################################################################
         ###################################################################################
