@@ -27,7 +27,7 @@ open and closed loop optomotor stablization conditions (left-right bias)
 Practice experiments for Alysha.
 """
 
-NUM_REPS = 3   ####was 3 for flies 1556-1564, now increasing to 9
+NUM_REPS = 9   ####was 3 for flies 1556-1564, now increasing to 9
 CL_GAIN_X = -1
 
 CHRIMSON_VOLTS = 5
