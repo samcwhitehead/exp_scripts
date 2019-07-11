@@ -188,7 +188,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
-            time.sleep(3)
+            time.sleep(0.5)
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             ctrl.set_pattern_by_name(pattern_name)
@@ -197,11 +197,11 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
+            time.sleep(10)
+            #ch_pub.publish('set_a30 %s'%(ch))
+            #time.sleep(0.5)
+            #ch_pub.publish('set_a30 0')
+            #time.sleep(2)
 
 
 
