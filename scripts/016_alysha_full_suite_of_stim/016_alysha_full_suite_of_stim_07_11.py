@@ -204,8 +204,6 @@ if __name__ == '__main__':
             time.sleep(2)
 
 
-
-
         def exc_ol_expansion_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             pattern_name = 'Pattern_expansion_1_ADS_mpm.mat'
 
@@ -213,12 +211,7 @@ if __name__ == '__main__':
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_pattern_by_name('Pattern_expansion_1_ADS_mpm.mat')
-            #exp_pub.publish('CL_stripe')
-            #ctrl.start()
-            #time.sleep(3)
-            #ctrl.stop()
             ctrl.set_position(np.random.randint(0,96),0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
