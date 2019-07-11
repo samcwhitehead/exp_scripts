@@ -562,7 +562,7 @@ if __name__ == '__main__':
                 condition = conditions[key]
                 condition[0](condition[1],*condition[2])
                 condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(12, 0), (12, 0, 0, 0))   ##added this to intersperse stripe
-                condition[0](codition[1],*condition[2])
+                condition[0](condition[1],*condition[2])
 
 
         ctrl.stop()
