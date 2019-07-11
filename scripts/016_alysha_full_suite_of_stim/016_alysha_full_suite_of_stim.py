@@ -178,6 +178,7 @@ if __name__ == '__main__':
             pattern_name = 'Pattern_bar.mat'
 
             blk_pub.publish(block_name)
+            CL_GAIN_X = -4
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
@@ -194,10 +195,10 @@ if __name__ == '__main__':
             ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(18,0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(10)
+            time.sleep(15)
             #ch_pub.publish('set_a30 %s'%(ch))
             #time.sleep(0.5)
             #ch_pub.publish('set_a30 0')
