@@ -185,7 +185,7 @@ if __name__ == '__main__':
             #ctrl.set_position(18,0)
             ctrl.set_pattern_by_name('Pattern_bar.mat')
             #ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_position(45,0)
+            ctrl.set_position(18,0)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
