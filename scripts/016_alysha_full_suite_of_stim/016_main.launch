@@ -1,6 +1,7 @@
 <launch>
     
-    <arg name="ca_cameraR_serial" default="16363686" />
+    <!--arg name="ca_cameraR_serial" default="16363686" / -->
+    <arg name="ca_cameraR_serial" default="14490233" />
     <arg name="ca_cameraL_serial" default="16398533" />
 
     <arg name="kin_camera1_serial" default="16456195" />
