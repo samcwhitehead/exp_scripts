@@ -178,7 +178,7 @@ if __name__ == '__main__':
             pattern_name = 'Pattern_bar.mat'
 
             blk_pub.publish(block_name)
-            CL_GAIN_X = -1
+            CL_GAIN_X = 1
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
