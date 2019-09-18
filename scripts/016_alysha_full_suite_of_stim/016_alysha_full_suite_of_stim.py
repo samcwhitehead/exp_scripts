@@ -328,6 +328,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),0)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
+            ctrl.set_mode('xrate=funcx','yrate=1')
             #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
             ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=baseline')
