@@ -187,8 +187,8 @@ if __name__ == '__main__':
             #ctrl.set_position(np.random.randint(0,96),0)
             #ctrl.set_position(30,0)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')  #ch0
-            ctrl.set_mode('xrate=ch0','yrate=0')
+            ctrl.set_mode('xrate=ch0','yrate=funcy')  #ch0
+            #ctrl.set_mode('xrate=ch0','yrate=0')
             #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = 0, bias_x = 0,bias_y = 0)
             exp_pub.publish('condition=baseline')
