@@ -284,7 +284,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
             ctrl.set_position(np.random.randint(0,96),1)
@@ -322,7 +322,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_yaw_2_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_4.mat')
             ctrl.set_position(np.random.randint(0,96),1)
@@ -358,7 +358,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_pitch_1_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
             ctrl.set_position(np.random.randint(0,96),1)
@@ -396,7 +396,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
             ctrl.set_position(np.random.randint(0,96),1)
@@ -431,7 +431,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_roll_1_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
             ctrl.set_position(np.random.randint(0,96),1)
@@ -466,7 +466,7 @@ if __name__ == '__main__':
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
             ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
             ctrl.set_position(np.random.randint(0,96),1)
