@@ -279,14 +279,14 @@ if __name__ == '__main__':
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_0.mat'
+            pattern_name = 'Pattern_rot_axis_5.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_0.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
@@ -317,14 +317,14 @@ if __name__ == '__main__':
 
         def exc_yaw_left (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_yaw_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_1.mat'
+            pattern_name = 'Pattern_rot_axis_4.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_yaw_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_1.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_4.mat')
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy') #returntothis 
@@ -426,14 +426,14 @@ if __name__ == '__main__':
 
         def exc_roll_counterclockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_roll_1_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_4.mat'
+            pattern_name = 'Pattern_rot_axis_3.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_roll_1_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_4.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
@@ -461,14 +461,14 @@ if __name__ == '__main__':
 
         def exc_roll_clockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_roll_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_5.mat'
+            pattern_name = 'Pattern_rot_axis_2.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
@@ -585,13 +585,13 @@ if __name__ == '__main__':
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
-        #for rep in range(NUM_REPS):
-        #    print rep
-        #    for key in np.random.permutation(conditions.keys()):
-        #        condition = conditions[key]
-        #        condition[0](condition[1],*condition[2])
-        #        condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
-        #        condition[0](condition[1],*condition[2])
+        for rep in range(NUM_REPS):
+            print rep
+            for key in np.random.permutation(conditions.keys()):
+                condition = conditions[key]
+                condition[0](condition[1],*condition[2])
+                condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
+                condition[0](condition[1],*condition[2])
 
 
         ######
