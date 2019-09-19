@@ -585,13 +585,24 @@ if __name__ == '__main__':
         exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
 
-        for rep in range(NUM_REPS):
-            print rep
-            for key in np.random.permutation(conditions.keys()):
-                condition = conditions[key]
-                condition[0](condition[1],*condition[2])
-                condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
-                condition[0](condition[1],*condition[2])
+        #for rep in range(NUM_REPS):
+        #    print rep
+        #    for key in np.random.permutation(conditions.keys()):
+        #        condition = conditions[key]
+        #        condition[0](condition[1],*condition[2])
+        #        condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
+        #        condition[0](condition[1],*condition[2])
+
+
+        ######
+        ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
+        ctrl.set_position(np.random.randint(0,96),1)
+        ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)
+        ctrl.set_mode('xrate=funcx','yrate=funcy')
+        ctrl.start()
+        time.sleep(10)
+        #blk_pub.publish('pretrial_stripe_fix')
+        ######
 
 
         ctrl.stop()
