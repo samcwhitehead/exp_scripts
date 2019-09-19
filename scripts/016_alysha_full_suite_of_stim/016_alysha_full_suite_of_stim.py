@@ -178,7 +178,7 @@ if __name__ == '__main__':
             pattern_name = 'Pattern_bar.mat'
 
             blk_pub.publish(block_name)
-            CL_GAIN_X = -4
+            CL_GAIN_X = -0.5
             print block_name
             ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
@@ -570,11 +570,11 @@ if __name__ == '__main__':
         #conditions[last_idx +5] = (exc_ol_expansion_right,'expansion_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( -12, 0),  ( -12,   0, 0, 0, 0))
 
 
-        conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
-        conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
+        #conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
+        #conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
 
-        conditions[last_idx +8] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
-        conditions[last_idx +9] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
+        conditions[last_idx +6] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+        conditions[last_idx +7] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
 
         ###################################################################################
         ###################################################################################
