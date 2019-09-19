@@ -279,7 +279,7 @@ if __name__ == '__main__':
             ch_pub.publish('set_a30 0')
             time.sleep(2)
 
-          def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
+        def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
             pattern_name = 'Pattern_rot_axis_5.mat'
 
@@ -623,7 +623,7 @@ if __name__ == '__main__':
         ctrl.set_pattern_by_name('Pattern_bar.mat')
         #ctrl.set_position(np.random.randint(0,96),0)
         ctrl.set_position(18,0)
-        ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)  #
+        #ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)  #
         ctrl.set_mode('xrate=ch0','yrate=funcy')
         blk_pub.publish('pretrial_stripe_fix')
         ctrl.start()
