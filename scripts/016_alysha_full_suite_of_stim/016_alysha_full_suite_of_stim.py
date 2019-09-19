@@ -279,6 +279,41 @@ if __name__ == '__main__':
             ch_pub.publish('set_a30 0')
             time.sleep(2)
 
+          def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
+            #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
+            pattern_name = 'Pattern_rot_axis_5.mat'
+
+            blk_pub.publish(block_name)
+            print block_name
+            ctrl.stop()
+            #ctrl.set_position_function_by_name('X','default')
+            #ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
+            ctrl.set_position(np.random.randint(0,96),0)
+            #ctrl.set_mode('xrate=ch0','yrate=funcy')
+            ctrl.set_mode('xrate=funcx','yrate=funcy')
+            #trl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
+            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            exp_pub.publish('condition=baseline')
+            ctrl.start()
+            time.sleep(2)
+            ctrl.stop()
+            #ctrl.set_position_function_by_name('X','default')
+            ctrl.set_pattern_by_name(pattern_name)
+            ctrl.set_position(np.random.randint(0,96),1)
+            #ctrl.set_position(18,0)
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
+            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            exp_pub.publish('condition=test')
+            ctrl.start()
+            time.sleep(7)
+            #ch_pub.publish('set_a30 %s'%(ch))
+            #time.sleep(2)
+            #ch_pub.publish('set_a30 0')
+            #time.sleep(2)
+            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            time.sleep(2)    
+
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
@@ -601,7 +636,7 @@ if __name__ == '__main__':
             for key in np.random.permutation(conditions.keys()):
                 condition = conditions[key]
                 condition[0](condition[1],*condition[2])
-                condition = (exc_cl_stripe,'cl_stripe, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
+                condition = (exc_cl_starfield,'exc_cl_starfield, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(-1, 0), (-1, 0, 0, 0))   ##added this to intersperse stripe
                 condition[0](condition[1],*condition[2])
 
 
