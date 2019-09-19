@@ -396,14 +396,14 @@ if __name__ == '__main__':
 
         def exc_pitch_down (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_pitch_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_1.mat'
+            pattern_name = 'Pattern_rot_axis_2.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_1.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
@@ -468,14 +468,14 @@ if __name__ == '__main__':
 
         def exc_roll_clockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
             #pattern_name = 'Pattern_roll_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_2.mat'
+            pattern_name = 'Pattern_rot_axis_1.mat'
 
             blk_pub.publish(block_name)
             print block_name
             ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
+            ctrl.set_pattern_by_name('Pattern_rot_axis_1.mat')
             ctrl.set_position(np.random.randint(0,96),1)
 
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
