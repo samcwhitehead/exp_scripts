@@ -595,7 +595,7 @@ if __name__ == '__main__':
 
 
         ######
-        ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
+        ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
         ctrl.set_position(np.random.randint(0,96),1)
         ctrl.send_gain_bias(gain_x = 12,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=funcx','yrate=funcy')
