@@ -293,7 +293,7 @@ if __name__ == '__main__':
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.set_mode('xrate=funcx','yrate=funcy')
             #trl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
             time.sleep(2)
@@ -303,7 +303,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),0)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -311,7 +311,7 @@ if __name__ == '__main__':
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = 0, bias_y =0)
             time.sleep(2)    
 
 
