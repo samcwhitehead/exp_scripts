@@ -302,7 +302,7 @@ if __name__ == '__main__':
             ctrl.set_pattern_by_name(pattern_name)
             ctrl.set_position(np.random.randint(0,96),0)
             #ctrl.set_position(18,0)
-            ctrl.set_mode('xratech0','yrate=funcy')
+            ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=test')
             ctrl.start()
