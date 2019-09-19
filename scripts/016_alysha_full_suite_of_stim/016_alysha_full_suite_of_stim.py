@@ -197,7 +197,7 @@ if __name__ == '__main__':
             #ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
             #ctrl.set_pattern_by_name(pattern_name)
-            #ctrl.set_position(18,0)
+            ctrl.set_position(18,0)
             #ctrl.set_mode('xrate=ch0','yrate=funcy')
             ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
