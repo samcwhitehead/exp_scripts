@@ -586,7 +586,8 @@ if __name__ == '__main__':
         gain_x = -1  #-1 #70 #12
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
-        ctrl.set_position(np.random.randint(0,96),0)
+        #ctrl.set_position(np.random.randint(0,96),0)
+        ctrl.set_position(18,0)
         ctrl.send_gain_bias(gain_x = gain_x,bias_x = 0.0,gain_y = 0,)  #
         ctrl.set_mode('xrate=ch0','yrate=funcy')
         blk_pub.publish('pretrial_stripe_fix')
@@ -605,19 +606,20 @@ if __name__ == '__main__':
 
 
         ######
-        ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
-        ctrl.set_position(np.random.randint(0,96),1)
-        ctrl.send_gain_bias(gain_x = 12,bias_x = 0.0,gain_y = 0,)
-        ctrl.set_mode('xrate=funcx','yrate=funcy')
-        ctrl.start()
-        time.sleep(10)
+        #ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
+        #ctrl.set_position(np.random.randint(0,96),1)
+        #ctrl.send_gain_bias(gain_x = 12,bias_x = 0.0,gain_y = 0,)
+        #ctrl.set_mode('xrate=funcx','yrate=funcy')
+        #ctrl.start()
+        #time.sleep(10)
         #blk_pub.publish('pretrial_stripe_fix')
         ######
 
 
         ctrl.stop()
         ctrl.set_pattern_by_name('Pattern_bar.mat')
-        ctrl.set_position(np.random.randint(0,96),0)
+        #ctrl.set_position(np.random.randint(0,96),0)
+        ctrl.set_position(18,0)
         ctrl.send_gain_bias(gain_x = gainx,bias_x = 0.0,gain_y = 0,)
         ctrl.set_mode('xrate=ch0','yrate=funcy')
         blk_pub.publish('pretrial_stripe_fix')
@@ -627,6 +629,7 @@ if __name__ == '__main__':
 
         exp_pub.publish('condition=posttrial_closed_loop;gain=%s'%(gain_x))
         time.sleep(10)
+        ctrl.stop()
 
         blk_pub.publish('trials_ended')  
         #publish a refrence frame as a status message to mark the end of the experiment.
