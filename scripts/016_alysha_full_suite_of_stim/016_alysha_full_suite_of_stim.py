@@ -307,11 +307,14 @@ if __name__ == '__main__':
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
+            #time.sleep(2)
+            ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
             ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = 0, bias_y =0)
+            ctrl.start()
             time.sleep(2)    
 
 
@@ -343,11 +346,13 @@ if __name__ == '__main__':
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
+            ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
             ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
 
             ###60 frames per second -- ~6
@@ -387,7 +392,9 @@ if __name__ == '__main__':
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
+            ctrl.stop()
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
 
 
@@ -423,7 +430,9 @@ if __name__ == '__main__':
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
+            ctrl.stop()
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
 
             ###60 frames per second -- ~6
@@ -462,7 +471,9 @@ if __name__ == '__main__':
             #time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
+            ctrl.stop()
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
 
 
@@ -494,7 +505,9 @@ if __name__ == '__main__':
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
+            ctrl.stop()
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
             #ch_pub.publish('set_a30 %s'%(ch))
             #time.sleep(2)
@@ -531,8 +544,10 @@ if __name__ == '__main__':
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
+            ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.start()
             time.sleep(2)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
