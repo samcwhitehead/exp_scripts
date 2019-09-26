@@ -310,7 +310,7 @@ if __name__ == '__main__':
             #time.sleep(2)
             ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
+            time.sleep(0.05)
             #ch_pub.publish('set_a30 0')
             #time.sleep(2)
             ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = 0, bias_y =0)
