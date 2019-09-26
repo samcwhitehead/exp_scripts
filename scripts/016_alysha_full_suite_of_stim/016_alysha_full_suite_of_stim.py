@@ -644,7 +644,7 @@ if __name__ == '__main__':
         blk_pub.publish('pretrial_stripe_fix')
         ctrl.start()
         ### publish the state
-        exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(gain_x))
+        exp_pub.publish('condition=pretrial_closed_loop;gain=%s'%(-1))
         time.sleep(10)
 
         for rep in range(NUM_REPS):
