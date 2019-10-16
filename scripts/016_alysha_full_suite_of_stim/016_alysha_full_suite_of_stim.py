@@ -303,10 +303,10 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),0)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 1, gain_y = 0, bias_x = 0, bias_y = 0)
+            ctrl.send_gain_bias(gain_x = -1, gain_y = 0, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(7)
+            time.sleep(1000)   # 7 
             #time.sleep(2)
             ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
@@ -650,10 +650,10 @@ if __name__ == '__main__':
         for rep in range(NUM_REPS):
             print rep
             for key in np.random.permutation(conditions.keys()):
-                condition = conditions[key]
-                condition[0](condition[1],*condition[2])
+                #condition = conditions[key]
+                #condition[0](condition[1],*condition[2])  cmt back
                 condition = (exc_cl_starfield,'exc_cl_starfield, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(1, 0), (1, 0, 0, 0))   ##added this to intersperse stripe
-                condition[0](condition[1],*condition[2])
+                #condition[0](condition[1],*condition[2])  cmt back
 
 
         ######
