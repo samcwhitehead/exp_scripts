@@ -650,8 +650,8 @@ if __name__ == '__main__':
         for rep in range(NUM_REPS):
             print rep
             for key in np.random.permutation(conditions.keys()):
-                #condition = conditions[key]
-                #condition[0](condition[1],*condition[2])  cmt back
+                condition = conditions[key]
+                condition[0](condition[1],*condition[2])  cmt back
                 condition = (exc_cl_starfield,'exc_cl_starfield, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(1, 0), (1, 0, 0, 0))   ##added this to intersperse stripe
                 condition[0](condition[1],*condition[2])  #cmt back
 
