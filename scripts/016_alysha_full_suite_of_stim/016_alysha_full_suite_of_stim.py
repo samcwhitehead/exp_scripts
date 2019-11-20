@@ -279,7 +279,7 @@ if __name__ == '__main__':
             ch_pub.publish('set_a30 0')
             time.sleep(2)
 
-        def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
+        def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bxias_y,ch=0):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
             pattern_name = 'Pattern_rot_axis_5.mat'
 
@@ -342,7 +342,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 12, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -384,7 +384,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 12, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -422,7 +422,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 12, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -463,7 +463,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,1)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 12, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -501,7 +501,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
+            ctrl.send_gain_bias(gain_x = 12, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
@@ -540,7 +540,7 @@ if __name__ == '__main__':
             ctrl.set_position(np.random.randint(0,96),1)
             #ctrl.set_position(18,0)
             ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)  # was 12 
+            ctrl.send_gain_bias(gain_x = 12, gain_y = 0, bias_x = bias_x, bias_y = bias_y)  # was 12 
             exp_pub.publish('condition=test')
             ctrl.start()
             time.sleep(7)
