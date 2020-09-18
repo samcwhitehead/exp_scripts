@@ -29,7 +29,7 @@
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="false" />
-            <param name="gain" value="30.5" />
+            <param name="gain" value="23.5" />
             <param name="enable_trigger" value="true" />
             <param name="trigger_polarity" value="1" />
             <param name="trigger_mode" value="mode1"/>
@@ -64,7 +64,7 @@
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="false" />
-            <param name="gain" value="30.5" />
+            <param name="gain" value="23.5" />
             <param name="enable_trigger" value="true" />
             <!-- param name="trigger_polarity" value="1"  -->
 
