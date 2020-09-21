@@ -19,7 +19,7 @@ const int WB_PER_FRAME = 3;
 const int WINGBEAT_TIMEOUT_MS = 10; //50Hz 
 const float TIME_ALPHA = 0.9;
 const float TRIG_PHASE = 0.5;
-const int EPI_PULSE_US = 50;
+const int EPI_PULSE_US = 75;
 
 volatile int t = micros();
 volatile bool wb_detected = false;
