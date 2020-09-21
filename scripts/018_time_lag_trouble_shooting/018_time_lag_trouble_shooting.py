@@ -15,6 +15,15 @@ from muscle_imager.srv import SrvRefFrameRequest
 import readline
 import cPickle
 import itertools
+
+# DEBUG: timing test
+# --------------------------------------------------------------------------
+from led_pwm_control import LEDController
+dev = LEDController('/dev/ttyUSB0')
+dev_pin = 3
+dev.set_value(dev_pin, 0)
+# --------------------------------------------------------------------------
+
 ############################################################################
 ########################### Metadata Information ###########################
 ############################################################################
@@ -346,9 +355,17 @@ if __name__ == '__main__':
             ctrl.start()
             time.sleep(3)   # 7 
             ch_pub.publish('set_a30 %s'%(ch))
+            # DEBUG: timing test
+            # ---------------------------------------------------------------------------
+            dev.set_value(dev_pin,255)  
+            # ---------------------------------------------------------------------------
             exp_pub.publish('condition=test')
             time.sleep(0.5)
             ch_pub.publish('set_a30 0')
+            # DEBUG: timing test
+            # ---------------------------------------------------------------------------
+            dev.set_value(dev_pin,0)  
+            # ---------------------------------------------------------------------------
             #ctrl.send_gain_bias(gain_x =1, gain_y = 0, bias_x = 0, bias_y = 0)
             time.sleep(0.05)
             #ch_pub.publish('set_a30 0')
@@ -363,6 +380,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0, bias_y =0)
             ctrl.start()
             time.sleep(2)    
+
 
 
         def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
