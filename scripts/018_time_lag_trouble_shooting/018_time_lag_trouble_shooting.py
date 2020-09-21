@@ -99,87 +99,6 @@ if __name__ == '__main__':
         time.sleep(5) # wait for all the publishers to come online
             
 
-        def exc_cl_blocks(block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_4x4_blocks_60.mat'
-            blk_pub.publish(block_name)
-            print block_name
-
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
-
-        def exc_ol_blocks(block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_4x4_blocks_60.mat'
-            blk_pub.publish(block_name)
-            print block_name
-            
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_4x4_blocks_60.mat')
-            ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
-
-
-
-
-
-        def exc_ol_stripe(block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_bar.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_bar.mat')
-            ctrl.set_position(np.random.randint(0,96),0)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
 
 
 
@@ -220,74 +139,6 @@ if __name__ == '__main__':
 
 
 
-
-        def exc_ol_expansion_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_expansion_1_ADS_mpm.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_pattern_by_name('Pattern_expansion_1_ADS_mpm.mat')
-            #exp_pub.publish('CL_stripe')
-            #ctrl.start()
-            #time.sleep(3)
-            #ctrl.stop()
-            ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-
-            ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
-
-            ###60 frames per second -- ~6
-
-
-
-        def exc_ol_expansion_left (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            pattern_name = 'Pattern_expansion_2_ADS_mpm.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name('Pattern_expansion_2_ADS_mpm.mat')
-            ctrl.set_position(np.random.randint(0,96),0)
-            ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            #ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = gain_x, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(3)
-            ch_pub.publish('set_a30 %s'%(ch))
-            time.sleep(2)
-            ch_pub.publish('set_a30 0')
-            time.sleep(2)
-
         def exc_cl_starfield (block_name,gain_x,gain_y,bias_x,bxias_y,ch=0):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
             pattern_name = 'Pattern_rot_axis_5.mat'
@@ -305,7 +156,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
-            time.sleep(2)
+            time.sleep(1)
             ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
             ctrl.set_pattern_by_name(pattern_name)
@@ -315,7 +166,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x =1, gain_y = 0, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(7)   # 7 
+            time.sleep(1)   # 7 
             #time.sleep(2)
             ctrl.stop()
             #ch_pub.publish('set_a30 %s'%(ch))
@@ -324,7 +175,7 @@ if __name__ == '__main__':
             #time.sleep(2)
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0, bias_y =0)
             ctrl.start()
-            time.sleep(2)
+            time.sleep(1)
 
         def exc_chrimson (block_name,gain_x,gain_y,bias_x,bxias_y,ch=5):
             #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
@@ -343,7 +194,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0, bias_y = 0)
             exp_pub.publish('condition=baseline')
             ctrl.start()
-            time.sleep(2)
+            time.sleep(1)
             ctrl.stop()
             #ctrl.set_position_function_by_name('X','default')
             ctrl.set_pattern_by_name(pattern_name)
@@ -353,7 +204,7 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x =1, gain_y = 0, bias_x = 0, bias_y = 0)
             #exp_pub.publish('condition=test')
             ctrl.start()
-            time.sleep(3)   # 7 
+            time.sleep(1)   # 7 
             ch_pub.publish('set_a30 %s'%(ch))
             # DEBUG: timing test
             # ---------------------------------------------------------------------------
@@ -369,7 +220,7 @@ if __name__ == '__main__':
             #ctrl.send_gain_bias(gain_x =1, gain_y = 0, bias_x = 0, bias_y = 0)
             time.sleep(0.05)
             #ch_pub.publish('set_a30 0')
-            time.sleep(3)
+            time.sleep(2)
 
             #time.sleep(2)
             ctrl.stop()
@@ -380,247 +231,6 @@ if __name__ == '__main__':
             ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0, bias_y =0)
             ctrl.start()
             time.sleep(2)    
-
-
-
-        def exc_yaw_right (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_yaw_1_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_5.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_yaw_1_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_5.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            #trl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3) #2
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4) #7
-            ctrl.stop()
-            #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = gain_y, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(3) #2
-
-            ###60 frames per second -- ~6
-
-
-
-        def exc_yaw_left (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_yaw_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_4.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_yaw_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_4.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy') #returntothis 
-            
-            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4)
-            #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-            ctrl.stop()
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(3)
-
-
-        def exc_pitch_up (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_pitch_1_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_0.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_pitch_1_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_0.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4)
-            #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-            ctrl.stop()
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(4)
-
-            ###60 frames per second -- ~6
-
-
-
-        def exc_pitch_down (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_pitch_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_2.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_pitch_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_2.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,1)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4)
-            #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-            ctrl.stop()
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(3)
-
-
-        def exc_roll_counterclockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_roll_1_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_3.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_roll_1_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_3.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4)
-            ctrl.stop()
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(3)
-            #ch_pub.publish('set_a30 %s'%(ch))
-            #time.sleep(2)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-
-
-        def exc_roll_clockwise (block_name,gain_x,gain_y,bias_x,bias_y,ch=0):
-            #pattern_name = 'Pattern_roll_2_ADS_mpm.mat'
-            pattern_name = 'Pattern_rot_axis_1.mat'
-
-            blk_pub.publish(block_name)
-            print block_name
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            #ctrl.set_pattern_by_name('Pattern_roll_2_ADS_mpm.mat')
-            ctrl.set_pattern_by_name('Pattern_rot_axis_1.mat')
-            ctrl.set_position(np.random.randint(0,96),1)
-
-            #ctrl.set_mode('xrate=ch0','yrate=funcy')
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            #ctrl.send_gain_bias(gain_x = CL_GAIN_X, gain_y = 0, bias_x = 0,bias_y = 0)
-            exp_pub.publish('condition=baseline')
-            ctrl.start()
-            time.sleep(3)
-            ctrl.stop()
-            #ctrl.set_position_function_by_name('X','default')
-            ctrl.set_pattern_by_name(pattern_name)
-            ctrl.set_position(np.random.randint(0,96),1)
-            #ctrl.set_position(18,0)
-            ctrl.set_mode('xrate=funcx','yrate=funcy')
-            ctrl.send_gain_bias(gain_x = 16, gain_y = 0, bias_x = bias_x, bias_y = bias_y)  # was 12 
-            exp_pub.publish('condition=test')
-            ctrl.start()
-            time.sleep(4)
-            ctrl.stop()
-            #ch_pub.publish('set_a30 %s'%(ch))
-            ctrl.send_gain_bias(gain_x = 0, gain_y = 0, bias_x = bias_x, bias_y = bias_y)
-            ctrl.start()
-            time.sleep(3)
-            #ch_pub.publish('set_a30 0')
-            #time.sleep(2)
-
-
-
-
-
 
 
 
