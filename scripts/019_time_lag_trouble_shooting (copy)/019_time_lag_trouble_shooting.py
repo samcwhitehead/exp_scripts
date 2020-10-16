@@ -671,11 +671,11 @@ if __name__ == '__main__':
         #conditions[last_idx +6] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 70, 0), ( 70,  0, 0, 0, 0))
         #conditions[last_idx +7] = (exc_ol_stripe,'ol_stripe, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(-70, 0), (-70,  0, 0, 0, 0))
 
-        #*****conditions[last_idx +6] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
-        #*****conditions[last_idx +7] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
+        conditions[last_idx +0] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
+        conditions[last_idx +1] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
 
         #*****conditions[last_idx +8] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%(12, 0), (12,  0, 0, 0, 0))
-        conditions[last_idx +0] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'%(12, 0, 0, 0, 5), (12,  0, 0, 0, 5))
+        #conditions[last_idx +0] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'%(12, 0, 0, 0, 5), (12,  0, 0, 0, 5))
 
         
 
