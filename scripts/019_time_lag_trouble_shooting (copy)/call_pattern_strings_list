@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import time
+import os
+import sys
+import roslib
+import rospy
+from std_msgs.msg import String
+from exp_scripts.msg import MsgExpState
+from exp_scripts.msg import MsgExpMetadata
+from exp_scripts import git_tools
+from ledpanels import display_ctrl
+from muscle_imager.srv import SrvRefFrame
+from muscle_imager.srv import SrvRefFrameRequest
+import readline
+import cPickle
+import itertools
+############################################################################
+########################### Metadata Information ###########################
+############################################################################
+
+script_path = os.path.realpath(sys.argv[0])
+script_dir = os.path.dirname(script_path)
+
+with open(script_path,'rt') as f:
+    script_code = f.read() 
+
+with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
+    repo_dirs = f.readlines()
+    
+assert git_tools.check_git_status(repo_dirs)
+git_SHA = git_tools.get_SHA_keys(repo_dirs)
