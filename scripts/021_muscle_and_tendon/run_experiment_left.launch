@@ -1,0 +1,5 @@
+<launch>
+
+    <node name='exp_scripts' pkg='exp_scripts' type='021.1_visual_panel.py' />
+    <include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/muscle_and_tendon_logger_left.launch' />
+</launch>

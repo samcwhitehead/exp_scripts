@@ -1,0 +1,58 @@
+<launch>
+
+      <!-- ========================================================== -->
+	<!-- Launch the cameras                               	    -->
+      <!-- ========================================================== -->
+
+	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/all_cameras.launch' />
+
+      <!-- ========================================================== -->
+	<!-- Launch Kinefly                                    	    -->
+      <!-- ========================================================== -->
+
+	<include file= '$(find Kinefly)/launch/motoman/_main.launch' />
+
+      <!-- ========================================================== -->
+      <!-- Launch ledpanels node.                                     -->
+      <!-- ========================================================== -->
+
+      <!-- <node name="ledpanels" pkg="ledpanels" type="panel_node.py" required="true" /> -->
+	<include file= '$(find ledpanels)/launch/main.launch' />
+
+      <!-- ========================================================== -->
+      <!-- Launch the phidgets daq node.                              -->
+      <!-- ========================================================== -->
+
+      <param name="/phidgets_daq/update_rate_ms" value="4" type="int" />
+      <param name="/phidgets_daq/ratiometric" value="False" type="bool" />
+      <param name="/phidgets_daq/interpreter_path" value="/home/imager/catkin/src/phidgets_daq/demo/phidgets_daq_interpreter_functions.py" />
+
+      <node name="data_interpreter" pkg="phidgets_daq" type="daq_interpreter.py" output="screen" />
+      <node name="data_acquisition" pkg="phidgets_daq" type="daq.py" output="screen" />
+
+      <!-- ========================================================== -->
+      <!-- Launch the muscle viewer    .                              -->
+      <!-- ========================================================== -->
+
+      <param name="/live_viewer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
+      <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer.py" />
+  
+      <!-- ========================================================== -->
+      <!-- Launch the signal umixer                                   -->
+      <!-- ========================================================== -->
+
+      <param name="/unmixer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
+
+      <node name="unmixer_left" pkg="muscle_imager"  type="unmixer.py" />
+
+      <!-- ========================================================== -->
+      <!-- Launch the strip chart viewer                              -->
+      <!-- ========================================================== -->
+      <node name="strip_chart" pkg="muscle_imager" type="strip_chart.py" output = "screen" />
+  
+      <!-- ========================================================== -->
+      <!-- Launch image blur node.                                    -->
+      <!-- ========================================================== -->
+      <!-- node name="accumulate_publisher" pkg="muscle_imager" type="accumulate_publisher.py" required="true" / -->
+
+</launch>

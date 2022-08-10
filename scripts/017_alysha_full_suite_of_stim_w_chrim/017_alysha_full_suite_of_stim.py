@@ -27,7 +27,7 @@ open and closed loop optomotor stablization conditions (left-right bias)
 Practice experiments for Alysha.
 """
 
-NUM_REPS = 9   ####was 3 for flies 1556-1564, now increasing to 9
+NUM_REPS = 1   ####was 3 for flies 1556-1564, now increasing to 9
 CL_GAIN_X = -1
 
 CHRIMSON_VOLTS = 5
@@ -51,10 +51,10 @@ fly_genotype = """w[1118]/+[HCS];P{20XUAS-IVS-GCaMP6f}attP40/+;P{y[+t7.7]w[+mC]=
 with open(script_path,'rt') as f:
     script_code = f.read() 
 #list of all git tracked repositories
-with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
-    repo_dirs = f.readlines()
-assert git_tools.check_git_status(repo_dirs)
-git_SHA = git_tools.get_SHA_keys(repo_dirs)
+#with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
+#    repo_dirs = f.readlines()
+#assert git_tools.check_git_status(repo_dirs)
+#git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 #############################################################################
 ################################ Run experiment #############################
@@ -616,7 +616,7 @@ if __name__ == '__main__':
         #print(get_ref_frame_left())
         #print(get_ref_frame_right())
 
-        metadata =   {'git_SHA':git_SHA,
+        metadata =   {#'git_SHA':git_SHA,
                       'script_path':script_path,
                       'exp_description':exp_description,
                       'script_code':script_code,
@@ -675,9 +675,9 @@ if __name__ == '__main__':
         #*****conditions[last_idx +7] = (exc_yaw_right,'yaw_right, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%(12, 0), (12,  0, 0, 0, 0))
 
         #*****conditions[last_idx +8] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=1'%(12, 0), (12,  0, 0, 0, 0))
-        conditions[last_idx +0] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'%(12, 0, 0, 0, 5), (12,  0, 0, 0, 5))
+        #conditions[last_idx +0] = (exc_chrimson,'chrimson, g_x=%s, g_y=%s, b_x=%s, b_y=%s, ch=%s'%(12, 0, 0, 0, 5), (12,  0, 0, 0, 5))
 
-        
+        conditions[last_idx +0] = (exc_yaw_left,'yaw_left, g_x=%s, g_y=%s, b_x=0, b_y=0, ch=0'%( 12, 0), ( 12,  0, 0, 0, 0))
 
 
         ###################################################################################
@@ -706,7 +706,7 @@ if __name__ == '__main__':
                 condition = conditions[key]
                 condition[0](condition[1],*condition[2])  
                 condition = (exc_cl_starfield,'exc_cl_starfield, g_x = %s, g_y=%s, b_x =0, b_y = 0, ch=0' %(1, 0), (1, 0, 0, 0))   ##added this to intersperse stripe
-                condition[0](condition[1],*condition[2])  #cmt back
+                #condition[0](condition[1],*condition[2])  #cmt back
 
 
         ######

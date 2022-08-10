@@ -1,0 +1,6 @@
+<launch>
+
+	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/kinefly_camera_pg.launch' />
+	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/muscle_imaging_cameras.launch' />
+
+</launch>

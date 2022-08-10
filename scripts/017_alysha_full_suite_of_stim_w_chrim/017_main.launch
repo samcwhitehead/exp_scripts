@@ -29,7 +29,7 @@
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="false" />
-            <param name="gain" value="23.5" />
+	    <param name="gain" value="23.5" />
             <param name="enable_trigger" value="true" />
             <param name="trigger_polarity" value="1" />
             <param name="trigger_mode" value="mode1"/>
@@ -64,10 +64,9 @@
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="false" />
-            <param name="gain" value="23.5" />
+	    <param name="gain" value="23.5" />
             <param name="enable_trigger" value="true" />
             <!-- param name="trigger_polarity" value="1"  -->
-
             <param name="trigger_mode" value="mode1" />
             <!-- param name="exposure" value="0" / -->
             
@@ -129,7 +128,7 @@
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="false" />
             <param name="enable_trigger" value="true" />
-            <param name="trigger_mode" value="mode14"/>
+            <param name="trigger_mode" value="mode14"/> 
             <!-- param name="exposure" value="0"  -->
             <!-- shutter speed set to 2 ms faster than trigger rate -->
             <!-- param name="shutter_speed" value="0.003"  -->

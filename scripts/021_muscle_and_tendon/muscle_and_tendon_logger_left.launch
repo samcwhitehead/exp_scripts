@@ -1,0 +1,40 @@
+<launch>
+    <node
+        pkg='rosbag'
+        name='muscle_and_tendon_logger'
+        type='record'
+        args='record -o $(env HOME)/bagfiles
+        /ca_camera_left/image_raw 
+        /kine_camera_1/image_raw/compressed
+        /arena_camera/image_color/compressed
+        /phidgets_daq/all_data 
+        /ledpanels/command
+        /ledpanels/debug
+        /exp_scripts/exp_state 
+        /exp_scripts/exp_metadata
+        /exp_scripts/exp_block
+        /kinefly/command 
+        /kinefly/flystate 
+        /kinefly/flystate2phidgetsanalog/command
+        /ModelViewFrame
+        /LogRefFrame
+        /unmixer_left/b1
+        /unmixer_left/b2
+        /unmixer_left/b3
+        /unmixer_left/bkg
+        /unmixer_left/hg1
+        /unmixer_left/hg2
+        /unmixer_left/hg3
+        /unmixer_left/hg4
+        /unmixer_left/i1
+        /unmixer_left/i2
+        /unmixer_left/iii1
+        /unmixer_left/iii24
+        /unmixer_left/iii3
+        /unmixer_left/image_output
+        /unmixer_left/nm
+        /unmixer_left/pr
+        /unmixer_left/tpd
+    >
+    </node>
+</launch>

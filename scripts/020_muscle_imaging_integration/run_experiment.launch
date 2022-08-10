@@ -1,0 +1,5 @@
+<launch>
+
+    <node name='exp_scripts' pkg='exp_scripts' type='muscle_imaging_integration_experiment_script.py' />
+    <include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/muscle_imaging_integration_logger.launch' />
+</launch>
