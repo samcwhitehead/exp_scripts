@@ -1,5 +1,16 @@
 <launch>
+    <!-- ========================================================== -->
+	<!-- Both starts the logger (record data) and launches the      --> 
+	<!-- python file containing visual info                         -->
+	<!-- ========================================================== -->
+
+    <arg name="prefix" default="" />
+    <arg name="case" default="both" />
 
     <node name='exp_scripts' pkg='exp_scripts' type='021.1_visual_panel.py' />
-    <include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/muscle_and_tendon_logger.launch' />
+    <include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/muscle_and_tendon_logger.launch'>
+        <!-- pass argument case: 'both' | 'right' | 'left' -->
+        <arg name="case" value="$(arg case)" />
+    </include>
+
 </launch>
