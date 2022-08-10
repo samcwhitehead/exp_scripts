@@ -64,11 +64,11 @@ CL_GAIN_X = -1  # closed loop gain(?). alysha had it set up to -1; Francesca to 
 # construct the list of motion patterns we will test. Three different
 # patterns for each type of motion.
 PATTERN_LIST = [['ol_pitch_%s_rep%s'%(d,r) for d in ['down','up']]
-                        for r in list(range(NUM_REPS-1))]
+                        for r in list(range(NUM_REPS))]
 PATTERN_LIST.extend([['ol_roll_%s_rep%s'%(d,r) for d in ['left','right']]
-                        for r in list(range(NUM_REPS-1))])
+                        for r in list(range(NUM_REPS))])
 PATTERN_LIST.extend([['ol_yaw_%s_rep%s'%(d,r) for d in ['left','right']]
-                        for r in list(range(NUM_REPS-1))])
+                        for r in list(range(NUM_REPS))])
 PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 
 CONDITION_CLOSED_LOOP = 'cl_stripe'
@@ -167,7 +167,7 @@ if __name__ == '__main__':
         ctrl.stop()
 
         # loop over repetitions
-        for rep in range(NUM_REPS-1):
+        for rep in range(NUM_REPS):
             print rep
             for condition in np.random.permutation(conditions):
                 # print condition
