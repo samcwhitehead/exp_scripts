@@ -89,7 +89,7 @@ def exc_visual_stim(ctrl, block_name, duration, gain_x=0, gain_y=0, bias_x=0, bi
         xrate_fun = 'ch0'  # still not *sure* what this does, but i think it makes the x rate dependent on analog in
         y_idx = 0  # index in the "y" position (4th dim of pattern array)
         if not x_init:
-            x_init = 48  # start value "x" position of pattern (3rd dim of pattery array) 
+            x_init = 64  # start value "x" position of pattern (3rd dim of pattery array) 
 
     elif block_name_split[0]=='ol':
         open_loop_flag = True
