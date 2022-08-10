@@ -78,7 +78,7 @@ INPUTS:
 def exc_visual_stim(ctrl, block_name, duration, gain_x=0, gain_y=0, bias_x=0, bias_y=0, ch=0, x_init=None):
     
     # print stimulus name so we can see it
-    print block_name
+    # print block_name
 
     # try to extract some info from the string pattern
     block_name_split = block_name.split('_')
