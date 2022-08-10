@@ -193,7 +193,8 @@ if __name__ == '__main__':
                 # get portion of condition string WITHOUT rep number -- just corresponds to rotation type (should do this with regex...)
                 condition_split = condition.split('_')
                 stim_type_str = '_'.join(condition_split[:-1])
-                
+                print stim_type_str 
+
                 # get initial x value for visual stim 
                 x_init = np.random.randint(0,96)
                
