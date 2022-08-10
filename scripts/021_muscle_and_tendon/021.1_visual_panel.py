@@ -63,11 +63,11 @@ CL_GAIN_X = -1  # closed loop gain(?). alysha had it set up to -1; Francesca to 
 
 # construct the list of motion patterns we will test. Three different
 # patterns for each type of motion.
-PATTERN_LIST = [['Pattern_ptch_%s_rep%s.mat'%(d,r) for d in ['down','up']]
+PATTERN_LIST = [['ol_pitch_%s_rep%s.mat'%(d,r) for d in ['down','up']]
                         for r in [0,1,2]]
-PATTERN_LIST.extend([['Pattern_roll_%s_rep%s.mat'%(d,r) for d in ['left','right']]
+PATTERN_LIST.extend([['ol_roll_%s_rep%s.mat'%(d,r) for d in ['left','right']]
                         for r in [0,1,2]])
-PATTERN_LIST.extend([['Pattern_yaw_%s_rep%s.mat'%(d,r) for d in ['left','right']]
+PATTERN_LIST.extend([['ol_yaw_%s_rep%s.mat'%(d,r) for d in ['left','right']]
                         for r in [0,1,2]])
 PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 
