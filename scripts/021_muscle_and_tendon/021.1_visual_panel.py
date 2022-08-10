@@ -170,7 +170,7 @@ if __name__ == '__main__':
         for rep in range(2):
             print rep
             for condition in np.random.permutation(conditions):
-                print condition
+                # print condition
                 
                 #################################################
                 # Closed Loop
