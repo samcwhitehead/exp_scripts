@@ -10,7 +10,7 @@
     <!-- ========================================================== -->
 	<!-- Case for BOTH left and right cameras                       -->
 	<!-- ========================================================== -->
-    <group if="$(eval arg('case') == 'both')">
+    <group if="$(eval case == 'both')">
         <!-- BOTH camera case -->
     
         <node
