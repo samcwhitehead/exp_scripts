@@ -55,7 +55,7 @@ PREMOTION_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 
-NUM_REPS = 3 
+NUM_REPS = 1 
 
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
@@ -63,12 +63,12 @@ CL_GAIN_X = -1  # closed loop gain(?). alysha had it set up to -1; Francesca to 
 
 # construct the list of motion patterns we will test. Three different
 # patterns for each type of motion.
-PATTERN_LIST = [['ol_pitch_%s_rep%s.mat'%(d,r) for d in ['down','up']]
-                        for r in [0,1,2]]
-PATTERN_LIST.extend([['ol_roll_%s_rep%s.mat'%(d,r) for d in ['left','right']]
-                        for r in [0,1,2]])
-PATTERN_LIST.extend([['ol_yaw_%s_rep%s.mat'%(d,r) for d in ['left','right']]
-                        for r in [0,1,2]])
+PATTERN_LIST = [['ol_pitch_%s_rep%s'%(d,r) for d in ['down','up']]
+                        for r in list(range(NUM_REPS-1))]
+PATTERN_LIST.extend([['ol_roll_%s_rep%s'%(d,r) for d in ['left','right']]
+                        for r in list(range(NUM_REPS-1))])
+PATTERN_LIST.extend([['ol_yaw_%s_rep%s'%(d,r) for d in ['left','right']]
+                        for r in list(range(NUM_REPS-1))])
 PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 
 CONDITION_CLOSED_LOOP = 'cl_stripe'
@@ -167,7 +167,7 @@ if __name__ == '__main__':
         ctrl.stop()
 
         # loop over repetitions
-        for rep in range(2):
+        for rep in range(NUM_REPS-1):
             print rep
             for condition in np.random.permutation(conditions):
                 # print condition
@@ -193,7 +193,6 @@ if __name__ == '__main__':
                 # get portion of condition string WITHOUT rep number -- just corresponds to rotation type (should do this with regex...)
                 condition_split = condition.split('_')
                 stim_type_str = '_'.join(condition_split[:-1])
-                print stim_type_str 
 
                 # get initial x value for visual stim 
                 x_init = np.random.randint(0,96)
@@ -211,26 +210,6 @@ if __name__ == '__main__':
                 exp_pub.publish('open_loop;visual;pattern=%s;static'%(condition))
                 time.sleep(POSTMOTION_DURATION)
                 
-                
-
-        #publish a refrence frame as a status message to mark the end of the experiment.
-        try:
-            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
-        except (rospy.ServiceException, rospy.ROSException), e:
-            print 'LEFT camera not in use: %s'%(e)
-            get_ref_frame_left = None
-
-        try:
-            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
-        except (rospy.ServiceException, rospy.ROSException), e:
-            print 'RIGHT camera not in use: %s'%(e)
-            get_ref_frame_right = None
-
-        meta_pub.publish(git_SHA = git_SHA,
-                         script_path = script_path,
-                         exp_description = exp_description,
-                         script_code = script_code)
-
         #################################################
         # Closed Loop (Post trial)
         #################################################
@@ -241,10 +220,24 @@ if __name__ == '__main__':
         
         # run closed loop 
         exc_visual_stim(ctrl, CONDITION_CLOSED_LOOP, FIXATION_DURATION, gain_x=CL_GAIN_X)
+        
 
+        #################################################
+        # Wind down expt
+        #################################################
+        blk_pub.publish('trials_ended')  
+
+        #publish a refrence frame as a status message to mark the end of the experiment.
+        
+        print(get_ref_frame_left())
+        print(get_ref_frame_right())
+
+        meta_pub.publish(cPickle.dumps(metadata))
+        
         # print some stuff at the end to let us know we're done!
         print 'end of experiment'
         print (time.time()-t0)
 
     except rospy.ROSInterruptException:
         print ('exception')
+
