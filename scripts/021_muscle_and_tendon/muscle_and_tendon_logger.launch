@@ -1,9 +1,15 @@
 <launch>
+    <!-- ========================================================== -->
+	<!-- Record a .bag file with 2 camera image stream  and         --> 
+	<!-- kinefly measurments (?)                                    -->
+	<!-- ========================================================== -->
+
+    <arg name="prefix" default="" />
     <node
         pkg='rosbag'
         name='muscle_and_tendon_logger'
         type='record'
-        args='record -o $(env HOME)/bagfiles
+        args='record -o $(env HOME)/bagfiles/$(arg prefix) 
         /ca_camera_right/image_raw
         /ca_camera_left/image_raw 
         /kine_camera_1/image_raw/compressed
