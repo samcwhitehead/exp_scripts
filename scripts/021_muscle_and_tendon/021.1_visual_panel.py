@@ -35,11 +35,13 @@ Legs cut off; head NOT fixed (for now)
 
 """
 
-fly_dob = '08.01.2022'
+fly_dob = '08.08.2022'
 
-fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
-genotype_nickname = 'C-82/HCS+'
+# fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
+# genotype_nickname = 'C82/HCS'
 
+fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/Mkrs"""
+genotype_nickname = 'C82/HCS-ctrl'
 head_fixed = False 
 legs_cut = True
 
@@ -55,7 +57,7 @@ PREMOTION_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 
-NUM_REPS = 1 
+NUM_REPS = 2
 
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
