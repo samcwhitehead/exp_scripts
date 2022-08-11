@@ -122,19 +122,15 @@ if __name__ == '__main__':
         
         # ----------------------------------------------------------------------
         # get left and right reference frames
-        SrvManager = rospy.ServiceManager
-        services = SrvManager.get_services()
-        print(services)
-
+        rospy.wait_for_service('/unmixer_left/RefFrameServer'
+        rospy.wait_for_service('/unmixer_right/RefFrameServer')
         try:
-            rospy.wait_for_service('/unmixer_left/RefFrameServer')
             get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
         except (rospy.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
-            rospy.wait_for_service('/unmixer_right/RefFrameServer')
             get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
         except (rospy.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
