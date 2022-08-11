@@ -125,7 +125,7 @@ if __name__ == '__main__':
         rospy.wait_for_service('/unmixer_left/RefFrameServer')
         rospy.wait_for_service('/unmixer_right/RefFrameServer')
         
-"""
+        """
         try:
             rospy.wait_for_service('/unmixer_left/RefFrameServer')
             get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
             get_ref_frame_right = lambda *args, **kwargs: None
-"""
+        """
         time.sleep(1) # wait for all the publishers to come online
 
         # ----------------------------------------------------------------------
