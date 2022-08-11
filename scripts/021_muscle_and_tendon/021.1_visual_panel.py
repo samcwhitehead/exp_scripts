@@ -122,8 +122,8 @@ if __name__ == '__main__':
         
         # ----------------------------------------------------------------------
         # get left and right reference frames
-        rospy.wait_for_service('/unmixer_left/RefFrameServer')
-        rospy.wait_for_service('/unmixer_right/RefFrameServer')
+        # rospy.wait_for_service('/unmixer_left/RefFrameServer')
+        # rospy.wait_for_service('/unmixer_right/RefFrameServer')
         
         """
         try:
