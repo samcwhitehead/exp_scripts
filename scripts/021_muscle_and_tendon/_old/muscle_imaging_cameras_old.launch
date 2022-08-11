@@ -1,10 +1,10 @@
 <launch>
 
-  <!-- Determine this using rosrun spinnaker_camera_driver list_cameras.
+   <!-- Determine this using rosrun spinnaker_camera_driver list_cameras.
        If not specified, defaults to first camera found. -->
-  
-  <arg name="case"                      default="both" />
+
   <arg name="ca_cameraR_serial"         default="19432825" />
+
   <arg name="ca_cameraL_serial"         default="20226995" />
   <arg name="calibrated"                default="0" />
 
@@ -12,7 +12,7 @@
     <!-- Launch the muscle imaging cameras.                         -->
     <!-- ========================================================== -->
 
-  <group ns="ca_camera_right" unless="$(eval case == 'left')">
+  <group ns="ca_camera_right">
     <node pkg="nodelet" 
       type="nodelet" 
       name="camera_nodelet_manager" 
@@ -61,7 +61,7 @@
   </group>
 
 
-  <group ns="ca_camera_left" unless="$(eval case == 'right')">
+  <group ns="ca_camera_left">
     <node pkg="nodelet" 
       type="nodelet" 
       name="camera_nodelet_manager" 
