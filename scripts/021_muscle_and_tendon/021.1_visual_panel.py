@@ -145,11 +145,13 @@ if __name__ == '__main__':
         # ----------------------------------------------------------------------
         # save metadata
         try:
+            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
             print(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
         
         try:
+            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
             print(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
