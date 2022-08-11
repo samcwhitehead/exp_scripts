@@ -122,26 +122,38 @@ if __name__ == '__main__':
         
         # ----------------------------------------------------------------------
         # get left and right reference frames
-        # rospy.wait_for_service('/unmixer_left/RefFrameServer')
-        # rospy.wait_for_service('/unmixer_right/RefFrameServer')
+        rospy.wait_for_service('/unmixer_left/RefFrameServer')
+        rospy.wait_for_service('/unmixer_right/RefFrameServer')
+        
+"""
         try:
+            rospy.wait_for_service('/unmixer_left/RefFrameServer')
             get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
+            rospy.wait_for_service('/unmixer_right/RefFrameServer')
             get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
             get_ref_frame_right = lambda *args, **kwargs: None
-
+"""
         time.sleep(1) # wait for all the publishers to come online
 
         # ----------------------------------------------------------------------
         # save metadata
-        print(get_ref_frame_left())
-        print(get_ref_frame_right())
+        try:
+            print(get_ref_frame_left())
+        except (rospy.service.ServiceException, rospy.ROSException), e:
+            print 'LEFT camera not in use: %s'%(e)
+        
+        try
+            print(get_ref_frame_right())
+        except (rospy.service.ServiceException, rospy.ROSException), e:
+            print 'RIGHT camera not in use: %s'%(e)
+
         metadata =   {'git_SHA':git_SHA,
                       'script_path':script_path,
                       'exp_description':exp_description,
