@@ -57,7 +57,7 @@ PREMOTION_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 
-NUM_REPS = 2
+NUM_REPS = 0
 
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
@@ -125,21 +125,6 @@ if __name__ == '__main__':
         # rospy.wait_for_service('/unmixer_left/RefFrameServer')
         # rospy.wait_for_service('/unmixer_right/RefFrameServer')
         
-        """
-        try:
-            rospy.wait_for_service('/unmixer_left/RefFrameServer')
-            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
-        except (rospy.service.ServiceException, rospy.ROSException), e:
-            print 'LEFT camera not in use: %s'%(e)
-            get_ref_frame_left = lambda *args, **kwargs: None
-
-        try:
-            rospy.wait_for_service('/unmixer_right/RefFrameServer')
-            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
-        except (rospy.service.ServiceException, rospy.ROSException), e:
-            print 'RIGHT camera not in use: %s'%(e)
-            get_ref_frame_right = lambda *args, **kwargs: None
-        """
         time.sleep(1) # wait for all the publishers to come online
 
         # ----------------------------------------------------------------------
@@ -149,12 +134,14 @@ if __name__ == '__main__':
             print(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
-        
+            get_ref_frame_left = lambda *args, **kwargs: None
+
         try:
             get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
             print(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
+            get_ref_frame_right = lambda *args, **kwargs: None
 
         metadata =   {'git_SHA':git_SHA,
                       'script_path':script_path,
