@@ -122,8 +122,8 @@ if __name__ == '__main__':
         
         # ----------------------------------------------------------------------
         # get left and right reference frames
-        rospy.wait_for_service('/unmixer_left/RefFrameServer')
-        rospy.wait_for_service('/unmixer_right/RefFrameServer')
+        # rospy.wait_for_service('/unmixer_left/RefFrameServer')
+        # rospy.wait_for_service('/unmixer_right/RefFrameServer')
         try:
             get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
         except (rospy.ServiceException, rospy.ROSException), e:
