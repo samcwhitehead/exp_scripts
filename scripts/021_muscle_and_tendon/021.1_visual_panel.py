@@ -149,7 +149,7 @@ if __name__ == '__main__':
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
         
-        try
+        try:
             print(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
