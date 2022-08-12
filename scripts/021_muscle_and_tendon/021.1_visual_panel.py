@@ -57,7 +57,7 @@ PREMOTION_DURATION = 5.0
 POSTMOTION_DURATION = 5.0
 FIXATION_DURATION = 5.0
 
-NUM_REPS = 0
+NUM_REPS = 2
 
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
