@@ -35,7 +35,7 @@ Legs cut off; head NOT fixed (for now)
 
 """
 
-fly_dob = '08.10.2022'
+fly_dob = '08.11.2022'
 
 fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
 genotype_nickname = 'C82/HCS'
