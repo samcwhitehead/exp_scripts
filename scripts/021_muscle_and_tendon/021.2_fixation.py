@@ -33,8 +33,7 @@ NB: While happending in the same fly, the muscles and tendons are being imaged o
 
 Legs cut off; head NOT fixed (for now)
 
-In this particular experiment paradigm, looking at response to visual stimuli
-
+In this particular experiment paradigm, looking at flight start and stop
 """
 
 fly_dob = '08.11.2022'
@@ -55,29 +54,16 @@ print genotype_nickname
 ############################################################################
 
 #Stimulus periods
-MOTION_DURATION = 3.0
-PREMOTION_DURATION = 5.0
-POSTMOTION_DURATION = 5.0
-FIXATION_DURATION = 5.0
+CONDITION_DURATION = 15.0
 
-NUM_REPS = 2
+# how many trials per run
+NUM_REPS = 6
 
 #pattern playback rate 240 positions for 360deg
-PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
-CL_GAIN_X = -1  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -5  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
 
-# construct the list of motion patterns we will test. Three different
-# patterns for each type of motion.
-PATTERN_LIST = [['ol_pitch_%s_rep%s'%(d,r) for d in ['down','up']]
-                        for r in list(range(NUM_REPS))]
-PATTERN_LIST.extend([['ol_roll_%s_rep%s'%(d,r) for d in ['left','right']]
-                        for r in list(range(NUM_REPS))])
-PATTERN_LIST.extend([['ol_yaw_%s_rep%s'%(d,r) for d in ['left','right']]
-                        for r in list(range(NUM_REPS))])
-PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
-
-CONDITION_CLOSED_LOOP = 'cl_stripe'
-# EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
+# string for visual stimulus
+PATTERN_NAME = 'Pattern_bar.mat'
 
 ############################################################################
 ########################### Initialize Experiment ##########################
@@ -156,10 +142,7 @@ if __name__ == '__main__':
 
         meta_pub.publish(cPickle.dumps(metadata))
         
-        # ----------------------------------------------------------------------
-        # read out some variables
-        conditions = PATTERN_LIST
-
+        
         ###################################################################################
         # Run experiment
         ###################################################################################
@@ -169,67 +152,38 @@ if __name__ == '__main__':
         
         # stop panels 
         ctrl.stop()
+        
+        # start closed-loop stripe movement -- going to run this throughout
+        ctrl.set_position_function_by_name('X', 'default')  # not sure what this does
+        ctrl.set_pattern_by_name(PATTERN_NAME)  # set pattern 
+        ctrl.set_position(0, 0)  # set initial position
+        ctrl.set_mode('xrate=ch0','yrate=funcy')  # not really sure what this does
+        ctrl.send_gain_bias(gain_x=CL_GAIN_X, gain_y=0, bias_x=0, bias_y=0) # set gain and bias for panel
+    
+        # execute panel motion
+        ctrl.start()
+        
+        # publish the state
+        exp_pub.publish('closed_loop;gain=%s'%(CL_GAIN_X))
+        blk_pub.publish('stripe_fix')
+        
+        # pause a bit before printing commands
+        time.sleep(5)
 
         # loop over repetitions
         for rep in range(NUM_REPS):
-            print rep
-            for condition in np.random.permutation(conditions):
-                # print condition
-                
-                #################################################
-                # Closed Loop
-                #################################################
-                print 'enter closed loop stripe fixation'
-
-                # publish the type of stimulus to both blk and exp ros channels
-                blk_pub.publish('pretrial_stripe_fix')
-                exp_pub.publish('closed_loop;gain=%s'%(CL_GAIN_X))
-                
-                # run closed loop 
-                exc_visual_stim(ctrl, CONDITION_CLOSED_LOOP, FIXATION_DURATION, gain_x=CL_GAIN_X)
-
-                #################################################
-                # Open Loop
-                #################################################
-                print 'enter open loop stimulus presentation: %s'%(condition)
-                blk_pub.publish(condition)
-
-                # get portion of condition string WITHOUT rep number -- just corresponds to rotation type (should do this with regex...)
-                condition_split = condition.split('_')
-                stim_type_str = '_'.join(condition_split[:-1])
-
-                # get initial x value for visual stim 
-                x_init = np.random.randint(0,96)
-               
-                # static pattern to start
-                exp_pub.publish('open_loop;visual;pattern=%s;static'%(condition))
-                exc_visual_stim(ctrl, stim_type_str, PREMOTION_DURATION, gain_x=0, gain_y=0, bias_x=0, bias_y=0, x_init=x_init)
-
-                # next allow stimulus motion
-                exp_pub.publish('open_loop;visual;pattern=%s;motion'%(condition))
-                exc_visual_stim(ctrl, stim_type_str, MOTION_DURATION, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0, x_init=x_init)
-                
-                # finally, do post-motion stop period 
-                # NB: panels should have stopped moving based on exc_visual_stim above, so just need to pause here
-                exp_pub.publish('open_loop;visual;pattern=%s;static'%(condition))
-                time.sleep(POSTMOTION_DURATION)
-                
-        #################################################
-        # Closed Loop (Post trial)
-        #################################################
-        print 'enter closed loop stripe fixation'
-        # publish the type of stimulus to both blk and exp ros channels
-        blk_pub.publish('posttrial_stripe_fix')
-        exp_pub.publish('closed_loop;gain=%s'%(CL_GAIN_X))
-        
-        # run closed loop 
-        exc_visual_stim(ctrl, CONDITION_CLOSED_LOOP, FIXATION_DURATION, gain_x=CL_GAIN_X)
+            # print a message to give an air puff (initiate flight), then allow flight for a bit
+            rospy.logwarn('PUFF')
+            time.sleep(CONDITION_DURATION)
+            
+            # print a message to stop with brush hair, then let fly be stopped for a bit
+            rospy.logwarn('STOP')
+            time.sleep(CONDITION_DURATION)
         
 
         #################################################
         # Wind down expt
         #################################################
-        blk_pub.publish('trials_ended')  
 
         #publish a refrence frame as a status message to mark the end of the experiment.
         
@@ -239,10 +193,12 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         # print some stuff at the end to let us know we're done!
-        print 'end of experiment'
-        print (time.time()-t0)
+        rospy.logwarn('end_of_experiment')
+        rospy.logwarn(time.time()-t0)
         
-        turn_off_panels(ctrl)
+        # turn off panels
+        turn_off_panels()
+
     except rospy.ROSInterruptException:
         print ('exception')
-
+        pass
