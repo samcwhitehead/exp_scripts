@@ -34,9 +34,12 @@ NB: While happending in the same fly, the muscles and tendons are being imaged o
 Legs cut off; head NOT fixed (for now)
 
 In this particular experiment paradigm, looking at flight start and stop
+
+Trying slightly older flies. Brighter tdTomato?
+
 """
 
-fly_dob = '08.11.2022'
+fly_dob = '08.12.2022'
 
 fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
 genotype_nickname = 'C82/HCS'
@@ -60,7 +63,7 @@ CONDITION_DURATION = 15.0
 NUM_REPS = 6
 
 #pattern playback rate 240 positions for 360deg
-CL_GAIN_X = -3  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = 3  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
