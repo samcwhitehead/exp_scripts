@@ -37,6 +37,7 @@ In this particular experiment paradigm, looking at flight start and stop
 
 Trying slightly older flies. Brighter tdTomato?
 
+**** MAKE SURE THIS IS EXECUTABLE WITH chmod +x mypythonscript.py
 """
 
 fly_dob = '08.12.2022'
