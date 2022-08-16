@@ -201,7 +201,7 @@ if __name__ == '__main__':
         rospy.logwarn(time.time()-t0)
         
         # turn off panels
-        turn_off_panels()
+        turn_off_panels(ctrl)
 
     except rospy.ROSInterruptException:
         print ('exception')
