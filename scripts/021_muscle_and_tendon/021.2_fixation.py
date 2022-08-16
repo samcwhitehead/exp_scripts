@@ -64,7 +64,7 @@ CONDITION_DURATION = 20.0
 NUM_REPS = 6
 
 #pattern playback rate 240 positions for 360deg
-CL_GAIN_X = -5  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
