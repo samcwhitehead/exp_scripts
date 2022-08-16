@@ -58,13 +58,13 @@ print genotype_nickname
 ############################################################################
 
 #Stimulus periods
-CONDITION_DURATION = 15.0
+CONDITION_DURATION = 20.0
 
 # how many trials per run
 NUM_REPS = 6
 
 #pattern playback rate 240 positions for 360deg
-CL_GAIN_X = 3  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -3  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
