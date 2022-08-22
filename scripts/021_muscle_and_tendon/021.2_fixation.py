@@ -20,6 +20,7 @@ from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
 from scw_panel_lib import turn_off_panels, exc_visual_stim
 
+""" MAKE SURE THIS IS EXECUTABLE; USE 'chmod +x mypythonscript.py' in terminal """
 ############################################################################
 ########################### Metadata Information ###########################
 ############################################################################
@@ -37,10 +38,9 @@ In this particular experiment paradigm, looking at flight start and stop
 
 Trying slightly older flies. Brighter tdTomato?
 
-**** MAKE SURE THIS IS EXECUTABLE WITH chmod +x mypythonscript.py
 """
 
-fly_dob = '08.12.2022'
+fly_dob = '08.18.2022'
 
 fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
 genotype_nickname = 'C82/HCS'
