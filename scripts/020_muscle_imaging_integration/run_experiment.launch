@@ -1,5 +1,7 @@
 <launch>
 
     <node name='exp_scripts' pkg='exp_scripts' type='muscle_imaging_integration_experiment_script.py' />
-    <include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/muscle_imaging_integration_logger.launch' />
+    <include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/muscle_imaging_integration_logger2.launch' />
+    <arg name='config'/>
+    <rosparam command='load' file='$(arg config)' ns='exp_script'/>
 </launch>

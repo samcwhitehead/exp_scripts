@@ -5,13 +5,14 @@ import os
 import sys
 import roslib
 import rospy
-from std_msgs.msg import String
+from std_msgs.msg import Header, String
 from exp_scripts.msg import MsgExpState
 from exp_scripts.msg import MsgExpMetadata
 from exp_scripts import git_tools
 from ledpanels import display_ctrl
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
+from muscle_imager.msg import Msg2DAffineFrame
 import readline
 import cPickle
 import itertools
@@ -71,15 +72,41 @@ if __name__ == '__main__':
         ch_pub = rospy.Publisher('/kinefly/flystate2phidgetsanalog/command',
                                     String,
                                     queue_size = 10)
+        left_frame_pub = rospy.Publisher('/exp_scripts/left_RefFrameServer',
+                                        Msg2DAffineFrame,
+                                        queue_size = 10)
+        right_frame_pub = rospy.Publisher('/exp_scripts/right_RefFrameServer',
+                                        Msg2DAffineFrame,
+                                        queue_size = 10)
 
-#        rospy.wait_for_service('/unmixer_left/RefFrameServer')
-#        get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
-#        rospy.wait_for_service('/unmixer_right/RefFrameServer')
-#        get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
+#        # init experiment
+#        time.sleep(5) #SCW: this was 1 # wait for all the publishers to come online
+        
+        #check for coordinates
+        rospy.wait_for_service('/live_viewer_left/RefFrameServer')
+        get_ref_frame_left = rospy.ServiceProxy('/live_viewer_left/RefFrameServer', SrvRefFrame)
+        rospy.wait_for_service('/live_viewer_right/RefFrameServer')
+        get_ref_frame_right = rospy.ServiceProxy('/live_viewer_right/RefFrameServer', SrvRefFrame)
 
-        # init experiment
-        time.sleep(1) # wait for all the publishers to come online
-
+        #publish coordinates
+        header = Header(stamp=rospy.Time.now())
+        left_frame_pub.publish(header=header, p=get_ref_frame_left().p,
+                                              a1=get_ref_frame_left().a1,
+                                              a2=get_ref_frame_left().a2,
+                                              A=get_ref_frame_left().A,
+                                              A_inv=get_ref_frame_left().A_inv,
+                                              components=get_ref_frame_left().components)
+                                              
+        #publish coordinates
+        header = Header(stamp=rospy.Time.now())
+        right_frame_pub.publish(header=header,p=get_ref_frame_right().p,
+                                              a1=get_ref_frame_right().a1,
+                                              a2=get_ref_frame_right().a2,
+                                              A=get_ref_frame_right().A,
+                                              A_inv=get_ref_frame_right().A_inv,
+                                              components=get_ref_frame_right().components)
+                                              
+        rospy.logwarn('published coordinates')
 
         def exc_cl_yaw(duration, ch=0):
 
@@ -181,11 +208,11 @@ if __name__ == '__main__':
 
 
         def get_exp_param ():
-            #param_filepath = '/home/imager/work/muscle_imaging_integration_exp_parameters/MI_062922.yaml'
-            param_filepath = '/home/imager/work/muscle_imaging_integration_exp_parameters/MI_062922_2.yaml'
+#            param_filepath = '/home/imager/work/muscle_imaging_integration_exp_parameters/MI_param_20220905_150825.yaml' 
+#            with open(param_filepath, 'r') as f:
+#                exp_param = yaml.safe_load(f)
 
-            with open(param_filepath, 'r') as f:
-                exp_param = yaml.safe_load(f)
+            exp_param = rospy.get_param('/exp_script', None)
             return exp_param
 
         def get_trial_params (exp_param, trial_index):
@@ -197,17 +224,23 @@ if __name__ == '__main__':
         #user-defined reference frame but also publish the refrence
         #frame as a message to be logged in rosbag.
         ############################################################
+        
+        params = get_exp_param ()
+        number_of_trials = (len(params['trials']))
+        
+        time.sleep(0.1)
 
         metadata =   {#'git_SHA':git_SHA,
                       'script_path':script_path,
-                      'exp_description':exp_description,
+                      'exp_description':params,
                       'script_code':script_code,
                       'fly_dob':fly_dob,
                       'fly_genotype':fly_genotype,
                       'genotype_nickname':genotype_nickname,
                       'head_fixed':head_fixed}
-
-        meta_pub.publish(cPickle.dumps(metadata))
+                      
+        #meta_pub.publish(cPickle.dumps(metadata))
+        meta_pub.publish(str(metadata))
 
         ###################################################################################
 
@@ -216,21 +249,28 @@ if __name__ == '__main__':
         t0 = time.time()
         ctrl.stop()
 
-        params = get_exp_param ()
-
-        for t in range(params['number_of_trials']):
+        for t in range(number_of_trials):
 
             rospy.logwarn(t)
 
             trial_params = get_trial_params (params, t)
 
-            if trial_params['type'] == 'yaw_right_open_loop':
+            if trial_params['type'] == 'yaw_open_loop':
 
                   duration = trial_params['duration']
                   gain_x = trial_params['gain_x']
                   gain_y = trial_params['gain_y']
 
                   exc_ol_yaw_right (duration,gain_x,gain_y,0,0,ch=0)
+
+            elif trial_params['type'] == 'yaw_right_open_loop':
+
+                  duration = trial_params['duration']
+                  gain_x = trial_params['gain_x']
+                  gain_y = trial_params['gain_y']
+
+                  exc_ol_yaw_right (duration,gain_x,gain_y,0,0,ch=0)
+
 
             elif trial_params['type'] == 'yaw_left_open_loop':
 
@@ -269,6 +309,33 @@ if __name__ == '__main__':
 
 
         print (time.time()-t0)
+        
+        #check for coordinates
+        rospy.wait_for_service('/live_viewer_left/RefFrameServer')
+        get_ref_frame_left = rospy.ServiceProxy('/live_viewer_left/RefFrameServer', SrvRefFrame)
+        rospy.wait_for_service('/live_viewer_right/RefFrameServer')
+        get_ref_frame_right = rospy.ServiceProxy('/live_viewer_right/RefFrameServer', SrvRefFrame)
 
+        #publish coordinates
+        header = Header(stamp=rospy.Time.now())
+        left_frame_pub.publish(header=header, p=get_ref_frame_left().p,
+                                              a1=get_ref_frame_left().a1,
+                                              a2=get_ref_frame_left().a2,
+                                              A=get_ref_frame_left().A,
+                                              A_inv=get_ref_frame_left().A_inv,
+                                              components=get_ref_frame_left().components)
+                                              
+        #publish coordinates
+        header = Header(stamp=rospy.Time.now())
+        right_frame_pub.publish(header=header,p=get_ref_frame_right().p,
+                                              a1=get_ref_frame_right().a1,
+                                              a2=get_ref_frame_right().a2,
+                                              A=get_ref_frame_right().A,
+                                              A_inv=get_ref_frame_right().A_inv,
+                                              components=get_ref_frame_right().components)
+                                              
+        rospy.logwarn('published coordinates')
+        
+        
     except rospy.ROSInterruptException:
         print ('exception')

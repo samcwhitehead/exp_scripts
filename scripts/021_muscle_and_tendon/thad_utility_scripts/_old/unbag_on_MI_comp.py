@@ -46,8 +46,7 @@ import numpy as np
 FLY_DB_PATH = '/media/imager/DataExternal/FlyDB'
 # FLY_DB_PATH = '/media/sam/SamData/FlyDB'
 
-FLIES = None # list of flies to analyze. If None, look for command line input
-
+FLIES = None  # list of flies to analyze. If None, look for command line input
 
 ################################################################################################
 ########################### DEFINE CONVERTER CLASS #############################################
@@ -81,46 +80,43 @@ class BagToHDF5:
         self.exp_msg_topic_names = ['/exp_scripts/exp_state',
                                     '/exp_scripts/exp_block']
         self.metadata_topic_names = ['/exp_scripts/exp_metadata']
-        # self.rframe_topic_names = ['/LogRefFrame']
         self.rframe_topic_names = ['/live_viewer_left/LogRefFrame',
                                    '/live_viewer_left/ModelViewFrame',
                                    '/live_viewer_right/LogRefFrame',
                                    '/live_viewer_right/ModelViewFrame']
-
-        viewer_name = 'live_viewer'  # 'unmixer' or 'live_viewer'
-        self.unmixer_topic_names = ['_left/b1',
-                                     '_left/b2',
-                                     '_left/b3',
-                                     '_left/bkg',
-                                     '_left/hg1',
-                                     '_left/hg2',
-                                     '_left/hg3',
-                                     '_left/hg4',
-                                     '_left/i1',
-                                     '_left/i2',
-                                     '_left/iii1',
-                                     '_left/iii24',
-                                     '_left/iii3',
-                                     '_left/nm',
-                                     '_left/pr',
-                                     '_left/tpd',
-                                     '_right/b1',
-                                     '_right/b2',
-                                     '_right/b3',
-                                     '_right/bkg',
-                                     '_right/hg1',
-                                     '_right/hg2',
-                                     '_right/hg3',
-                                     '_right/hg4',
-                                     '_right/i1',
-                                     '_right/i2',
-                                     '_right/iii1',
-                                     '_right/iii24',
-                                     '_right/iii3',
-                                     '_right/nm',
-                                     '_right/pr',
-                                     '_right/tpd']
-        self.unmixer_topic_names = [('/' + viewer_name + tn) for tn in self.unmixer_topic_names]
+        self.live_viewer_topic_names =  ['/live_viewer_left/b1',
+                                     '/live_viewer_left/b2',
+                                     '/live_viewer_left/b3',
+                                     '/live_viewer_left/bkg',
+                                     '/live_viewer_left/hg1',
+                                     '/live_viewer_left/hg2',
+                                     '/live_viewer_left/hg3',
+                                     '/live_viewer_left/hg4',
+                                     '/live_viewer_left/i1',
+                                     '/live_viewer_left/i2',
+                                     '/live_viewer_left/iii1',
+                                     '/live_viewer_left/iii24',
+                                     '/live_viewer_left/iii3',
+                                     '/live_viewer_left/nm',
+                                     '/live_viewer_left/pr',
+                                     '/live_viewer_left/tpd',
+                                     '/live_viewer_right/b1',
+                                     '/live_viewer_right/b2',
+                                     '/live_viewer_right/b3',
+                                     '/live_viewer_right/bkg',
+                                     '/live_viewer_right/hg1',
+                                     '/live_viewer_right/hg2',
+                                     '/live_viewer_right/hg3',
+                                     '/live_viewer_right/hg4',
+                                     '/live_viewer_right/i1',
+                                     '/live_viewer_right/i2',
+                                     '/live_viewer_right/iii1',
+                                     '/live_viewer_right/iii24',
+                                     '/live_viewer_right/iii3',
+                                     '/live_viewer_right/nm',
+                                     '/live_viewer_right/pr',
+                                     '/live_viewer_right/tpd',
+                                     ]
 
     # ----------------------------------------------------------------------
     def set_fly_num(self, fly_num):
@@ -152,7 +148,7 @@ class BagToHDF5:
         self.fly_path = os.path.normpath(self.fly_db_path)
 
         # get corresponding bag and hdf5 filenames
-        self.get_file_paths(bagfile=self.fly_id)
+        self.get_file_paths()
         
     # ----------------------------------------------------------------------
     def get_file_paths(self, bagfile=None):
@@ -177,11 +173,7 @@ class BagToHDF5:
                 bagfile_name = file_list[0]
         else:
             bagfile_name = bagfile
-        
-        # make sure we have file extension (ideally we can enter in filename without ext)
-        if not bagfile_name.endswith('.bag'):
-            bagfile_name += '.bag'
-            
+
         # load bag file
         bag_path_full = os.path.normpath(os.path.join(self.fly_path, bagfile_name))
         if not os.path.exists(bag_path_full):
@@ -221,7 +213,6 @@ class BagToHDF5:
         # close files
         self.inbag.close()
         # self.h5f.close()
-
     # ----------------------------------------------------------------------
     def read_kinefly_data(self, topic_name):
         """
@@ -308,9 +299,9 @@ class BagToHDF5:
             h5f.create_dataset('ledpanels_panels_arg6', data=panels_arg6)
 
     # ----------------------------------------------------------------------
-    def read_muscle_unmixer_data(self, topic_name):
+    def read_muscle_live_viewer_data(self, topic_name):
         """
-        read muscle unmixer data
+        read muscle live_viewer data
 
         """
         # make sure we have a valid fly number entered
@@ -318,7 +309,7 @@ class BagToHDF5:
             print('No valid bag file selected -- stopping')
             return
 
-        # read a given muscle unmixer message from bag file
+        # read a given muscle live_viewer message from bag file
         ros_tstamps = [msg[2].to_time() for msg in self.inbag.read_messages(topics=topic_name)]
         tstamps = [msg[1].header.stamp.to_time() for msg in self.inbag.read_messages(topics=topic_name)]
         seq = [msg[1].header.seq for msg in self.inbag.read_messages(topics=topic_name)]
@@ -328,20 +319,20 @@ class BagToHDF5:
         # write muscle messages to hdf5
         print('writing %s data for %s' % (topic_name, self.fly_id_str))
         with h5py.File(self.h5f, 'a') as h5f:
-            h5f.create_dataset(str(topic_name[1:]) + '/muscleunmixer_ros_tstamps', data=ros_tstamps)
-            h5f.create_dataset(str(topic_name[1:]) + '/muscleunmixer_tstamps', data=tstamps)
-            h5f.create_dataset(str(topic_name[1:]) + '/muscleunmixer_seq', data=seq)
-            h5f.create_dataset(str(topic_name[1:]) + '/muscleunmixer_value', data=value)
-            h5f.create_dataset(str(topic_name[1:]) + '/muscleunmixer_muscle', data=muscle)
+            h5f.create_dataset(str(topic_name[1:]) + '/musclelive_viewer_ros_tstamps', data=ros_tstamps)
+            h5f.create_dataset(str(topic_name[1:]) + '/musclelive_viewer_tstamps', data=tstamps)
+            h5f.create_dataset(str(topic_name[1:]) + '/musclelive_viewer_seq', data=seq)
+            h5f.create_dataset(str(topic_name[1:]) + '/musclelive_viewer_value', data=value)
+            h5f.create_dataset(str(topic_name[1:]) + '/musclelive_viewer_muscle', data=muscle)
 
     # ----------------------------------------------------------------------
-    def read_muscle_unmixer_data_all(self):
+    def read_muscle_live_viewer_data_all(self):
         """
-        read ALL muscle unmixer data
+        read ALL muscle live_viewer data
 
         """
-        for topic_name in self.unmixer_topic_names:
-            self.read_muscle_unmixer_data(topic_name)
+        for topic_name in self.live_viewer_topic_names:
+            self.read_muscle_live_viewer_data(topic_name)
 
     # ----------------------------------------------------------------------
     def read_daq_phidget_data(self, topic_name):
@@ -412,16 +403,12 @@ class BagToHDF5:
 
         # read metadata messages
         metadata_msgs = [(topic, msg, t) for topic, msg, t in self.inbag.read_messages(topics=topic_name)]
-        if len(metadata_msgs) < 1:
-            print('No meta data saved -- skipping')
-            return
-        
+
         # unpickle metadata and read out entries
         mtd = cPickle.loads(str(metadata_msgs[0][1].data))
         mtd_keys = ['git_SHA', 'exp_description', 'fly_genotype', 'fly_genotype', 'genotype_nickname']
 
         # write entries to text files
-        print('writing %s data for %s' % (topic_name, self.fly_id_str))
         for key in mtd_keys:
             try:
                 with open(os.path.join(self.fly_path, '%s%s.txt' % (key, file_suffix)), 'wt') as f:
@@ -519,59 +506,58 @@ class BagToHDF5:
         
         # write reference frame data to SEPARATE hdf5
         # *** NB: need to update this to save left and right side, eventually
-        save_name = [s for s in topic_name.split('/') if not s == ""][0] + file_suffix + '_rframe_fits.hdf5'
+        save_name = '_'.join([s for s in topic_name.split('/') if not s == ""]) + file_suffix + '.hdf5'
         save_path = os.path.normpath(os.path.join(self.fly_path, save_name))
-        sub_topic = [s for s in topic_name.split('/') if not s == ""][-1]
         
         print('writing %s data for %s' % (topic_name, self.fly_id_str))
         with h5py.File(save_path, 'a') as h5f:
-            h5f.create_dataset('/%s/ros_tstamps'%(sub_topic), data=ros_tstamps)
-            h5f.create_dataset('/%s/components'%(sub_topic), data=ref_frame_components)
-            h5f.create_dataset('/%s/p'%(sub_topic), data=np.array(ref_frame_p))
-            h5f.create_dataset('/%s/a1'%(sub_topic), data=np.array(ref_frame_a1))
-            h5f.create_dataset('/%s/a2'%(sub_topic), data=np.array(ref_frame_a2))
-            h5f.create_dataset('/%s/A'%(sub_topic), data=np.array(ref_frame_A))
-            h5f.create_dataset('/%s/Ainv'%(sub_topic), data=np.array(ref_frame_A_inv))
+            h5f.create_dataset('rframe_ros_tstamps', data=ros_tstamps)
+            h5f.create_dataset('ref_frame_components', data=ref_frame_components)
+            h5f.create_dataset('ref_frame_p', data=np.array(ref_frame_p))
+            h5f.create_dataset('ref_frame_a1', data=np.array(ref_frame_a1))
+            h5f.create_dataset('ref_frame_a2', data=np.array(ref_frame_a2))
+            h5f.create_dataset('ref_frame_A', data=np.array(ref_frame_A))
+            h5f.create_dataset('ref_frame_A_inv', data=np.array(ref_frame_A_inv))
       
     # --------------------------------------------------------------------------------
     def do_conversion_all(self):
         """
         function to execute the various read/write functions for a given file
         NB: can edit as needed/demands for different data types change
-        """
+        """     
+#        # read/write muscle reference frame info
+#        for topic in self.rframe_topic_names:
+#            self.read_rframe_data(topic)
+
+#        # read/write kinefly data
+#        for topic in self.kinefly_topic_names:
+#            self.read_kinefly_data(topic)
+
+#        # read/write led panel data
+#        for topic in self.led_panel_topic_names:
+#            self.read_ledpanels_data(topic)
+
+#        # read/write daq phidget data
+#        for topic in self.daq_phidget_topic_names:
+#            self.read_daq_phidget_data(topic)
+#        
+#        # read/write experiment 'state' messages like 'exp_state' and 'exp_block'
+#        for topic in self.exp_msg_topic_names:
+#            self.read_general_msg_data(topic)
+
+#        # read/write muscle data
+#        for topic in self.live_viewer_topic_names:
+#            self.read_muscle_live_viewer_data(topic)
+#        
+#        # read/write metadata. NB: this will be to separate files
+#        for topic in self.metadata_topic_names:
+#            self.read_metadata(topic_name=topic)
+
         # read/write camera data. NB: this will be to separate files
         for topic in self.cam_topic_names:
             self.read_cam_data(topic)
-           
-        # read/write muscle reference frame info
-        for topic in self.rframe_topic_names:
-            self.read_rframe_data(topic)
-
-        # read/write kinefly data
-        for topic in self.kinefly_topic_names:
-            self.read_kinefly_data(topic)
-
-        # read/write led panel data
-        for topic in self.led_panel_topic_names:
-            self.read_ledpanels_data(topic)
-
-        # read/write daq phidget data
-        for topic in self.daq_phidget_topic_names:
-            self.read_daq_phidget_data(topic)
-        
-        # read/write experiment 'state' messages like 'exp_state' and 'exp_block'
-        for topic in self.exp_msg_topic_names:
-            self.read_general_msg_data(topic)
-
-        # read/write muscle data
-        for topic in self.unmixer_topic_names:
-            self.read_muscle_unmixer_data(topic)
-        
-        # read/write metadata. NB: this will be to separate files
-        for topic in self.metadata_topic_names:
-            self.read_metadata(topic_name=topic)
-
-
+            
+            
 ################################################################################################
 ########################### RUN SCRIPT #########################################################
 ################################################################################################
@@ -585,13 +571,10 @@ if __name__ == '__main__':
     # create instance of converter object
     myBagToHDF5 = BagToHDF5(fly_db_path=FLY_DB_PATH)
 
-        # read out all data for each fly
+    # read out all data for each fly
     for fly in flies:
         # make sure we're looking at current fly
-        if isinstance(fly, int):
-            myBagToHDF5.set_fly_num(fly)
-        else:
-            myBagToHDF5.set_fly_fn(fly)
+        myBagToHDF5.set_fly_num(fly)
 
         # grab data out
         myBagToHDF5.do_conversion_all()

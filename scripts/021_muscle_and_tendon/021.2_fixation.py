@@ -114,7 +114,7 @@ if __name__ == '__main__':
         
         # ----------------------------------------------------------------------
         # get left and right reference frames
-        # rospy.wait_for_service('/unmixer_left/RefFrameServer')
+        # rospy.wait_for_service('/unmixer_left/RefFrameServer')  # OUT OF DATE -- using live_viewer_(side) now
         # rospy.wait_for_service('/unmixer_right/RefFrameServer')
         
         time.sleep(1) # wait for all the publishers to come online
@@ -122,14 +122,14 @@ if __name__ == '__main__':
         # ----------------------------------------------------------------------
         # save metadata
         try:
-            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
+            get_ref_frame_left = rospy.ServiceProxy('/live_viewer_left/RefFrameServer', SrvRefFrame)
             print(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
-            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
+            get_ref_frame_right = rospy.ServiceProxy('/live_viewer_right/RefFrameServer', SrvRefFrame)
             print(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)

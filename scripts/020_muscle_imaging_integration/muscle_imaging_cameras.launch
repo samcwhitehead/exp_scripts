@@ -46,8 +46,8 @@
       <!--param name="image_format_roi_height" value="648"/-->
       <param name="image_format_x_offset" value="0" />
       <param name="image_format_y_offset" value="0" />
-      <param name="image_format_x_binning" value="4" />
-      <param name="image_format_y_binning" value="4" />
+      <param name="image_format_x_binning" value="12" />
+      <param name="image_format_y_binning" value="12" />
       <param name="image_format_x_decimation" value="1" />
       <param name="image_format_y_decimation" value="1" />
       <param name="image_format_color_coding" value="Mono8" />
@@ -95,8 +95,8 @@
       <!--param name="image_format_roi_height" value="122"/-->
       <param name="image_format_x_offset" value="0" />
       <param name="image_format_y_offset" value="0" />
-      <param name="image_format_x_binning" value="4" />
-      <param name="image_format_y_binning" value="4" />
+      <param name="image_format_x_binning" value="12" />
+      <param name="image_format_y_binning" value="12" />
       <param name="image_format_x_decimation" value="1" />
       <param name="image_format_y_decimation" value="1" />
       <param name="image_format_color_coding" value="Mono8" />

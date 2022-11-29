@@ -30,45 +30,49 @@
             /exp_scripts/exp_state 
             /exp_scripts/exp_metadata
             /exp_scripts/exp_block
+            /exp_scripts/right_RefFrameServer
+            /exp_scripts/left_RefFrameServer
             /kinefly/command 
             /kinefly/flystate 
             /kinefly/flystate2phidgetsanalog/command
-            /ModelViewFrame
-            /LogRefFrame
-            /unmixer_left/b1
-            /unmixer_left/b2
-            /unmixer_left/b3
-            /unmixer_left/bkg
-            /unmixer_left/hg1
-            /unmixer_left/hg2
-            /unmixer_left/hg3
-            /unmixer_left/hg4
-            /unmixer_left/i1
-            /unmixer_left/i2
-            /unmixer_left/iii1
-            /unmixer_left/iii24
-            /unmixer_left/iii3
-            /unmixer_left/image_output
-            /unmixer_left/nm
-            /unmixer_left/pr
-            /unmixer_left/tpd
-            /unmixer_right/b1
-            /unmixer_right/b2
-            /unmixer_right/b3
-            /unmixer_right/bkg
-            /unmixer_right/hg1
-            /unmixer_right/hg2
-            /unmixer_right/hg3
-            /unmixer_right/hg4
-            /unmixer_right/i1
-            /unmixer_right/i2
-            /unmixer_right/iii1
-            /unmixer_right/iii24
-            /unmixer_right/iii3
-            /unmixer_right/image_output
-            /unmixer_right/nm
-            /unmixer_right/pr
-            /unmixer_right/tpd'
+            /live_viewer_left/LogRefFrame
+            /live_viewer_left/ModelViewFrame
+            /live_viewer_left/b1
+            /live_viewer_left/b2
+            /live_viewer_left/b3
+            /live_viewer_left/bkg
+            /live_viewer_left/hg1
+            /live_viewer_left/hg2
+            /live_viewer_left/hg3
+            /live_viewer_left/hg4
+            /live_viewer_left/i1
+            /live_viewer_left/i2
+            /live_viewer_left/iii1
+            /live_viewer_left/iii24
+            /live_viewer_left/iii3
+            /live_viewer_left/image_output
+            /live_viewer_left/nm
+            /live_viewer_left/pr
+            /live_viewer_left/tpd
+            /live_viewer_right/LogRefFrame
+            /live_viewer_right/ModelViewFrame
+            /live_viewer_right/b1
+            /live_viewer_right/b2
+            /live_viewer_right/b3
+            /live_viewer_right/bkg
+            /live_viewer_right/hg1
+            /live_viewer_right/hg2
+            /live_viewer_right/hg3
+            /live_viewer_right/hg4
+            /live_viewer_right/i1
+            /live_viewer_right/i2
+            /live_viewer_right/iii1
+            /live_viewer_right/iii24
+            /live_viewer_right/iii3
+            /live_viewer_right/image_output
+            /live_viewer_right/nm
+            /live_viewer_right/pr
+            /live_viewer_right/tpd'
         >
         </node>
     </group>
@@ -93,28 +97,29 @@
             /exp_scripts/exp_state 
             /exp_scripts/exp_metadata
             /exp_scripts/exp_block
+            /exp_scripts/left_RefFrameServer
             /kinefly/command 
             /kinefly/flystate 
             /kinefly/flystate2phidgetsanalog/command
-            /ModelViewFrame
-            /LogRefFrame
-            /unmixer_left/b1
-            /unmixer_left/b2
-            /unmixer_left/b3
-            /unmixer_left/bkg
-            /unmixer_left/hg1
-            /unmixer_left/hg2
-            /unmixer_left/hg3
-            /unmixer_left/hg4
-            /unmixer_left/i1
-            /unmixer_left/i2
-            /unmixer_left/iii1
-            /unmixer_left/iii24
-            /unmixer_left/iii3
-            /unmixer_left/image_output
-            /unmixer_left/nm
-            /unmixer_left/pr
-            /unmixer_left/tpd'
+            /live_viewer_left/LogRefFrame
+            /live_viewer_left/ModelViewFrame
+            /live_viewer_left/b1
+            /live_viewer_left/b2
+            /live_viewer_left/b3
+            /live_viewer_left/bkg
+            /live_viewer_left/hg1
+            /live_viewer_left/hg2
+            /live_viewer_left/hg3
+            /live_viewer_left/hg4
+            /live_viewer_left/i1
+            /live_viewer_left/i2
+            /live_viewer_left/iii1
+            /live_viewer_left/iii24
+            /live_viewer_left/iii3
+            /live_viewer_left/image_output
+            /live_viewer_left/nm
+            /live_viewer_left/pr
+            /live_viewer_left/tpd
         >
         </node>
     </group>
@@ -139,28 +144,29 @@
             /exp_scripts/exp_state 
             /exp_scripts/exp_metadata
             /exp_scripts/exp_block
+            /exp_scripts/right_RefFrameServer
             /kinefly/command 
             /kinefly/flystate 
             /kinefly/flystate2phidgetsanalog/command
-            /ModelViewFrame
-            /LogRefFrame
-            /unmixer_right/b1
-            /unmixer_right/b2
-            /unmixer_right/b3
-            /unmixer_right/bkg
-            /unmixer_right/hg1
-            /unmixer_right/hg2
-            /unmixer_right/hg3
-            /unmixer_right/hg4
-            /unmixer_right/i1
-            /unmixer_right/i2
-            /unmixer_right/iii1
-            /unmixer_right/iii24
-            /unmixer_right/iii3
-            /unmixer_right/image_output
-            /unmixer_right/nm
-            /unmixer_right/pr
-            /unmixer_right/tpd'
+            /live_viewer_right/LogRefFrame
+            /live_viewer_right/ModelViewFrame
+            /live_viewer_right/b1
+            /live_viewer_right/b2
+            /live_viewer_right/b3
+            /live_viewer_right/bkg
+            /live_viewer_right/hg1
+            /live_viewer_right/hg2
+            /live_viewer_right/hg3
+            /live_viewer_right/hg4
+            /live_viewer_right/i1
+            /live_viewer_right/i2
+            /live_viewer_right/iii1
+            /live_viewer_right/iii24
+            /live_viewer_right/iii3
+            /live_viewer_right/image_output
+            /live_viewer_right/nm
+            /live_viewer_right/pr
+            /live_viewer_right/tpd'
         >
         </node>
     </group>
