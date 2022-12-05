@@ -14,6 +14,12 @@
         <arg name="case" value="$(arg case)" />
     </include>
 
+    <!--Set enabled/disabled state for muscle imaging cameras -->
+    <!-- node name="camera_serial" pkg="exp_scripts" type="set_camera_states.py" required="true" / -->
+	    <!-- pass argument case: 'both' | 'right' | 'left' -->
+        <arg name="case" value="$(arg case)" />
+    </include>
+    
       <!-- ========================================================== -->
 	<!-- Launch Kinefly                                    	    -->
       <!-- ========================================================== -->

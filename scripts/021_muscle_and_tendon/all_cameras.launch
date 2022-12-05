@@ -3,10 +3,15 @@
 	<!-- Starts all cameras, including kinefly and muscle imaging cams      --> 
 	<!-- NB: this is probably redundant and couold be removed               -->
 	<!-- ================================================================== -->
-
+    
+    
+	<!-- Set default value for case arguement -->
     <arg name="case" default="both" />
     
+    <!-- Start Kinefly camera -->
 	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/kinefly_camera_pg.launch' />
+	
+	<!-- Start muscle imaging camera(s) -->
 	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/muscle_imaging_cameras.launch'>
 	    <!-- pass argument case: 'both' | 'right' | 'left' -->
         <arg name="case" value="$(arg case)" />

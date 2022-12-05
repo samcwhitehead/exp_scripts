@@ -9,7 +9,9 @@ from camera_strober_serial import CameraStroberSerial
 # ------------------------------------------------------------------
 # Read in the case that we're using ('both' | 'right' | 'left')
 # ------------------------------------------------------------------
-cam_case = rospy.get_param('/%s/%s') # node_name/argsname
+NODE_NAME = 'camera_serial'
+ARG_NAME = 'case'
+cam_case = rospy.get_param('/%s/%s'%(NODE_NAME, ARG_NAME)) # node_name/argsname
 
 # -----------------------------------------
 # Execute code to enable/disable cameras
@@ -43,5 +45,8 @@ if __name__ == '__main__':
     cam_right_enabled = css.get_cam_state("right")
     cam_left_enabled = css.get_cam_state("left")
     
-    print('Right camera state: %d'%(cam_right_enabled))
-    print('Left camera state: %d'%(cam_left_enabled))
+    # print('Right camera state: %d'%(cam_right_enabled))
+    # print('Left camera state: %d'%(cam_left_enabled))
+    rospy.logwarn('Right camera state: %d'%(cam_right_enabled))
+    rospy.logwarn('Left camera state: %d'%(cam_left_enabled))
+    
