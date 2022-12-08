@@ -4,21 +4,19 @@
       <!-- ========================================================== -->
     
     <arg name="case" default="both" />
-
+    <param name="cam_case" value="$(arg case)" />
+    
       <!-- ========================================================== -->
 	<!-- Launch the cameras                               	    -->
       <!-- ========================================================== -->
 
-	<include file='/home/imager/catkin/src/exp_scripts/scripts/021_muscle_and_tendon/all_cameras.launch'>
+	<include file='$(find exp_scripts)/scripts/021_muscle_and_tendon/all_cameras.launch'>
 	    <!-- pass argument case: 'both' | 'right' | 'left' -->
         <arg name="case" value="$(arg case)" />
     </include>
 
     <!--Set enabled/disabled state for muscle imaging cameras -->
-    <!-- node name="camera_serial" pkg="exp_scripts" type="set_camera_states.py" required="true" / -->
-	    <!-- pass argument case: 'both' | 'right' | 'left' -->
-        <arg name="case" value="$(arg case)" />
-    </include>
+    <node name="camera_serial" pkg="exp_scripts" type="set_camera_states.py" />
     
       <!-- ========================================================== -->
 	<!-- Launch Kinefly                                    	    -->

@@ -9,8 +9,6 @@ SystemState::SystemState() { };
 // ----------------------------------------------------------------------------
 
 void SystemState::initialize() {
-
-    Serial.begin(9600);
     pinMode(CAM_LEFT_TRIG_PIN, OUTPUT);
     pinMode(CAM_RIGHT_TRIG_PIN, OUTPUT);
     pinMode(LED_PIN, OUTPUT);  
@@ -99,7 +97,7 @@ void SystemState::process_messages()
             uint8_t cmd_num = receiver_.readInt(0);
             uint8_t cmd_val = receiver_.readInt(1);
             handle_message(cmd_num, cmd_val);
-            receiver_.reset();  // Added by SCW, 12/2/2022
+            receiver_.reset();
         }
     }
 }
@@ -110,10 +108,11 @@ void SystemState::handle_message(uint8_t cmd_num, uint8_t cmd_val) {
 
         case CMD_SET_WB_PERCENT:
             wb_trig_percent_ = constrain(cmd_val,0,100);
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << wb_trig_percent_ << "}" << endl;
             break;
 
         case CMD_GET_WB_PERCENT:
-            Serial << wb_trig_percent_ << endl;
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << wb_trig_percent_ << "}" << endl;
             break;
 
         case CMD_CAM_ENABLED:
@@ -125,7 +124,7 @@ void SystemState::handle_message(uint8_t cmd_num, uint8_t cmd_val) {
                 cam_right_enabled_ = true;
                 pinMode(CAM_RIGHT_TRIG_PIN, OUTPUT);
             }
-
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cmd_val << "}" << endl;
             break;
 
         case CMD_CAM_DISABLED:
@@ -137,21 +136,17 @@ void SystemState::handle_message(uint8_t cmd_num, uint8_t cmd_val) {
                 cam_right_enabled_ = false;
                 pinMode(CAM_RIGHT_TRIG_PIN, INPUT);
             }
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cmd_val << "}" << endl;
             break;
 
         case CMD_GET_CAM_ENABLE:
             if (cmd_val == CAMERA_LEFT) {
-                Serial << cam_left_enabled_ << endl;
+                Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cam_left_enabled_ << "}" << endl;
             }
             if (cmd_val == CAMERA_RIGHT) {
-                Serial << cam_right_enabled_ << endl;
+                Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cam_right_enabled_ << "}" << endl;
             }
             break;
-            
-        // Added by SCW, 12/2/2022:
-        default:
-            break;
-
     }
 }
 

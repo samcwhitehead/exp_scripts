@@ -13,7 +13,9 @@ uint32_t AveragingBuffer::average() {
     for (uint32_t i=0; i<buffer_.size(); i++) {
         average += buffer_[i];
     }
-    average /= buffer_.size();
+    if (buffer_.size() > 0) {
+        average /= buffer_.size();
+    }
     return average;
 }
 

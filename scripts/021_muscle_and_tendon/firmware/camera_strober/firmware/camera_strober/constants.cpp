@@ -15,5 +15,5 @@ const uint8_t CAM_RIGHT_TRIG_PIN = 7;
 const uint8_t LED_PIN = 3;
 
 // Camera ids
-const uint8_t CAMERA_LEFT  = 1;
-const uint8_t CAMERA_RIGHT = 2;
+const uint8_t CAMERA_LEFT  = 2;
+const uint8_t CAMERA_RIGHT = 1;

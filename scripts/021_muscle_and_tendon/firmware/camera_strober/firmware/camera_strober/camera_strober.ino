@@ -1,5 +1,6 @@
 #include "constants.h"
 #include "system_state.h"
+#include "Streaming.h"
 
 
 SystemState system_state;
@@ -12,7 +13,7 @@ void setup() {
 }
 
 void loop() {
-    system_state.process_messages();  // Added by SCW, 12/2/2022
+    system_state.process_messages();
     system_state.update_on_loop();
 }
 
