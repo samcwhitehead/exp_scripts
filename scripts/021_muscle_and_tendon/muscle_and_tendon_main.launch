@@ -4,7 +4,7 @@
       <!-- ========================================================== -->
     
     <arg name="case" default="both" />
-    <param name="cam_case" value="$(arg case)" />
+    <!-- <param name="cam_case" value="$(arg case)" /> -->
     
       <!-- ========================================================== -->
 	<!-- Launch the cameras                               	    -->
@@ -15,8 +15,6 @@
         <arg name="case" value="$(arg case)" />
     </include>
 
-    <!--Set enabled/disabled state for muscle imaging cameras -->
-    <node name="camera_serial" pkg="exp_scripts" type="set_camera_states.py" />
     
       <!-- ========================================================== -->
 	<!-- Launch Kinefly                                    	    -->
