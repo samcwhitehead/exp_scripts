@@ -40,10 +40,10 @@ Trying slightly older flies. Brighter tdTomato?
 
 """
 
-fly_dob = '08.18.2022'
+fly_dob = '12.09.2022'
 
-fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
-genotype_nickname = 'C82/HCS'
+fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP7f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
+genotype_nickname = 'hinge_and_muscle/HCS'
 
 # fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/Mkrs"""
 # genotype_nickname = 'C82/HCS-ctrl'
