@@ -36,11 +36,11 @@ Legs cut off; head NOT fixed (for now)
 
 In this particular experiment paradigm, looking at flight start and stop
 
-Trying slightly older flies. Brighter tdTomato?
+First attempt with flies I made that have GCaMP7f (old ones had 6f)
 
 """
 
-fly_dob = '12.09.2022'
+fly_dob = '12.06.2022'
 
 fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP7f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
 genotype_nickname = 'hinge_and_muscle/HCS'
