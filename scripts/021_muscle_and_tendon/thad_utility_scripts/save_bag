@@ -3,7 +3,7 @@
 import os
 import sys
 import shutil
-FLYDB_PATH = '/media/imager/FlyDataD/FlyDB'
+FLYDB_PATH = '/media/imager/DataExternal/FlyDB'
 BAG_PATH = '/home/imager/bagfiles'
 
 def main():
