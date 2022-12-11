@@ -36,17 +36,16 @@ Legs cut off; head NOT fixed (for now)
 
 In this particular experiment paradigm, looking at flight start and stop
 
-First attempt with flies I made that have GCaMP7f (old ones had 6f)
-
+Testing flies without GCaMP expression in the muscle but hopefully a brighter fluorophore in the tendons
 """
 
-fly_dob = '12.06.2022'
+fly_dob = '12.08.2022'
 
-fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP7f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
-genotype_nickname = 'hinge_and_muscle/HCS'
+fly_genotype = """w[1118]/w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
+genotype_nickname = 'G84/RFP'
 
-# fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/Mkrs"""
-# genotype_nickname = 'C82/HCS-ctrl'
+# fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP7f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
+# genotype_nickname = 'hinge_and_muscle/HCS'
 
 head_fixed = False 
 legs_cut = True

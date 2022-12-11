@@ -581,7 +581,8 @@ if __name__ == '__main__':
         flies = [int(x) for x in sys.argv[1:]]
     else:
         flies = FLIES
-
+    
+    print(flies)
     # create instance of converter object
     myBagToHDF5 = BagToHDF5(fly_db_path=FLY_DB_PATH)
 
