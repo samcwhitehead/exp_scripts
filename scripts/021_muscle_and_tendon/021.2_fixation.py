@@ -61,7 +61,7 @@ print genotype_nickname
 CONDITION_DURATION = 20.0
 
 # how many trials per run
-NUM_REPS = 6
+NUM_REPS = 0
 
 #pattern playback rate 240 positions for 360deg
 CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
