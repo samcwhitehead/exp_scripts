@@ -124,7 +124,7 @@ if __name__ == '__main__':
         # ----------------------------------------------------------------------
         # save metadata
         try:
-            get_ref_frame_left = rospy.ServiceProxy('/%s_left/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame)
+            get_ref_frame_left = rospy.ServiceProxy('/%s_left/LogRefFrame'%(UNMIXER_NAME), SrvRefFrame)
             print(get_ref_frame_left())
             rospy.logwarn(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
-            get_ref_frame_right = rospy.ServiceProxy('/%s_right/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame)
+            get_ref_frame_right = rospy.ServiceProxy('/%s_right/LogRefFrame'%(UNMIXER_NAME), SrvRefFrame)
             print(get_ref_frame_right())
             rospy.logwarn(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
