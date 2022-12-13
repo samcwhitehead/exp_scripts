@@ -69,6 +69,8 @@ CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
 
+# name of unmixer being used (Thad's or Johan's)
+UNMIXER_NAME = 'unmixer'  # 'unmixer' or 'live_viewer' 
 ############################################################################
 ########################### Initialize Experiment ##########################
 ############################################################################
@@ -122,15 +124,17 @@ if __name__ == '__main__':
         # ----------------------------------------------------------------------
         # save metadata
         try:
-            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
+            get_ref_frame_left = rospy.ServiceProxy('/%s_left/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame)
             print(get_ref_frame_left())
+            rospy.logwarn(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
-            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
+            get_ref_frame_right = rospy.ServiceProxy('/%s_right/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame)
             print(get_ref_frame_right())
+            rospy.logwarn(get_ref_frame_right())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
             get_ref_frame_right = lambda *args, **kwargs: None
