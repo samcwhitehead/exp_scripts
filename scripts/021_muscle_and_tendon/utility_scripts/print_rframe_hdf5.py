@@ -29,7 +29,10 @@ def print_rframe(fly_num):
             rframe_dict = dict()
             with h5py.File(os.path.join(fly_path, rframe_fn), 'r') as h5f:
                 for key in h5f[GROUP_KEY].keys():
-                    rframe_dict[key] = h5f[GROUP_KEY][key][()][0]
+                    try:
+                        rframe_dict[key] = h5f[GROUP_KEY][key][()][0]
+                    except IndexError as err:
+                        print('Error with reading %s, %s: %s' %(rframe_fn, key, err))
             
             save_path = os.path.join(fly_path, 'ca_camera_%s_rframe_fits.cpkl'%(side))
             with open(save_path, 'wb') as fp:
