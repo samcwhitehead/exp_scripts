@@ -46,28 +46,14 @@
       
       <group unless="$(eval case == 'left')">
           <param name="/live_viewer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
-          <node name="live_viewer_right" pkg="muscle_imager" type="live_viewer.py" />
+          <node name="live_viewer_right" pkg="muscle_imager" type="live_viewer_johan.py" />
       </group>
       
       <group unless="$(eval case == 'right')">
          <param name="/live_viewer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-         <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer.py" />
+         <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer_johan.py" />
       </group>
-      
-      <!-- ========================================================== -->
-      <!-- Launch the signal umixer                                   -->
-      <!-- ========================================================== -->
-      
-      <group unless="$(eval case == 'left')">
-          <param name="/unmixer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
-          <node name="unmixer_right" pkg="muscle_imager"  type="unmixer.py" />
-      </group>
-      
-      <group unless="$(eval case == 'right')">
-          <param name="/unmixer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-          <node name="unmixer_left" pkg="muscle_imager"  type="unmixer.py" />
-      </group>
-
+  
       <!-- ========================================================== -->
       <!-- Launch image blur node.                                    -->
       <!-- ========================================================== -->
