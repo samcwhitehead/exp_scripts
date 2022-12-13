@@ -7,11 +7,11 @@ import h5py
 import cPickle
 
 FLYDB_PATH = '/media/imager/DataExternal/FlyDB'
-FLIES = [26]
+FLIES = [27]
 SIDE = 'left'
 GROUP_KEY = 'LogRefFrame'
 NODE_NAME = 'unmixer'  # 'live_viewer'
-SAVE_FLAG = False
+SAVE_FLAG = True
 
 def print_rframe(fly_num):
     fly_path = os.path.join(FLYDB_PATH, 'Fly%04d'%(fly_num))
