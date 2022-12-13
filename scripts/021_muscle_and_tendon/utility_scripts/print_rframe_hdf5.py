@@ -6,13 +6,14 @@ import os
 import h5py
 
 FLYDB_PATH = '/media/imager/DataExternal/FlyDB'
-FLY_NUM = 24
+FLY_NUM = 25
 SIDE = 'left'
 GROUP_KEY = 'LogRefFrame'
+NODE_NAME = 'unmixer'  # 'live_viewer'
 
 def print_rframe():
     fly_path = os.path.join(FLYDB_PATH, 'Fly%04d'%(FLY_NUM))
-    rframe_fn = 'live_viewer_%s_rframe_fits.hdf5'%(SIDE)
+    rframe_fn = '%s_%s_rframe_fits.hdf5'%(NODE_NAME, SIDE)
     
     with h5py.File(os.path.join(fly_path, rframe_fn), 'r') as h5f:
         for key in h5f[GROUP_KEY].keys():

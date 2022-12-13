@@ -82,12 +82,12 @@ class BagToHDF5:
                                     '/exp_scripts/exp_block']
         self.metadata_topic_names = ['/exp_scripts/exp_metadata']
         # self.rframe_topic_names = ['/LogRefFrame']
-        self.rframe_topic_names = ['/live_viewer_left/LogRefFrame',
-                                   '/live_viewer_left/ModelViewFrame',
-                                   '/live_viewer_right/LogRefFrame',
-                                   '/live_viewer_right/ModelViewFrame']
+        self.rframe_topic_names = ['/unmixer_left/LogRefFrame',
+                                   '/unmixer_left/ModelViewFrame',
+                                   '/unmixer_right/LogRefFrame',
+                                   '/unmixer_right/ModelViewFrame']
 
-        viewer_name = 'live_viewer'  # 'unmixer' or 'live_viewer'
+        viewer_name = 'unmixer'  # 'unmixer' or 'live_viewer'
         self.unmixer_topic_names = ['_left/b1',
                                      '_left/b2',
                                      '_left/b3',
