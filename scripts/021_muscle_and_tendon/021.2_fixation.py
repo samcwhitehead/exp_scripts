@@ -40,7 +40,7 @@ In this particular experiment paradigm, looking at flight start and stop
 Testing flies without GCaMP expression in the muscle but hopefully a brighter fluorophore in the tendons
 """
 
-fly_dob = '12.08.2022'
+fly_dob = '12.11.2022'
 
 fly_genotype = """w[1118]/w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
 genotype_nickname = 'G84/RFP'
@@ -62,7 +62,7 @@ print genotype_nickname
 CONDITION_DURATION = 20.0
 
 # how many trials per run
-NUM_REPS = 0
+NUM_REPS = 5
 
 #pattern playback rate 240 positions for 360deg
 CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
