@@ -132,24 +132,23 @@ if __name__ == '__main__':
 
         # ----------------------------------------------------------------------
         # save metadata
-        if is_rosmaster_running:
-            try:
-                get_ref_frame_left = rospy.ServiceProxy('/%s_left/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
-                print(get_ref_frame_left())
-                rospy.logwarn(get_ref_frame_left())
-            except (rospy.service.ServiceException, rospy.ROSException), e:
-                print 'LEFT camera not in use: %s'%(e)
-                rospy.logwarn('LEFT camera not in use: %s'%(e))
-                get_ref_frame_left = lambda *args, **kwargs: None
+        try:
+            get_ref_frame_left = rospy.ServiceProxy('/%s_left/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
+            print(get_ref_frame_left())
+            rospy.logwarn(get_ref_frame_left())
+        except (rospy.service.ServiceException, rospy.ROSException), e:
+            print 'LEFT camera not in use: %s'%(e)
+            rospy.logwarn('LEFT camera not in use: %s'%(e))
+            get_ref_frame_left = lambda *args, **kwargs: None
 
-            try:
-                get_ref_frame_right = rospy.ServiceProxy('/%s_right/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
-                print(get_ref_frame_right())
-                rospy.logwarn(get_ref_frame_right()) 
-            except (rospy.service.ServiceException, rospy.ROSException), e:
-                print 'RIGHT camera not in use: %s'%(e)
-                rospy.logwarn('RIGHT camera not in use: %s'%(e))
-                get_ref_frame_right = lambda *args, **kwargs: None
+        try:
+            get_ref_frame_right = rospy.ServiceProxy('/%s_right/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
+            print(get_ref_frame_right())
+            rospy.logwarn(get_ref_frame_right()) 
+        except (rospy.service.ServiceException, rospy.ROSException), e:
+            print 'RIGHT camera not in use: %s'%(e)
+            rospy.logwarn('RIGHT camera not in use: %s'%(e))
+            get_ref_frame_right = lambda *args, **kwargs: None
 
         metadata =   {'git_SHA':git_SHA,
                       'script_path':script_path,
@@ -206,7 +205,6 @@ if __name__ == '__main__':
         #################################################
 
         #publish a refrence frame as a status message to mark the end of the experiment.
-        
         print(get_ref_frame_left())
         print(get_ref_frame_right())
 
