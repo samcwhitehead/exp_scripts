@@ -58,20 +58,22 @@ print genotype_nickname
 ########################### Script Variables ##########################
 ############################################################################
 
-#Stimulus periods
+#Stimulus period duration (in seconds)
 CONDITION_DURATION = 20.0
 
 # how many trials per run
 NUM_REPS = 5
 
 #pattern playback rate 240 positions for 360deg
-CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -3  # closed loop gain(?). was previously -2. alysha had it set up to -1; Francesca to 3
 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
 
 # name of unmixer being used (Thad's or Johan's)
 UNMIXER_NAME = 'unmixer'  # 'unmixer' or 'live_viewer' 
+
+
 ############################################################################
 ########################### Initialize Experiment ##########################
 ############################################################################

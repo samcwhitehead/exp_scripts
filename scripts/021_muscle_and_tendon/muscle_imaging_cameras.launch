@@ -31,7 +31,7 @@
       <param name="exposure_auto" value="Off" />
       <param name="gain_selector" value="All" />
       <param name="auto_gain"     value="Off" />
-      <param name="gain"        value="30" />
+      <param name="gain"        value="20" />
       <param name="brightness"    value="0.0" />
       <param name="sharpening_enable" value="False" />
       <param name="auto_sharpness" value ="False" />
@@ -42,8 +42,8 @@
       <param name="enable_trigger" value="On" />
 
       <!-- Set ROI width and height -->
-      <!--param name="image_format_roi_width" value="488"/-->
-      <!--param name="image_format_roi_height" value="648"/-->
+      <param name="image_format_roi_width" value="360" />
+      <param name="image_format_roi_height" value="270" />
       <param name="image_format_x_offset" value="0" />
       <param name="image_format_y_offset" value="0" />
       <param name="image_format_x_binning" value="4" />
@@ -80,7 +80,7 @@
       <param name="exposure_auto" value="Off" />
       <param name="gain_selector" value="All" />
       <param name="auto_gain"     value="Off" />
-      <param name="gain"        value="30" />
+      <param name="gain"        value="20" />
       <param name="brightness"    value="0.0" />
       <param name="sharpening_enable" value="False" />
       <param name="auto_sharpness" value ="False" />
@@ -91,8 +91,8 @@
       <param name="enable_trigger" value="On" />
 
       <!-- Set ROI width and height -->
-      <!--param name="image_format_roi_width" value="200"/-->
-      <!--param name="image_format_roi_height" value="122"/-->
+      <param name="image_format_roi_width" value="360" />
+      <param name="image_format_roi_height" value="270" />
       <param name="image_format_x_offset" value="0" />
       <param name="image_format_y_offset" value="0" />
       <param name="image_format_x_binning" value="4" />
