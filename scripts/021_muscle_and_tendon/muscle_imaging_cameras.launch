@@ -31,7 +31,7 @@
       <param name="exposure_auto" value="Off" />
       <param name="gain_selector" value="All" />
       <param name="auto_gain"     value="Off" />
-      <param name="gain"        value="20" />
+      <param name="gain"        value="15" />
       <param name="brightness"    value="0.0" />
       <param name="sharpening_enable" value="False" />
       <param name="auto_sharpness" value ="False" />
@@ -80,7 +80,7 @@
       <param name="exposure_auto" value="Off" />
       <param name="gain_selector" value="All" />
       <param name="auto_gain"     value="Off" />
-      <param name="gain"        value="20" />
+      <param name="gain"        value="15" />
       <param name="brightness"    value="0.0" />
       <param name="sharpening_enable" value="False" />
       <param name="auto_sharpness" value ="False" />
