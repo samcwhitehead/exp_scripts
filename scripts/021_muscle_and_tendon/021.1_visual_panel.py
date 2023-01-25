@@ -37,10 +37,13 @@ In this particular experiment paradigm, looking at response to visual stimuli
 
 """
 
-fly_dob = '08.11.2022'
+fly_dob = '01.20.2023'
 
-fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
-genotype_nickname = 'C82/HCS'
+fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
+genotype_nickname = 'G84/RFP'  #  'G84/RFP'
+
+#fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
+#genotype_nickname = 'C82/HCS'
 
 # fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/Mkrs"""
 # genotype_nickname = 'C82/HCS-ctrl'
@@ -64,7 +67,7 @@ NUM_REPS = 2
 
 #pattern playback rate 240 positions for 360deg
 PLAYBACK_LEVEL = 30 # open loop playback gain(?) Hz = 90deg/sec
-CL_GAIN_X = -1  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -2  # closed loop gain(?). alysha had it set up to -1; Francesca to 3
 
 # construct the list of motion patterns we will test. Three different
 # patterns for each type of motion.
@@ -132,17 +135,21 @@ if __name__ == '__main__':
         # ----------------------------------------------------------------------
         # save metadata
         try:
-            get_ref_frame_left = rospy.ServiceProxy('/unmixer_left/RefFrameServer', SrvRefFrame)
+            get_ref_frame_left = rospy.ServiceProxy('/%s_left/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
             print(get_ref_frame_left())
+            rospy.logwarn(get_ref_frame_left())
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'LEFT camera not in use: %s'%(e)
+            rospy.logwarn('LEFT camera not in use: %s'%(e))
             get_ref_frame_left = lambda *args, **kwargs: None
 
         try:
-            get_ref_frame_right = rospy.ServiceProxy('/unmixer_right/RefFrameServer', SrvRefFrame)
+            get_ref_frame_right = rospy.ServiceProxy('/%s_right/RefFrameServer'%(UNMIXER_NAME), SrvRefFrame) 
             print(get_ref_frame_right())
+            rospy.logwarn(get_ref_frame_right()) 
         except (rospy.service.ServiceException, rospy.ROSException), e:
             print 'RIGHT camera not in use: %s'%(e)
+            rospy.logwarn('RIGHT camera not in use: %s'%(e))
             get_ref_frame_right = lambda *args, **kwargs: None
 
         metadata =   {'git_SHA':git_SHA,
@@ -239,8 +246,10 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         # print some stuff at the end to let us know we're done!
-        print 'end of experiment'
-        print (time.time()-t0)
+        rospy.logwarn('end_of_experiment')
+        rospy.logwarn(time.time()-t0)
+        # print 'end of experiment'
+        # print (time.time()-t0)
         
         turn_off_panels(ctrl)
     except rospy.ROSInterruptException:
