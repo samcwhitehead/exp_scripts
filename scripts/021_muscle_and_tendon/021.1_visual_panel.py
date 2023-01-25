@@ -190,7 +190,8 @@ if __name__ == '__main__':
                 #################################################
                 # Closed Loop
                 #################################################
-                print 'enter closed loop stripe fixation'
+                rospy.logwarn('enter closed loop stripe fixation')
+                # print 'enter closed loop stripe fixation'
 
                 # publish the type of stimulus to both blk and exp ros channels
                 blk_pub.publish('pretrial_stripe_fix')
@@ -202,7 +203,8 @@ if __name__ == '__main__':
                 #################################################
                 # Open Loop
                 #################################################
-                print 'enter open loop stimulus presentation: %s'%(condition)
+                rospy.logwarn('enter open loop stimulus presentation: %s'%(condition))
+                #print 'enter open loop stimulus presentation: %s'%(condition)
                 blk_pub.publish(condition)
 
                 # get portion of condition string WITHOUT rep number -- just corresponds to rotation type (should do this with regex...)
@@ -228,7 +230,8 @@ if __name__ == '__main__':
         #################################################
         # Closed Loop (Post trial)
         #################################################
-        print 'enter closed loop stripe fixation'
+        rospy.logwarn('enter closed loop stripe fixation')
+        #print 'enter closed loop stripe fixation'
         # publish the type of stimulus to both blk and exp ros channels
         blk_pub.publish('posttrial_stripe_fix')
         exp_pub.publish('closed_loop;gain=%s'%(CL_GAIN_X))
