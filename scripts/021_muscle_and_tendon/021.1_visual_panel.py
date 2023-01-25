@@ -82,6 +82,10 @@ PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 CONDITION_CLOSED_LOOP = 'cl_stripe'
 # EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
 
+
+# name of unmixer being used (Thad's or Johan's)
+UNMIXER_NAME = 'unmixer'  # 'unmixer' or 'live_viewer' 
+
 ############################################################################
 ########################### Initialize Experiment ##########################
 ############################################################################
