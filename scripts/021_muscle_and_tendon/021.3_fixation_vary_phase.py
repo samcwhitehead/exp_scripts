@@ -86,7 +86,8 @@ WB_TRIG_PERCENT_DEFAULT = 50
 
 # list of values to use for wingbeat phase
 REPEAT_NUM = 2  # for now, going to try to do each phase twice
-PHASE_VALS = np.linspace(0, 100, np.ceil(NUM_REPS/REPEAT_NUM), endpoint=False)
+#PHASE_VALS = np.linspace(0, 100, np.ceil(NUM_REPS/REPEAT_NUM), endpoint=False)
+PHASE_VALS = [0, 33, 50, 66]
 PHASE_LIST = REPEAT_NUM*list(PHASE_VALS)
 PHASE_LIST = np.random.permutation(PHASE_LIST)  # randomize
 # print(PHASE_LIST)
