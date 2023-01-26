@@ -220,9 +220,11 @@ if __name__ == '__main__':
         for rep in range(NUM_REPS):
             # set and log the wingbeat trig percent we're using
             css.set_wb_trig_percent(PHASE_LIST[rep])
-            
             wb_trig_perc = css.get_wb_trig_percent()
-            exp_pub.publish('closed_loop;gain=%s;wb_trig_percent=%d'%(CL_GAIN_X, PHASE_LIST[rep]))
+
+            rospy.logwarn('wingbeat trig percent set to: %d'%(wb_trig_perc))
+
+            exp_pub.publish('closed_loop;gain=%s;wb_trig_percent=%d'%(CL_GAIN_X, wb_trig_perc))
             blk_pub.publish('stripe_fix')
             
             # print a message to give an air puff (initiate flight), then allow flight for a bit
