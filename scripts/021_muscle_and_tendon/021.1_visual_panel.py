@@ -37,10 +37,13 @@ In this particular experiment paradigm, looking at response to visual stimuli
 
 """
 
-fly_dob = '01.20.2023'
+fly_dob = '01.23.2023'
 
-fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
-genotype_nickname = 'G84/RFP'  #  'G84/RFP'
+fly_genotype = """w[1118] ; +/+ ; 10XUAS-IVS-Syn21-GFP/sr[md710]"""  #  """w[1118]/w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
+genotype_nickname = 'G84/U14'  #  'G84/RFP'
+
+#fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
+#genotype_nickname = 'G84/RFP'  #  'G84/RFP'
 
 #fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
 #genotype_nickname = 'C82/HCS'

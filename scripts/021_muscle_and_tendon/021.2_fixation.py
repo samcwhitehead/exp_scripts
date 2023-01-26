@@ -37,7 +37,6 @@ Legs cut off; head NOT fixed (for now)
 
 In this particular experiment paradigm, looking at flight start and stop
 
-Want to see if, given updated camera params, we can image tendons in the red channel
 """
 
 fly_dob = '01.20.2023'
