@@ -1,6 +1,6 @@
 <launch>
 
 	<include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/kinefly_camera_pg.launch' />
-	<include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/muscle_imaging_cameras.launch' />
+	<include file='/home/imager/catkin/src/exp_scripts/scripts/020_muscle_imaging_integration/muscle_imaging_cameras_2023.launch' />
 
 </launch>
