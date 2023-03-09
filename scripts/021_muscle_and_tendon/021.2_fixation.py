@@ -39,13 +39,13 @@ In this particular experiment paradigm, looking at flight start and stop
 
 """
 
-fly_dob = '03.06.2023'
+fly_dob = '03.05.2023'
 
-fly_genotype = """LexAop-GCaMP7b/w[1118] ; GMR39E01-LexA/+ ; +/+"""  
-genotype_nickname = 'X46/L18'  
+#fly_genotype = """LexAop-GCaMP7b/w[1118] ; GMR39E01-LexA/+ ; +/+"""  
+#genotype_nickname = 'X46/L18'  
 
-#fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
-#genotype_nickname = 'G84/RFP'  #  'G84/RFP'
+fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
+genotype_nickname = 'G84/RFP'  #  'G84/RFP'
 
 #fly_genotype = """LexAop-GCaMP7c/w[1118] ; GMR39E01-LexA/+ ; +/+"""  
 #genotype_nickname = 'X47/L18'  
