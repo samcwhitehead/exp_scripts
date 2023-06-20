@@ -25,6 +25,10 @@ def get_pattern_dict():
                     'pitch_down' : 'Pattern_rot_axis_2.mat',
                     'roll_left'  : 'Pattern_rot_axis_3.mat',
                     'roll_right' : 'Pattern_rot_axis_1.mat',
+                    'loom0'      : 'Pattern_loom_axis_0.mat',
+                    'loom1'      : 'Pattern_loom_axis_1.mat',
+                    'loom2'      : 'Pattern_loom_axis_2.mat',
+                    'loom3'      : 'Pattern_loom_axis_3.mat',
                     }
 
     return pattern_dict
