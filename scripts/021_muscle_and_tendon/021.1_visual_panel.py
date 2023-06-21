@@ -80,8 +80,11 @@ PATTERN_LIST.extend([['ol_roll_%s_rep%s'%(d,r) for d in ['left','right']]
                         for r in list(range(NUM_REPS))])
 PATTERN_LIST.extend([['ol_yaw_%s_rep%s'%(d,r) for d in ['left','right']]
                         for r in list(range(NUM_REPS))])
-PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
+#PATTERN_LIST = [['ol_loom%d_rep%s'%(d,r) for d in [0,1,2,3]]
+#                        for r in list(range(NUM_REPS))]
 
+PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
+print(PATTERN_LIST)
 CONDITION_CLOSED_LOOP = 'cl_stripe'
 # EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
 
@@ -158,7 +161,8 @@ if __name__ == '__main__':
             print 'RIGHT camera not in use: %s'%(e)
             rospy.logwarn('RIGHT camera not in use: %s'%(e))
             get_ref_frame_right = lambda *args, **kwargs: None
-
+        
+        
         metadata =   {'git_SHA':git_SHA,
                       'script_path':script_path,
                       'exp_description':exp_description,
@@ -169,7 +173,7 @@ if __name__ == '__main__':
                       'head_fixed':head_fixed}
 
         meta_pub.publish(cPickle.dumps(metadata))
-        
+         
         # ----------------------------------------------------------------------
         # read out some variables
         conditions = PATTERN_LIST
