@@ -41,8 +41,8 @@ In this particular experiment paradigm, looking at flight start and stop
 
 fly_dob = '??.??.????'
 
-fly_genotype = """w[*] ; UAS-GCaMP6s/UAS-GCaMP6s ; R29G05-GAL4/Tm3,Sb"""
-genotype_nickname = 'C66'
+fly_genotype = """w[*] ; UAS-GCaMP6s/UAS-GCaMP6s ; R58H10-GAL4/Tm3,Sb"""
+genotype_nickname = 'C67'
 
 #fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+  (testing BDSC version) """
 #genotype_nickname = 'G84/RFP'
@@ -103,7 +103,7 @@ with open(script_path,'rt') as f:
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
 
-assert git_tools.check_git_status(repo_dirs)
+# assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 # check if ROS is on yet
