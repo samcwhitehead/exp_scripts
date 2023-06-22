@@ -1,0 +1,78 @@
+// Pins:
+const int CAM_L_TRIG_PIN = 5;
+const int CAM_R_TRIG_PIN = 7;
+const int WB_PIN = 2; //sync from wb analyzer
+const int THOR_LED_PIN = 3;
+
+volatile bool wb_flag = false;
+
+// counters:
+unsigned long t_count = 0;
+volatile unsigned long pulse_count = 0;
+
+// Strobing parameters:
+const int blue_light_pulse = 1; // milliseconds
+const int pulses_per_frame = 2; // milliseconds
+const int blue_light_pause = 4; // milliseconds
+const int phase_delay = 3000;   // microseconds
+
+// Loop parameters:
+const int loop_delay = 50; // milliseconds
+
+void setup() {
+  //Serial.begin(115200);
+  pinMode(CAM_L_TRIG_PIN, OUTPUT);
+  pinMode(CAM_R_TRIG_PIN, OUTPUT);
+  pinMode(THOR_LED_PIN, OUTPUT);  
+  pinMode(WB_PIN, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(WB_PIN),wb_sync,FALLING);
+}
+
+void loop() {
+
+    unsigned long pulse_count_copy = 0;
+
+    noInterrupts();
+    pulse_count_copy = pulse_count;
+    interrupts();
+
+  // Check if there have been any pulses during loop_delay
+  if (pulse_count_copy==t_count) {
+    // Looks like the wingbeat analyzer is not running, strobe at specified delays:
+    digitalWrite(CAM_L_TRIG_PIN, HIGH);
+    digitalWrite(CAM_R_TRIG_PIN, HIGH);
+    digitalWrite(THOR_LED_PIN, HIGH);
+    delay(blue_light_pulse);
+    digitalWrite(THOR_LED_PIN, LOW);
+    delay(blue_light_pause);
+    digitalWrite(THOR_LED_PIN, HIGH);
+    delay(blue_light_pulse);
+    digitalWrite(CAM_L_TRIG_PIN, LOW);
+    digitalWrite(CAM_R_TRIG_PIN, LOW);
+    digitalWrite(THOR_LED_PIN, LOW);
+    delay(blue_light_pause);
+  }
+  else {
+
+    // Looks like the wingbeat analyzer is running:
+    t_count = pulse_count_copy;
+    // loop delay
+    delay(loop_delay);
+  }
+}
+
+void wb_sync() {
+  pulse_count++;
+  delayMicroseconds(phase_delay); // phase delay w.r.t. wingbeat analyzer trigger
+  digitalWrite(THOR_LED_PIN, HIGH);
+  if (pulse_count%pulses_per_frame==0) {
+    digitalWrite(CAM_L_TRIG_PIN, HIGH);
+    digitalWrite(CAM_R_TRIG_PIN, HIGH);
+  }
+  delay(blue_light_pulse);
+  digitalWrite(THOR_LED_PIN, LOW);
+  if (pulse_count%pulses_per_frame==1) {
+    digitalWrite(CAM_L_TRIG_PIN, LOW);
+    digitalWrite(CAM_R_TRIG_PIN, LOW);
+  }
+}

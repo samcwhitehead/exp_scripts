@@ -13,34 +13,27 @@ from std_msgs.msg import String
 from ledpanels import display_ctrl
 from util.my_panel_lib import turn_off_panels, exc_visual_stim
 
-# from exp_scripts import git_tools
-# from muscle_imager.srv import SrvRefFrame
-# from muscle_imager.srv import SrvRefFrameRequest
-# from exp_scripts.msg import MsgExpState
-# from exp_scripts.msg import MsgExpMetadata
 
 ############################################################################
 ########################### Script Variables ###############################
 ############################################################################
 
-#Stimulus periods
-MOTION_DURATION = 10.0
-PAUSE_DURATION = 3.0 
-
 #pattern playback rate 240 positions for 360deg
-PLAYBACK_LEVEL = 24 # 60*2 #Hz = 90deg/sec
+PLAYBACK_LEVEL = 30 # 60*2 #Hz = 90deg/sec
 CL_GAIN_X = -1
 
+#Stimulus periods
+MOTION_DURATION = 96/(1.4*PLAYBACK_LEVEL)
+PAUSE_DURATION = 5.0 
+
 # construct the list of motion patterns we will test
-PATTERN_LIST = ['ol_pitch_%s'%(d) for d in ['down','up']]
-PATTERN_LIST.extend(['ol_roll_%s'%(d) for d in ['left','right']])
-PATTERN_LIST.extend(['ol_yaw_%s'%(d) for d in ['left','right']])
+PATTERN_LIST = ['ol_loom_%s'%(d) for d in ['front']]
+# PATTERN_LIST = ['ol_loom_%s'%(d) for d in ['front', 'back', 'left', 'right']]
 
 # path to current script
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
 
-print(aaaa)
 ###########################################################################
 #################### MAIN  ################################################
 ###########################################################################
@@ -72,6 +65,8 @@ if __name__ == '__main__':
     # --------------------------------------------------------------------------
     # start with some closed loop stripe fixation
     cond_cl = 'cl_stripe'
+    # rospy.logwarn('enter closed loop stripe fixation')
+    print 'enter closed loop stripe fixation'
     exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
     time.sleep(pause_duration)
     
@@ -86,22 +81,27 @@ if __name__ == '__main__':
         # also publish to exp topic
         # exp_msg.state = pattern=%s'%(cond)
         exp_pub.publish('pattern=%s'%(cond))
-
+        # rospy.logwarn('enter open loop stimulus presentation: %s'%(cond))
+        print 'enter open loop stimulus presentation: %s'%(cond)
+        
         # execute visual pattern
-        exc_visual_stim(ctrl, cond, motion_duration, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0)
+        # exc_visual_stim(ctrl, cond, motion_duration, gain_x=0, gain_y=0, bias_x=0, bias_y=0, x_init=95)
+        exc_visual_stim(ctrl, cond, motion_duration, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0, x_init=32)
         
         # pause for a bit in between stimuli
         time.sleep(pause_duration)
     
     # --------------------------------------------------------------------------
     # end with some more closed loop fixation
+    # rospy.logwarn('enter closed loop stripe fixation')
+    print 'enter closed loop stripe fixation'
     exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
     time.sleep(pause_duration)
     
     print 'end of experiment'
     print (time.time()-t0)
     
-    blk_pub.publish('all_off')
-    turn_off_panels(ctrl)    
+#    blk_pub.publish('all_off')
+#    turn_off_panels(ctrl)    
 
 

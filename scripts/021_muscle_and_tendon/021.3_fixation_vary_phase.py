@@ -19,7 +19,7 @@ from exp_scripts import git_tools
 from ledpanels import display_ctrl
 from muscle_imager.srv import SrvRefFrame
 from muscle_imager.srv import SrvRefFrameRequest
-from scw_panel_lib import turn_off_panels, exc_visual_stim
+from util.my_panel_lib import turn_off_panels, exc_visual_stim
 from camera_strober import CameraStroberSerial
 
 """ MAKE SURE THIS IS EXECUTABLE; USE 'chmod +x mypythonscript.py' in terminal """
