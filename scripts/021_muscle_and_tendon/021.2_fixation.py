@@ -39,9 +39,9 @@ In this particular experiment paradigm, looking at flight start and stop
 
 """
 
-fly_dob = '00.00.0000'
+fly_dob = '??.??.????'
 
-fly_genotype = """w[*] ; UAS-GCaMP6s/+ ; R29G05-GAL4/+"""
+fly_genotype = """w[*] ; UAS-GCaMP6s/UAS-GCaMP6s ; R29G05-GAL4/Tm3,Sb"""
 genotype_nickname = 'C66'
 
 #fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+  (testing BDSC version) """
@@ -63,7 +63,7 @@ genotype_nickname = 'C66'
 #genotype_nickname = 'hinge_and_muscle/HCS'
 
 head_fixed = False 
-legs_cut = True
+legs_cut = False
 
 print genotype_nickname
 
