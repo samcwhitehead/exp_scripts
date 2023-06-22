@@ -41,7 +41,7 @@ In this particular experiment paradigm, looking at flight start and stop
 
 fly_dob = '??.??.????'
 
-fly_genotype = """w[*] ; UAS-GCaMP6s/UAS-GCaMP6s ; R58H10-GAL4/Tm3,Sb"""
+fly_genotype = """w[*] ; UAS-GCaMP6s/UAS-GCaMP6s ; R58H10-GAL4/R58H10-GAL4"""
 genotype_nickname = 'C67'
 
 #fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+  (testing BDSC version) """
