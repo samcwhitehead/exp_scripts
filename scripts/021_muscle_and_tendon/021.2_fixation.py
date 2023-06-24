@@ -39,7 +39,7 @@ In this particular experiment paradigm, looking at flight start and stop
 
 """
 
-fly_dob = '??.??.????'
+fly_dob = '06.23.2023'
 
 fly_genotype = """w[*] ; UAS-GCaMP6s/CyO ; R40D04-GAL4/+"""
 genotype_nickname = 'C68'

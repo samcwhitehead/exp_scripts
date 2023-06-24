@@ -441,7 +441,10 @@ class BagToHDF5:
         info_dict = yaml.load(self.inbag._get_yaml_info(), yaml.Loader)
         dtm = datetime.datetime.fromtimestamp(info_dict['start'])
         m, d, y = mtd['fly_dob'].split('.')  ##'8.13.2017'.split('.')
-        dob_dt = datetime.datetime(year=int(y), month=int(m), day=int(d))
+        try:
+            dob_dt = datetime.datetime(year=int(y), month=int(m), day=int(d))
+        except ValueError:
+            dob_dt = np.nan
         delta_dt = dtm - dob_dt
 
         with open(os.path.join(self.fly_path, 'age%s.txt' % (file_suffix)), 'wt') as f:
