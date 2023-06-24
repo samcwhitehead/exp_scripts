@@ -3,7 +3,7 @@
    <!-- Determine this using rosrun spinnaker_camera_driver list_cameras.
        If not specified, defaults to first camera found. -->
 
-  <arg name="kin_camera1_serial" default="16456195" />
+  <arg name="kin_camera1_serial" default="17372176" />
   <arg name="calibrated"                default="0" />
 
     <!-- ========================================================== -->
@@ -22,7 +22,7 @@
       name="spinnaker_camera_nodelet"
             args="load spinnaker_camera_driver/SpinnakerCameraNodelet camera_nodelet_manager" >
             <param name="frame_id" value="camera" />
-		<param name="serial" value="16456195" />
+		<param name="serial" value="17372176" />
       <param name="acquisition_frame_rate_enable" value="True" />
 	<param name="acquisition_frame_rate" value="30" />
 	<param name="exposure_time" value="4000" />

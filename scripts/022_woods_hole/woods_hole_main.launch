@@ -35,19 +35,13 @@
       
       <param name="/live_viewer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
       <node name="live_viewer_right" pkg="muscle_imager" type="live_viewer.py" />
-  
-     <param name="/live_viewer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-     <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer.py" />
-      
+
       <!-- ========================================================== -->
       <!-- Launch the signal umixer                                   -->
       <!-- ========================================================== -->
       
       <param name="/unmixer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
       <node name="unmixer_right" pkg="muscle_imager"  type="unmixer.py" />
-      
-      <param name="/unmixer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-      <node name="unmixer_left" pkg="muscle_imager"  type="unmixer.py" />
 
       <!-- ========================================================== -->
       <!-- Launch image blur node.                                    -->
