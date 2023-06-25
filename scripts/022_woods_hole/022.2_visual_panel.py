@@ -42,15 +42,6 @@ fly_dob = '01.23.2023'
 fly_genotype = """w[1118] ; +/+ ; 10XUAS-IVS-Syn21-GFP/sr[md710]"""  #  """w[1118]/w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
 genotype_nickname = 'G84/U14'  #  'G84/RFP'
 
-#fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
-#genotype_nickname = 'G84/RFP'  #  'G84/RFP'
-
-#fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/(sr[md710],UAS-tdTom.S)"""
-#genotype_nickname = 'C82/HCS'
-
-# fly_genotype = """w[1118]/+[HCS] ; +/(GMR39E01-LexA,GCaMP6f-LexOp) ; +/Mkrs"""
-# genotype_nickname = 'C82/HCS-ctrl'
-
 head_fixed = False 
 legs_cut = True
 
@@ -86,8 +77,6 @@ PATTERN_LIST.extend([['ol_yaw_%s_rep%s'%(d,r) for d in ['left','right']]
 PATTERN_LIST = [item for sublist in PATTERN_LIST for item in sublist]
 print(PATTERN_LIST)
 CONDITION_CLOSED_LOOP = 'cl_stripe'
-# EPI_LEVEL = 0.125 # Voltage sent to Blue LED for imaging GCaMP
-
 
 # name of unmixer being used (Thad's or Johan's)
 UNMIXER_NAME = 'unmixer'  # 'unmixer' or 'live_viewer' 
