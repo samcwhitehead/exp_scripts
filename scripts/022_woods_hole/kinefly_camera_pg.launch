@@ -1,7 +1,11 @@
 <launch>
     
 
+<<<<<<< HEAD
     <arg name="kin_camera1_serial" default="16398833" />
+=======
+    <arg name="kin_camera1_serial" default="16398831" />
+>>>>>>> f4d31e7a6dcd5da2b91c288c92350267270a5d7a
 
     <arg name="calibrated" default="0" />
 
@@ -19,14 +23,24 @@
             name="camera_nodelet"
             args="load pointgrey_camera_driver/PointGreyCameraNodelet camera_nodelet_manager" >
             <param name="frame_id" value="camera" />
+<<<<<<< HEAD
             <param name="serial" value="16398833" />
 		<param name="frame_rate_enable" value="True" />
 		<param name="frame_rate" value="100" />
+=======
+            <param name="serial" value="16398831" />
+		<param name="frame_rate_enable" value="True" />
+		<param name="frame_rate" value="30" />
+>>>>>>> f4d31e7a6dcd5da2b91c288c92350267270a5d7a
             <!-- param name="video_mode" value="format7_mode5" -->
             <param name="auto_exposure" value="false" />
             <param name="auto_shutter" value="false" />
             <param name="auto_gain" value="true" />
+<<<<<<< HEAD
             <param name="gain" value="1" />
+=======
+            <param name="gain" value="1.0" />
+>>>>>>> f4d31e7a6dcd5da2b91c288c92350267270a5d7a
             <param name="enable_trigger" value="false" />
 		<param name="trigger_mode" value="mode14" />
     <!-- modified                                        -->
