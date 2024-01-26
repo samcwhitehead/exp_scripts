@@ -40,7 +40,6 @@ PATTERN_LIST.extend(['ol_yaw_%s'%(d) for d in ['left','right']])
 script_path = os.path.realpath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
 
-print(aaaa)
 ###########################################################################
 #################### MAIN  ################################################
 ###########################################################################
@@ -86,7 +85,8 @@ if __name__ == '__main__':
         # also publish to exp topic
         # exp_msg.state = pattern=%s'%(cond)
         exp_pub.publish('pattern=%s'%(cond))
-
+        print cond
+        
         # execute visual pattern
         exc_visual_stim(ctrl, cond, motion_duration, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0)
         

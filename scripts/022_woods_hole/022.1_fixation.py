@@ -39,31 +39,14 @@ In this particular experiment paradigm, looking at flight start and stop
 
 """
 
-fly_dob = '06.18.2023'
+fly_dob = '07.03.2023'
 
-fly_genotype = """w[*] ; +/+ ; 20XUAS-jGCaMP7f/R40D04-GAL4"""
-genotype_nickname = 'U189/R40D04-GAL4'
+fly_genotype = """w[*] ; +/+ ; 20XUAS-jGCaMP7f/R22H05-GAL4"""
+genotype_nickname = '15D'
 
-#fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+  (testing BDSC version) """
-#genotype_nickname = 'G84/RFP'
-
-#fly_genotype = """LexAop-GCaMP7b/w[1118] ; GMR39E01-LexA/+ ; +/+"""  
-#genotype_nickname = 'X46/L18'  
-
-#fly_genotype = """w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
-#genotype_nickname = 'G84/RFP'  #  'G84/RFP'
-
-#fly_genotype = """LexAop-GCaMP7c/w[1118] ; GMR39E01-LexA/+ ; +/+"""  
-#genotype_nickname = 'X47/L18'  
-
-# fly_genotype = """w[1118] ; +/+ ; 10XUAS-IVS-Syn21-GFP/sr[md710]"""  #  """w[1118]/w[*] ; 10XUAS-IVS-mCD8::RFP/+ ; sr[md710]/+"""
-# genotype_nickname = 'G84/U14'  #  'G84/RFP'
-
-#fly_genotype = """LexAop-GCaMP7f/+[HCS] ; GMR39E01-LexA/+ ; +/(sr[md710],UAS-tdTom.S)"""
-#genotype_nickname = 'hinge_and_muscle/HCS'
 
 head_fixed = False 
-legs_cut = True
+legs_cut = False
 
 print genotype_nickname
 
@@ -79,7 +62,7 @@ CONDITION_DURATION = 20.0
 NUM_REPS = 5
 
 #pattern playback rate 240 positions for 360deg
-CL_GAIN_X = -2  # closed loop gain(?). was previously -2. alysha had it set up to -1; Francesca to 3
+CL_GAIN_X = -3  # closed loop gain(?). was previously -2. alysha had it set up to -1; Francesca to 3
 
 # string for visual stimulus
 PATTERN_NAME = 'Pattern_bar.mat'
@@ -103,7 +86,7 @@ with open(script_path,'rt') as f:
 with open(os.path.join(script_dir,'tracked_git_repos.txt')) as f:
     repo_dirs = f.readlines() 
 
-assert git_tools.check_git_status(repo_dirs)
+# assert git_tools.check_git_status(repo_dirs)
 git_SHA = git_tools.get_SHA_keys(repo_dirs)
 
 # check if ROS is on yet

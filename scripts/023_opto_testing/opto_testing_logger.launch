@@ -1,0 +1,174 @@
+<launch>
+    <!-- ========================================================== -->
+	<!-- Record a .bag file with 2 camera image stream  and         --> 
+	<!-- kinefly measurments (?)                                    -->
+    <!--                                                            -->
+    <!-- NB: 'case' is "both" | "left" | "right"                    -->
+    <!--   (which side(s) to record                                 -->
+	<!-- ========================================================== -->
+
+    <arg name="case" default="both" />
+    
+    <!-- ========================================================== -->
+	<!-- Case for BOTH left and right cameras                       -->
+	<!-- ========================================================== -->
+    <group if="$(eval case == 'both')">
+        <!-- BOTH camera case -->
+    
+        <node
+            pkg='rosbag'
+            name='muscle_and_tendon_logger'
+            type='record'
+            args='record -o $(env HOME)/bagfiles/$(arg case) 
+            /ca_camera_right/image_raw
+            /ca_camera_left/image_raw 
+            /kine_camera_1/image_raw/compressed
+            /arena_camera/image_color/compressed
+            /phidgets_daq/all_data 
+            /ledpanels/command
+            /ledpanels/debug
+            /exp_scripts/exp_state 
+            /exp_scripts/exp_metadata
+            /exp_scripts/exp_block
+            /exp_scripts/right_RefFrameServer
+            /exp_scripts/left_RefFrameServer
+            /kinefly/command 
+            /kinefly/flystate 
+            /kinefly/flystate2phidgetsanalog/command
+            /unmixer_left/LogRefFrame
+            /unmixer_left/ModelViewFrame
+            /unmixer_left/b1
+            /unmixer_left/b2
+            /unmixer_left/b3
+            /unmixer_left/bkg
+            /unmixer_left/hg1
+            /unmixer_left/hg2
+            /unmixer_left/hg3
+            /unmixer_left/hg4
+            /unmixer_left/i1
+            /unmixer_left/i2
+            /unmixer_left/iii1
+            /unmixer_left/iii24
+            /unmixer_left/iii3
+            /unmixer_left/image_output
+            /unmixer_left/nm
+            /unmixer_left/pr
+            /unmixer_left/tpd
+            /unmixer_right/LogRefFrame
+            /unmixer_right/ModelViewFrame
+            /unmixer_right/b1
+            /unmixer_right/b2
+            /unmixer_right/b3
+            /unmixer_right/bkg
+            /unmixer_right/hg1
+            /unmixer_right/hg2
+            /unmixer_right/hg3
+            /unmixer_right/hg4
+            /unmixer_right/i1
+            /unmixer_right/i2
+            /unmixer_right/iii1
+            /unmixer_right/iii24
+            /unmixer_right/iii3
+            /unmixer_right/image_output
+            /unmixer_right/nm
+            /unmixer_right/pr
+            /unmixer_right/tpd'
+        >
+        </node>
+    </group>
+
+    <!-- ========================================================== -->
+	<!-- Case for JUST LEFT camera                                  -->
+	<!-- ========================================================== -->
+    <group if="$(eval case == 'left')">
+        <!-- LEFT camera case -->
+    
+        <node
+            pkg='rosbag'
+            name='muscle_and_tendon_logger'
+            type='record'
+            args='record -o $(env HOME)/bagfiles/$(arg case) 
+            /ca_camera_left/image_raw 
+            /kine_camera_1/image_raw/compressed
+            /arena_camera/image_color/compressed
+            /phidgets_daq/all_data 
+            /ledpanels/command
+            /ledpanels/debug
+            /exp_scripts/exp_state 
+            /exp_scripts/exp_metadata
+            /exp_scripts/exp_block
+            /exp_scripts/left_RefFrameServer
+            /kinefly/command 
+            /kinefly/flystate 
+            /kinefly/flystate2phidgetsanalog/command
+            /unmixer_left/LogRefFrame
+            /unmixer_left/ModelViewFrame
+            /unmixer_left/b1
+            /unmixer_left/b2
+            /unmixer_left/b3
+            /unmixer_left/bkg
+            /unmixer_left/hg1
+            /unmixer_left/hg2
+            /unmixer_left/hg3
+            /unmixer_left/hg4
+            /unmixer_left/i1
+            /unmixer_left/i2
+            /unmixer_left/iii1
+            /unmixer_left/iii24
+            /unmixer_left/iii3
+            /unmixer_left/image_output
+            /unmixer_left/nm
+            /unmixer_left/pr
+            /unmixer_left/tpd'
+        >
+        </node>
+    </group>
+    
+    <!-- ========================================================== -->
+	<!-- Case for JUST RIGHT camera                                 -->
+	<!-- ========================================================== -->
+    <group if="$(eval case == 'right')">
+        <!-- RIGHT camera case -->
+    
+        <node
+            pkg='rosbag'
+            name='muscle_and_tendon_logger'
+            type='record'
+            args='record -o $(env HOME)/bagfiles/$(arg case) 
+            /ca_camera_right/image_raw
+            /kine_camera_1/image_raw/compressed
+            /arena_camera/image_color/compressed
+            /phidgets_daq/all_data 
+            /ledpanels/command
+            /ledpanels/debug
+            /exp_scripts/exp_state 
+            /exp_scripts/exp_metadata
+            /exp_scripts/exp_block
+            /exp_scripts/right_RefFrameServer
+            /kinefly/command 
+            /kinefly/flystate 
+            /kinefly/flystate2phidgetsanalog/command
+            /unmixer_right/LogRefFrame
+            /unmixer_right/ModelViewFrame
+            /unmixer_right/b1
+            /unmixer_right/b2
+            /unmixer_right/b3
+            /unmixer_right/bkg
+            /unmixer_right/hg1
+            /unmixer_right/hg2
+            /unmixer_right/hg3
+            /unmixer_right/hg4
+            /unmixer_right/i1
+            /unmixer_right/i2
+            /unmixer_right/iii1
+            /unmixer_right/iii24
+            /unmixer_right/iii3
+            /unmixer_right/image_output
+            /unmixer_right/nm
+            /unmixer_right/pr
+            /unmixer_right/tpd'
+        >
+        </node>
+    </group>
+
+</launch>

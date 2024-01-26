@@ -6,8 +6,10 @@
     
     
     <!-- Start Kinefly camera -->
-	<include file='$(find exp_scripts)/scripts/022_woods_hole/kinefly_camera.launch' />
+	<include file='$(find exp_scripts)/scripts/022_woods_hole/kinefly_camera_pg.launch' />
 	
+	 <!-- Start side view camera -->
+	<include file='$(find exp_scripts)/scripts/022_woods_hole/side_camera.launch' />
 	
 	<!-- Start muscle imaging camera(s) -->
 	<include file='$(find exp_scripts)/scripts/022_woods_hole/muscle_imaging_camera.launch' />

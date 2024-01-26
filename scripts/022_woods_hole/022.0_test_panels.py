@@ -19,16 +19,18 @@ from util.my_panel_lib import turn_off_panels, exc_visual_stim
 ############################################################################
 
 #pattern playback rate 240 positions for 360deg
-PLAYBACK_LEVEL = 30 # 60*2 #Hz = 90deg/sec
+PLAYBACK_LEVEL = 60 # 60*2 #Hz = 90deg/sec
 CL_GAIN_X = -1
 
 #Stimulus periods
-MOTION_DURATION = 96/(1.4*PLAYBACK_LEVEL)
+MOTION_DURATION = 10  # 96/(1.4*PLAYBACK_LEVEL)
 PAUSE_DURATION = 5.0 
 
 # construct the list of motion patterns we will test
-PATTERN_LIST = ['ol_loom_%s'%(d) for d in ['front']]
+PATTERN_LIST = ['ol_loom_ripple_%s'%(d) for d in ['front', 'front', 'front', 'front']]
 # PATTERN_LIST = ['ol_loom_%s'%(d) for d in ['front', 'back', 'left', 'right']]
+
+x_position_func = 'position_function_1_looming_patterns_0.01.mat' # 'default'
 
 # path to current script
 script_path = os.path.realpath(sys.argv[0])
@@ -62,13 +64,13 @@ if __name__ == '__main__':
     # read out start time
     t0 = time.time()
     
-    # --------------------------------------------------------------------------
-    # start with some closed loop stripe fixation
-    cond_cl = 'cl_stripe'
-    # rospy.logwarn('enter closed loop stripe fixation')
-    print 'enter closed loop stripe fixation'
-    exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
-    time.sleep(pause_duration)
+#    # --------------------------------------------------------------------------
+#    # start with some closed loop stripe fixation
+#    cond_cl = 'cl_stripe'
+#    # rospy.logwarn('enter closed loop stripe fixation')
+#    print 'enter closed loop stripe fixation'
+#    exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
+#    time.sleep(pause_duration)
     
     # --------------------------------------------------------------------------
     # loop over visual patterns and execute them
@@ -85,23 +87,23 @@ if __name__ == '__main__':
         print 'enter open loop stimulus presentation: %s'%(cond)
         
         # execute visual pattern
-        # exc_visual_stim(ctrl, cond, motion_duration, gain_x=0, gain_y=0, bias_x=0, bias_y=0, x_init=95)
-        exc_visual_stim(ctrl, cond, motion_duration, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0, x_init=32)
+       
+        exc_visual_stim(ctrl, cond, motion_duration, gain_x=PLAYBACK_LEVEL, gain_y=0, bias_x=0, bias_y=0, x_init=0, pre_motion_duration=5, x_position_func=x_position_func)
         
         # pause for a bit in between stimuli
         time.sleep(pause_duration)
     
-    # --------------------------------------------------------------------------
-    # end with some more closed loop fixation
-    # rospy.logwarn('enter closed loop stripe fixation')
-    print 'enter closed loop stripe fixation'
-    exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
-    time.sleep(pause_duration)
+#    # --------------------------------------------------------------------------
+#    # end with some more closed loop fixation
+#    # rospy.logwarn('enter closed loop stripe fixation')
+#    print 'enter closed loop stripe fixation'
+#    exc_visual_stim(ctrl, cond_cl, motion_duration, gain_x = CL_GAIN_X)
+#    time.sleep(pause_duration)
     
     print 'end of experiment'
     print (time.time()-t0)
     
-#    blk_pub.publish('all_off')
-#    turn_off_panels(ctrl)    
+    blk_pub.publish('all_off')
+    turn_off_panels(ctrl)    
 
 

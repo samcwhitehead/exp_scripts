@@ -6,10 +6,8 @@
 
     <arg name="case" default="both" />
 
-    <node name='exp_scripts' pkg='exp_scripts' type='022.1_fixation.py' />
+    <node name='exp_scripts' pkg='exp_scripts' type='022.4_nothing.py' />
     <include file='$(find exp_scripts)/scripts/022_woods_hole/woods_hole_logger.launch'>
-        <!-- pass argument case: 'both' | 'right' | 'left' -->
-        <arg name="case" value="$(arg case)" />
     </include>
 
 </launch>

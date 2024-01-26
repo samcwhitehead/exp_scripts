@@ -1,0 +1,15 @@
+<launch>
+    <!-- ================================================================== -->
+	<!-- Starts all cameras, including kinefly and muscle imaging cams      --> 
+	<!-- NB: this is probably redundant and couold be removed               -->
+	<!-- ================================================================== -->
+    
+    
+    <!-- Start Kinefly camera -->
+	<include file='$(find exp_scripts)/scripts/022_woods_hole/kinefly_camera.launch' />
+	
+	
+	<!-- Start muscle imaging camera(s) -->
+	<include file='$(find exp_scripts)/scripts/022_woods_hole/muscle_imaging_camera.launch' />
+    
+</launch>

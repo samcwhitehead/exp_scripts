@@ -173,7 +173,8 @@ if __name__ == '__main__':
                       'fly_dob':fly_dob,
                       'fly_genotype':fly_genotype,
                       'genotype_nickname':genotype_nickname,
-                      'head_fixed':head_fixed}
+                      'head_fixed':head_fixed,
+                      'legs_cut':legs_cut}
 
         meta_pub.publish(cPickle.dumps(metadata))
         

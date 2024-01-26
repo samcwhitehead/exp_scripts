@@ -19,6 +19,7 @@
         args='record -o $(env HOME)/bagfiles/$(arg case) 
         /ca_camera_right/image_raw
         /kine_camera_1/image_raw/compressed
+        /side_camera_1/image_raw/compressed
         /arena_camera/image_color/compressed
         /phidgets_daq/all_data 
         /ledpanels/command
