@@ -27,7 +27,7 @@ print('Input camera case: %s'%(cam_case))
 if __name__ == '__main__':
 
     # create instance of CameraStroberSerial
-    css = CameraStroberSerial()
+    css = CameraStroberSerial(port='/dev/triggerbox')
    
     # based on case, set cameras as enabled/disabled
     if cam_case == "both":

@@ -212,7 +212,8 @@ if __name__ == '__main__':
         for rep in range(NUM_REPS):
             # loop over condition types
             for condition in np.random.permutation(CONDITIONS):
-                rospy.logwarn('enter light condition: %s'%(condition))
+                # rospy.logwarn('enter light condition: %s'%(condition))
+                print('enter light condition: %s'%(condition))
                 
                 # ------------------------------------------------
                 # pre-stimulus closed loop stripe fixation
@@ -259,6 +260,8 @@ if __name__ == '__main__':
         meta_pub.publish(cPickle.dumps(metadata))
         
         # print some stuff at the end to let us know we're done!
+        print('end_of_experiment')
+        print(time.time()-t0)
         rospy.logwarn('end_of_experiment')
         rospy.logwarn(time.time()-t0)
         
