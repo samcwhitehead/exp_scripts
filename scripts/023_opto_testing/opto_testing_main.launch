@@ -1,20 +1,9 @@
 <launch>
       <!-- ========================================================== -->
-	<!-- Define variable for both vs left vs right             	    -->
-      <!-- ========================================================== -->
-    
-    <arg name="case" default="both" />
-    <!-- <param name="cam_case" value="$(arg case)" /> -->
-    
-      <!-- ========================================================== -->
 	<!-- Launch the cameras                               	    -->
       <!-- ========================================================== -->
 
-	<include file='$(find exp_scripts)/scripts/023_opto_testing/all_cameras.launch'>
-	    <!-- pass argument case: 'both' | 'right' | 'left' -->
-        <arg name="case" value="$(arg case)" />
-    </include>
-
+	<include file='$(find exp_scripts)/scripts/023_opto_testing/all_cameras.launch' />
     
       <!-- ========================================================== -->
 	<!-- Launch Kinefly                                    	    -->
@@ -43,31 +32,17 @@
       <!-- ========================================================== -->
       <!-- Launch the muscle viewer    .                              -->
       <!-- ========================================================== -->
-      
-      <group unless="$(eval case == 'left')">
-          <param name="/live_viewer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
-          <node name="live_viewer_right" pkg="muscle_imager" type="live_viewer.py" />
-      </group>
-      
-      <group unless="$(eval case == 'right')">
-         <param name="/live_viewer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-         <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer.py" />
-      </group>
-      
+
+      <param name="/live_viewer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
+      <node name="live_viewer_left" pkg="muscle_imager" type="live_viewer.py" />
+
       <!-- ========================================================== -->
       <!-- Launch the signal umixer                                   -->
       <!-- ========================================================== -->
       
-      <group unless="$(eval case == 'left')">
-          <param name="/unmixer_right/image_topic" value="/ca_camera_right/image_raw" type ="str" />
-          <node name="unmixer_right" pkg="muscle_imager"  type="unmixer.py" />
-      </group>
+      <param name="/unmixer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
+      <node name="unmixer_left" pkg="muscle_imager"  type="unmixer.py" />
       
-      <group unless="$(eval case == 'right')">
-          <param name="/unmixer_left/image_topic" value="/ca_camera_left/image_raw" type ="str" />
-          <node name="unmixer_left" pkg="muscle_imager"  type="unmixer.py" />
-      </group>
-
       <!-- ========================================================== -->
       <!-- Launch image blur node.                                    -->
       <!-- ========================================================== -->

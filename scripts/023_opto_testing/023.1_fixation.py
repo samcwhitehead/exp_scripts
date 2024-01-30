@@ -188,6 +188,9 @@ if __name__ == '__main__':
         # get start time
         t0 = time.time()
         
+        # turn off blue LED (want to only have it on some of the time)
+        css.disable_led()
+        
         # stop panels 
         ctrl.stop()
         
@@ -234,14 +237,14 @@ if __name__ == '__main__':
                     
                 # set blue light options (camera_strober)
                 if condition == 'blue':
-                    css.disable_led()
+                    css.enable_led()
                     
                 # sleep
                 time.sleep(STIM_DURATION)
                 
                 # undo any changes to red or blue lights
-                ch_pub.publish(CHRIMSON_STR%(0))
-                css.enable_led()
+                ch_pub.publish(CHRIMSON_STR%(0))  # red
+                css.disable_led()  # blue
                 
                 # ------------------------------------------------
                 # post-stimulus closed loop stripe fixation

@@ -147,6 +147,22 @@ void SystemState::handle_message(uint8_t cmd_num, uint8_t cmd_val) {
                 Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cam_right_enabled_ << "}" << endl;
             }
             break;
+            
+        case CMD_LED_ENABLED:
+            led_enabled_ = true;
+            pinMode(LED_PIN, OUTPUT);
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cmd_val << "}" << endl;
+            break;
+                
+        case CMD_LED_DISABLED:
+            led_enabled_ = false;
+            pinMode(LED_PIN, INPUT);
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << cmd_val << "}" << endl;
+            break;
+            
+        case CMD_GET_LED_ENABLE:
+            Serial << "{\"cmd\":" << cmd_num << ",\"val\":" << led_enabled_ << "}" << endl;
+            break;
     }
 }
 

@@ -4,26 +4,11 @@
 	<!-- NB: this is probably redundant and couold be removed               -->
 	<!-- ================================================================== -->
     
-    
-	<!-- Set default value for case arguement -->
-    <arg name="case" default="both" /> 
-    
-    
-    <!-- Set enabled/disabled state for muscle imaging cameras -->
-    <param name="cam_case" value="$(arg case)" />
-    <node name="camera_serial" pkg="exp_scripts" type="set_camera_states.py" />
-    
-    
     <!-- Start Kinefly camera -->
 	<include file='$(find exp_scripts)/scripts/023_opto_testing/kinefly_camera_pg.launch' />
 	
 	
 	<!-- Start muscle imaging camera(s) -->
-	<include file='$(find exp_scripts)/scripts/023_opto_testing/muscle_imaging_cameras.launch'>
-	    <!-- pass argument case: 'both' | 'right' | 'left' -->
-        <arg name="case" value="$(arg case)" />
-    </include>
-    
-    
+	<include file='$(find exp_scripts)/scripts/023_opto_testing/muscle_imaging_cameras.launch' />
     
 </launch>

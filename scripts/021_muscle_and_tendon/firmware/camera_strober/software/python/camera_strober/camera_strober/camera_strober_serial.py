@@ -22,7 +22,10 @@ class CameraStroberSerial(serial.Serial):
     CMD_CAM_ENABLED = 3
     CMD_CAM_DISABLED = 4
     CMD_GET_CAM_ENABLE = 5
-
+    CMD_LED_ENABLED = 6
+    CMD_LED_DISABLED = 7
+    GET_CMD_LED_ENABLED = 8
+    
     CAMERA_LEFT  = 2
     CAMERA_RIGHT = 1
     RESET_DT = 2.0 
@@ -35,7 +38,7 @@ class CameraStroberSerial(serial.Serial):
             }
 
 
-    def __init__(self, port='/dev/ttyUSB0', timeout=2.0):
+    def __init__(self, port='/dev/triggerbox', timeout=2.0):  # '/dev/ttyUSB0'
         """
         initialize class
         """
@@ -88,12 +91,23 @@ class CameraStroberSerial(serial.Serial):
         return resp['val']
 
     def set_cam_state(self,cam_side, state):
+    	"""
+    	Wrapper for enable_cam and disable_cam
+    	"""
         if state:
             self.enable_cam(cam_side)
         else:
             self.disable_cam(cam_side)
 
-           
+    def set_led_state(self, state):
+    	"""
+    	Wrapper for enable_led and disable_led
+    	"""
+        if state:
+            self.enable_led()
+        else:
+            self.disable_led()
+
     def enable_cam(self, cam_side):
         """
         ENABLE the selected camera (right or left) 
@@ -103,7 +117,6 @@ class CameraStroberSerial(serial.Serial):
         try:
             resp = self.send_cmd(cmd_num, cam_val)
         except KeyError:
-            #raise ValueError, 'camera side must be either right or left'
             raise ValueError('camera side must be either right or left')
 
 
@@ -116,7 +129,6 @@ class CameraStroberSerial(serial.Serial):
         try:
             resp = self.send_cmd(cmd_num, cam_val)
         except KeyError:
-            #raise ValueError, 'camera side must be either right or left'
             raise ValueError('camera side must be either right or left')
          
             
@@ -132,7 +144,22 @@ class CameraStroberSerial(serial.Serial):
             #raise ValueError, 'camera side must be either right or left'
             raise ValueError('camera side must be either right or left')
         return bool(resp['val'])
-        
+    
+    def enable_led(self):
+        """
+        ENABLE the fluor LED
+        """
+        cmd_num = self.CMD_LED_ENABLED
+        cam_val = 0  # what should this be?
+        resp = self.send_cmd(cmd_num, cam_val)
+    
+    def disable_led(self):
+        """
+        DISABLE the fluor LED
+        """
+        cmd_num = self.CMD_LED_DISABLED
+        cam_val = 0  # what should this be?
+        resp = self.send_cmd(cmd_num, cam_val)
         
 # -----------------------------------------------------------------------------
 if __name__ == '__main__':
@@ -163,6 +190,13 @@ if __name__ == '__main__':
         resp = dev.get_cam_state(cam)
         print('cam', cam, 'state = ', resp)
 
+    print('light off')
+    dev.disable_led()
+
+    time.sleep(3)
+
+    print('light on')
+    dev.enable_led()
 
         
             

@@ -24,6 +24,7 @@ class SystemState {
         uint32_t wb_trig_percent_ = WB_DFLT_TRIG_PERCENT;
         bool cam_left_enabled_ = true;
         bool cam_right_enabled_ = true;
+        bool led_enabled_ = true;
 
         AveragingBuffer avg_buffer_;
         SerialReceiver receiver_;

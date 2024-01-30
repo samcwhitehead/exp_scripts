@@ -24,6 +24,9 @@ const uint8_t CMD_GET_WB_PERCENT = 2;
 const uint8_t CMD_CAM_ENABLED = 3;
 const uint8_t CMD_CAM_DISABLED = 4;
 const uint8_t CMD_GET_CAM_ENABLE = 5;
+const uint8_t CMD_LED_ENABLED = 6;
+const uint8_t CMD_LED_DISABLED = 7;
+const uint8_t CMD_GET_LED_ENABLE = 8;
 
 // Camera ids
 extern const uint8_t CAMERA_LEFT;

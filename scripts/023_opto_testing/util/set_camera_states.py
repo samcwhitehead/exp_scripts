@@ -9,6 +9,9 @@ import socket
 import rospy
 from camera_strober import CameraStroberSerial
 
+import camera_strober
+import os
+print(os.path.abspath(camera_strober.__file__))
 # -----------------------------------------------------------------------------
 # Read in the case that we're using ('both' | 'right' | 'left') 
 # -----------------------------------------------------------------------------
@@ -28,7 +31,7 @@ if __name__ == '__main__':
 
     # create instance of CameraStroberSerial
     css = CameraStroberSerial(port='/dev/triggerbox')
-   
+  
     # based on case, set cameras as enabled/disabled
     if cam_case == "both":
         # in this case, both cameras should be on
@@ -58,3 +61,6 @@ if __name__ == '__main__':
     # rospy.logwarn('Right camera state: %d'%(cam_right_enabled))
     # rospy.logwarn('Left camera state: %d'%(cam_left_enabled))
     
+    # test LED off/on
+    css.disable_led()
+    css.enable_led()
